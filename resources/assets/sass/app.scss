@@ -6,9 +6,176 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
+
+body {
+    background-color: #fff;
+}
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-header {
+    background-color: $brand-primary;
+    height: 60px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.sidebar-body {
+    background-color: $brand-secondary;
+}
+
+.sidebar-logo {
+    width: 150px;
+}
+
+.container {
+    width: 100%;
+}
+
+.dropzone-element {
+    width: 200px;
+    height: 200px;
+    border-width: 2px;
+    border-color: rgb(102, 102, 102);
+    border-style: dashed;
+    border-radius: 5px;
+    margin: auto;
+    padding: 69px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.progress-container {
+    height: 50vh;
+    min-height: 200px;
+    padding: calc(25vh - 10px) 20px;
+}
+
+.dropzone-contianer {
+    display: inline-block;
+}
+
+.audio-editor-container {
+    text-align: center;
+}
+
+.audio-player-container {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    border: 1px solid #000;
+    margin-top: 50px;
+    width: 640px;
+    height: 120px;
+}
+
+.range-slider-container {
+    position: absolute;
+    top: 0px;
+    height: 14px;
+    width: 100%;
+    border-radius: 6px;
+    -ms-touch-action: none;
+    touch-action: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    left: -10px;
+}
+
+#audio-seeker {
+	width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid red;
+    position: absolute;
+    left: calc(0% - 10px);
+    bottom: -20px;
+}
+
+.media-controls {
+
+}
+
+.rc-slider-rail {
+    position: absolute;
+    width: 100%;
+    background-color: transparent;
+    height: 4px;
+    border-radius: 6px;
+}
+
+.rc-slider-track {
+    position: absolute;
+    left: 0;
+    border-radius: 0px;
+    background: transparent;
+}
+
+.rc-slider-step {
+    position: absolute;
+    width: 100%;
+    background: transparent;
+}
+
+.rc-slider-handle {
+    background: transparent;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid red;
+    position: absolute;
+    left: calc(0% - 10px);
+    touch-action: pan-x;
+    top: -20px;
+    cursor: pointer;
+}
+
+.media-controls {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.sidebar-tool-box-nav-button {
+    color: $brand-primary;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    background: $brand-secondary;
+    padding-top: 5px;
+    border-radius: 50px;
+    margin-left: 20px;
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.sidebar-tool-box-nav-button.active {
+    background: #8ea6bd;
+}
+
+.sidebar-tool-box-nav-bar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sidebar-container {
+    background-color: #fcfcfc;
+    height: 100vh;
+}
+
+.upload-button {
+    border-radius: 0px;
+}
+
+.upload-button-container {
+    text-align: center;
 }

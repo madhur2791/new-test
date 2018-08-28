@@ -46,7 +46,7 @@ class MediaController extends Controller
             $request->file('uploaded-media-file')->getClientOriginalName()
         );
 
-        return $mediaFileObj;
+        return response()->json($this->mediaService->getUploadedMediaFiles($request->user()));
     }
 
     public function editMediaFile(Request $request, $mediaId)
@@ -58,36 +58,43 @@ class MediaController extends Controller
                 'error' => 'Media file length should be atleast 1 second'
             ];
         }
+        $loggedInUser = $request->user();
         $mediaFileObject = MediaFile::where('media_id', $mediaId)->first();
 
         Storage::disk('public')->put(
-            $mediaFileObject->media_file_name,
-            Storage::disk('s3')->get('resources/media-file/'.$mediaFileObject->media_file_name)
+            $mediaFileObject->media_id.'.mp3',
+            Storage::disk('s3')->get($mediaFileObject->media_file_url)
         );
 
         $clippedFilePath = $this->mediaService->clipMediaFile(
-            $mediaFileObject->media_file_name,
+            $mediaFileObject->media_id.'.mp3',
             $startTime,
             $endTime
         );
+
         $assetNames = [
-            'media_file_name' => $mediaFileObject->media_file_name,
-            'json_file_name' => $mediaFileObject->waveform_raw_data_name,
-            'sample_wavefrom_image_name' => $mediaFileObject->images->sample_waveform_name
+            'media_file_name' => uniqid('media_file_name'.$loggedInUser->id),
+            'json_file_name' => uniqid('json_file_name'.$loggedInUser->id),
+            'sample_wavefrom_image_name' => uniqid('sample_wavefrom_image_name'.$loggedInUser->id)
         ];
+
+
         $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
             $clippedFilePath,
             $mediaId,
-            $request->user(),
-            $mediaFileObject->uploaded_file_name
+            $assetNames,
+            $loggedInUser,
+            $mediaFileObject->uploaded_file_name,
+            true
         );
 
-        return $mediaFileObj;
+        return response()->json($this->mediaService->getUploadedMediaFiles($request->user()));
     }
 
     public function getWaveformData(Request $request, $mediaId) {
-        $jsonData = Storage::disk('s3')->get('resources/waveform-data/'.$mediaId.'.json');
-         return response()->json(json_decode($jsonData));
+        $mediaFileObject = MediaFile::where('media_id', $mediaId)->first();
+        $jsonData = Storage::disk('s3')->get($mediaFileObject->waveform_raw_data_url);
+        return response()->json(json_decode($jsonData));
     }
 
     public function getUploadedMediaFiles(Request $request) {

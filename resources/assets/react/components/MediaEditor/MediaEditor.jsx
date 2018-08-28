@@ -17,7 +17,7 @@ class MediaEditor extends React.Component {
     this.ref = this.ref.bind(this);
     this.onRangeChange = this.onRangeChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.cropAudio = this.cropAudio.bind(this);
+    this.cropMedia = this.cropMedia.bind(this);
     this.onDuration = this.onDuration.bind(this);
   }
 
@@ -70,13 +70,14 @@ class MediaEditor extends React.Component {
     });
   }
 
-  cropAudio (e) {
+  cropMedia (e) {
     e.preventDefault();
-    axios.post('/web-api/media/15b79ad4602f80/edit', {
-        startTime: (this.state.duration * this.state.startTime) / 100,
-        endTime: (this.state.duration * this.state.endTime) / 100
-    });
+    const startTime = (this.state.duration * this.state.startTime) / 100;
+    const endTime = (this.state.duration * this.state.endTime) / 100;
+    console.log(this.props.mediaFileId, startTime, endTime);
+    this.props.cropMedia(this.props.selectedMediaIndex, startTime, endTime);
   }
+
 
   ref(player) {
     this.player = player
@@ -87,7 +88,7 @@ class MediaEditor extends React.Component {
         <div>
             <div className="audio-editor-container">
                 <div className="audio-player-container">
-                    <img src="https://s3.us-east-2.amazonaws.com/soundwavepic-test-media/resources/images/raw_waveform/15b79ad4602f80.png"/>
+                    <img src={this.props.sampleWaveformImage}/>
                     <div
                         id="audio-seeker"
                         style={{
@@ -103,7 +104,7 @@ class MediaEditor extends React.Component {
                 </div>
             </div>
             <ReactPlayer
-                url='https://s3.us-east-2.amazonaws.com/soundwavepic-test-media/resources/media-file/15b79ad4602f80.mp3'
+                url={this.props.mediaFile}
                 onProgress={this.onProgress}
                 width='0%'
                 height='0%'
@@ -116,7 +117,7 @@ class MediaEditor extends React.Component {
                 <button onClick={this.handleClick}>
                     {this.state.isPlaying ? 'Pause' : 'Play'}
                 </button>
-                <button onClick={this.cropAudio}>
+                <button onClick={this.cropMedia}>
                     Crop
                 </button>
             </div>

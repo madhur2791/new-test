@@ -28,16 +28,7 @@ function waveformData(state = initialState, action) {
         }
       };
     }
-    case RECEIVE_WAVEFORM_DATA_FAILURE: {
-      const { payload: { mediaId, error } } = action;
-      return {
-        ...state,
-        [mediaId]: {
-          isFetching: false,
-          error
-        }
-      };
-    }
+
 
     default:
       return state;

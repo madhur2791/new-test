@@ -2,21 +2,18 @@ import React from 'react';
 import Sidebar from '../../../../components/SideBar/Sidebar.jsx';
 import FileUploader from '../../../../components/FileUploader/FileUploader.jsx';
 
-class MediaUpload extends React.Component {
-    componentDidMount() {
-        const {
-            getUploadedMediaFiles
-        } = this.props;
-
-        getUploadedMediaFiles();
-    }
+class UploadedFilesList extends React.Component {
     render() {
-        console.log("aaaa", this.props.uploadedMediaFilesList.uploadedMediaFilesList);
         if (this.props.uploadedMediaFilesList && this.props.uploadedMediaFilesList.isFetching === false) {
-            return this.props.uploadedMediaFilesList.data.map((uploadedMedia) => {
+            return this.props.uploadedMediaFilesList.media_list.map((uploadedMedia, index) => {
                 return (
-                    <div key={uploadedMedia.id}>
-                        {uploadedMedia.uploaded_file_name}
+                    <div
+                        className={`col-md-12 media-file-element ${this.props.selectedMediaIndex === index ? 'active':''}`}
+                        key={uploadedMedia.id}
+                        onClick={() => (this.props.updateSelectedMediaIndex(index))}
+                    >
+                        {uploadedMedia.uploaded_file_name}<br />
+                        {uploadedMedia.created_at}
                     </div>
                 )
             });
@@ -28,4 +25,4 @@ class MediaUpload extends React.Component {
     }
 }
 
-export default MediaUpload;
+export default UploadedFilesList;

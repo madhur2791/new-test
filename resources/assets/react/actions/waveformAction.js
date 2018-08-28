@@ -13,7 +13,7 @@ function requestWaveformData(mediaId) {
   return {
     type: REQUEST_WAVEFORM_DATA,
     payload: {
-      mediaId
+        mediaId
     }
   };
 }
@@ -28,15 +28,6 @@ function receiveWaveformData(mediaId, waveformData) {
   };
 }
 
-function receiveWaveformDataFailure(mediaId, error) {
-  return {
-    type: RECEIVE_WAVEFORM_DATA_FAILURE,
-    payload: {
-        mediaId,
-        error
-    }
-  };
-}
 
 export function fetchWaveformData(mediaId) {
   return (
@@ -46,7 +37,7 @@ export function fetchWaveformData(mediaId) {
         apiClient.get(`/web-api/waveform-data/${mediaId}`).then((response) => {
           dispatch(receiveWaveformData(mediaId, response));
         }).catch((error) => {
-          dispatch(receiveWaveformDataFailure(mediaId, error));
+          console.log(error);
         })
       );
     }

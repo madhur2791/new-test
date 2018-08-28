@@ -6,7 +6,7 @@ const mapStateToProps = (state, ownProps) => {
   const { mediaId } = ownProps.match.params;
   const { waveformData } = state;
   return {
-    waveformData: waveformData
+    waveformData
   };
 };
 

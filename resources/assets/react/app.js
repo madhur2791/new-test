@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import MediaUpload from './views/MediaUpload/MediaUpload.jsx';
-import MediaEdit from './views/MediaEdit/MediaEdit.jsx';
+import MediaUploadContainer from './views/MediaUpload/MediaUploadContainer.jsx';
 import WaveformContainer from './views/WaveformEdit/WaveformContainer.jsx';
 import { Provider } from 'react-redux';
 import store from './stores/store';
@@ -29,8 +28,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <Switch>
-                <Route path="/create" component={MediaUpload} exact />
-                <Route path="/create/:mediaId/edit" component={MediaEdit} exact />
+                <Route path="/create" component={MediaUploadContainer} exact />
                 <Route path="/create/:mediaId/waveform" component={WaveformContainer} exact />
             </Switch>
         </BrowserRouter>

@@ -20,22 +20,24 @@ class FileUploader extends React.Component {
     });
   }
   onDropRejected(rejectedFiles) {
-    console.log(rejectedFiles[0].size);
+    console.log('rejetced',rejectedFiles[0].size);
   }
   onDropAccepted(acceptedFiles) {
+    console.log('accepted',acceptedFiles[0].size);
     this.setState({
         showProgressBar: false
     })
     const formData = new FormData();
     console.log(acceptedFiles[0]);
     formData.append('uploaded-media-file', acceptedFiles[0]);
-    const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        },
-        onUploadProgress: this.onProgress
-    }
-    axios.post('/web-api/media-upload', formData, config);
+    // const config = {
+    //     headers: {
+    //         'content-type': 'multipart/form-data'
+    //     },
+    //     onUploadProgress: this.onProgress
+    // }
+    this.props.uploadMediaFile(formData, this.onProgress);
+    // axios.post('/web-api/media-upload', formData, config);
  }
 
   render() {
@@ -48,7 +50,7 @@ class FileUploader extends React.Component {
                     onDropAccepted={this.onDropAccepted}
                     multiple={false}
                     className="btn btn-primary upload-button"
-                    accept={`${this.props.mediaType}/*`}
+                    accept="audio/*, video/*"
                     maxSize={40000000}
                 >
                 {this.props.children}

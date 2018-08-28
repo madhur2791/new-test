@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\MediaFile;
 use FFMpeg\Coordinate\TimeCode;
 use Illuminate\Http\File;
+use FFMpeg\FFProbe;
 
 class MediaService
 {
@@ -14,8 +15,11 @@ class MediaService
 
     }
 
-    public function computeAndStoreMediaInfo($mediaFilePath, $mediaId, $assetNames, $loggedInUser, $fileOriginalName)
+    public function computeAndStoreMediaInfo($mediaFilePath, $mediaId, $assetNames, $loggedInUser, $fileOriginalName, $isCropped = false)
     {
+        $requiredSamples = 900;
+        $sampleRate = 44100;
+
         $tempFileName = $assetNames['media_file_name'].'.mp3';
         $jsonFileName = $assetNames['json_file_name'].'.json';
         $waveformName = $assetNames['sample_wavefrom_image_name'].'.png';
@@ -31,7 +35,11 @@ class MediaService
         $waveform = $media->waveform(640, 120, array('#00FF00'));
         $waveform->save($waveformName);
 
-        shell_exec('audiowaveform -i '.$tempFileName.' -o '.$jsonFileName.' -z 1024 -b 16');
+        $ffprobe = FFProbe::create();
+        $duration = $ffprobe->format($tempFileName)->get('duration');
+        $zoom = round($sampleRate * $duration / $requiredSamples);
+
+        shell_exec('audiowaveform -i '.$tempFileName.' -o '.$jsonFileName.' -z '.$zoom.' -b 16');
 
         Storage::disk('s3')->putFileAs(
             'resources/waveform-data',
@@ -71,7 +79,8 @@ class MediaService
                     "sample_waveform_url" => "resources/images/raw_waveform/".$waveformName,
                     "generated_thumbnail" => null,
                 ]),
-                "media_file_type" => 'AUDIO'
+                "media_file_type" => 'AUDIO',
+                "is_cropped" => $isCropped
             ]
         );
 
@@ -80,24 +89,30 @@ class MediaService
 
     public function clipMediaFile($mediaFileName, $startTime, $endTime)
     {
+        // dd($mediaFileName, $startTime, $endTime);
         $ffmpeg = FFMpeg::create(array(
             'timeout' => 36000,
         ));
 
         $media = $ffmpeg->open($mediaFileName);
-        // error_log($startTime, $endTime);
-        var_dump($startTime, $endTime);
+
         $media->filters()->clip(
             TimeCode::fromSeconds($startTime),
             TimeCode::fromSeconds($endTime)
         );
-        $media->save(new Mp3(), 'clipped_media_'.$mediaFileName);
 
+        $media->save(new Mp3(), 'clipped_media_'.$mediaFileName);
+        // dd( $startTime,
+        //     TimeCode::fromSeconds($startTime),
+        //     $endTime,
+        //     TimeCode::fromSeconds($endTime)
+        // );
+        // dd('clippped');
         return 'clipped_media_'.$mediaFileName;
     }
 
     public function getUploadedMediaFiles($user)
     {
-        return MediaFile::where('user_id', $user->id)->get();
+        return MediaFile::where('user_id', $user->id)->orderBy('id', 'desc')->get();
     }
 }

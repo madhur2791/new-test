@@ -41,11 +41,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => '127.0.0.1',
-            'port' => env('DB_PORT', '3306'),
-            'database' => "test_1",
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('SOUNDWAVE_DB_HOST', '127.0.0.1'),
+            'port' => env('SOUNDWAVE_DB_PORT', '3306'),
+            'database' => env('SOUNDWAVE_DB_DATABASE', 'homestead'),
+            'username' => env('SOUNDWAVE_DB_USERNAME', 'forge'),
+            'password' => env('SOUNDWAVE_DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -53,7 +53,6 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

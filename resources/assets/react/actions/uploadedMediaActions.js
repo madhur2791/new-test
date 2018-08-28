@@ -10,7 +10,7 @@ import {
 import apiModule from '../api/index';
 
 const { apiClient } = apiModule({
-  apiPrefix: 'http://127.0.0.1:8000' //${SERVICE_URL}/${VERSION}
+  apiPrefix: '/' //${SERVICE_URL}/${VERSION}
 });
 
 function requestUploadedMediaFiles() {

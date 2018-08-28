@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from '../../../../components/SideBar/Sidebar.jsx';
 import FileUploader from '../../../../components/FileUploader/FileUploader.jsx';
 
 class UploadedFilesList extends React.Component {

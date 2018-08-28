@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../../components/SideBar/Sidebar.jsx';
+import Sidebar from '../../components/SideBar/SideBar.jsx';
 import WaveformRenderer from '../../components/WaveformRenderer/WaveformRenderer.jsx';
 import Slider from 'rc-slider';
 

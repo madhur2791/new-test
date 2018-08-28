@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../../components/SideBar/Sidebar.jsx';
+import Sidebar from '../../components/SideBar/SideBar.jsx';
 import FileUploadContainer from '../../components/FileUploader/FileUploadContainer.jsx';
 import UploadedFilesList from './components/UploadedFilesList/UploadedFilesList.jsx';
 import MediaEditor from '../../components/MediaEditor/MediaEditor.jsx';

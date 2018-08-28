@@ -78,7 +78,7 @@ export default class ApiClient {
       init.body = JSON.stringify(body);
     }
 
-    return fetch(`${this.prefix}${urlWithQuery}`, init).then((response) => {
+    return fetch(`${urlWithQuery}`, init).then((response) => {
       if (response.redirected) {
         return response.json().then((res) => {
           response.customBody = res;

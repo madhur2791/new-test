@@ -1,11 +1,8 @@
 import {
     REQUEST_UPLOADED_FILES,
     RECEIVE_UPLOADED_FILES,
+    REQUEST_UPLOADED_FILES_ERROR,
     UPDATE_SELECTED_MEDIA_INDEX,
-    REQUEST_CROP_MEDIA_FILE,
-    CROP_MEDIA_FILE_SUCCESS,
-    REQUEST_MEDIA_UPLOAD,
-    MEDIA_UPLOAD_SUCCESS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -18,7 +15,7 @@ function uploadedMediaReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true,
-        media_list: []
+        data: []
       };
     }
     case RECEIVE_UPLOADED_FILES: {
@@ -27,7 +24,15 @@ function uploadedMediaReducer(state = initialState, action) {
         ...state,
         selectedMediaIndex: 0,
         isFetching: false,
-        media_list: mediaFiles
+        data: mediaFiles
+      };
+    }
+    case REQUEST_UPLOADED_FILES_ERROR: {
+      const { payload: { error } } = action;
+      return {
+        ...state,
+        isFetching: false,
+        error
       };
     }
     case UPDATE_SELECTED_MEDIA_INDEX: {
@@ -37,31 +42,19 @@ function uploadedMediaReducer(state = initialState, action) {
         selectedMediaIndex
       };
     }
-    case REQUEST_CROP_MEDIA_FILE: {
-      return {
-        ...state,
-        isCropping: true
-      };
-    }
-    case CROP_MEDIA_FILE_SUCCESS: {
-      return {
-        ...state,
-        isCropping: false
-      };
-    }
-    case REQUEST_MEDIA_UPLOAD: {
-      return {
-        ...state,
-        isUploading: true
-      };
-    }
+    // case REQUEST_CROP_MEDIA_FILE: {
+    //   return {
+    //     ...state,
+    //     isCropping: true
+    //   };
+    // }
+    // case CROP_MEDIA_FILE_SUCCESS: {
+    //   return {
+    //     ...state,
+    //     isCropping: false
+    //   };
+    // }
 
-    case MEDIA_UPLOAD_SUCCESS: {
-      return {
-        ...state,
-        isUploading: false
-      };
-    }
 
     default:
       return state;

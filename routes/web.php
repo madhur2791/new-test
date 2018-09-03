@@ -33,13 +33,14 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/create/{any?}', 'WaveformController@createWaveform')->where('any', '.*');;
+    Route::get('/waveform/{any?}', 'WaveformGenerationController@createWaveform')->where('any', '.*');;
 
     Route::prefix('web-api')->group(function () {
-        Route::get('/media-files', 'MediaController@getUploadedMediaFiles');
-        Route::post('/media-upload', 'MediaController@upload');
-        Route::post('/media/{mediaId}/edit', 'MediaController@editMediaFile');
-        Route::get('/waveform-data/{mediaId}', 'MediaController@getWaveformData');
+        Route::get('/media-files', 'MediaUploadController@getUploadedMediaFiles');
+        Route::post('/media-upload', 'MediaUploadController@upload');
+        Route::post('/media/{mediaId}/edit', 'MediaUploadController@editMediaFile');
+        Route::get('/waveform-data/{mediaId}', 'WaveformGenerationController@getWaveformData');
+        Route::get('/color-pallets', 'WaveformGenerationController@getColorPallets');
     });
 
 });

@@ -180,10 +180,13 @@ body {
     text-align: center;
 }
 
-.media-list-conatiner {
-    height: 50vh;
-    padding: 10px;
+.sidebar-tool-options-container {
+    height: calc(100vh - 240px);
     overflow: scroll;
+}
+
+.media-list-conatiner {
+    padding: 10px;
     padding: 10px;
 }
 
@@ -201,10 +204,6 @@ body {
 .media-file-element.active {
     background-color: #ccc;
     border: 1px solid #000;
-}
-
-canvas {
-    border: 1px solid black;
 }
 
 .range-slider-container-samplerate {

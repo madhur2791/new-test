@@ -21,7 +21,6 @@ class CreateMediaFilesTable extends Migration
             $table->text('media_file_url');
             $table->text('displayed_media_file_url');
             $table->text('waveform_raw_data_url');
-            $table->text('images');
             $table->text('media_file_type');
             $table->boolean('is_cropped')->default(false);
             $table->foreign('user_id')->references('id')->on('users');

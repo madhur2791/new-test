@@ -13,7 +13,7 @@ class CreateWaveformsTable extends Migration
      */
     public function up()
     {
-        Schema::create('waveforms', function (Blueprint $table) {
+        Schema::create('waveform_styles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('media_file_id');
             $table->uuid('waveform_id')->unique();
@@ -34,6 +34,6 @@ class CreateWaveformsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('waveforms');
+        Schema::dropIfExists('waveform_styles');
     }
 }

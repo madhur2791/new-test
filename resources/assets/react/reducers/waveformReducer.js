@@ -14,21 +14,30 @@ function waveformData(state = initialState, action) {
         ...state,
         [mediaId]: {
           isFetching: true,
-          data: []
+          data: null
         }
       };
     }
     case RECEIVE_WAVEFORM_DATA: {
-      const { payload: { mediaId, data } } = action;
+      const { payload: { mediaId, waveformData } } = action;
       return {
         ...state,
         [mediaId]: {
           isFetching: false,
-          data
+          data: waveformData
         }
       };
     }
-
+    case RECEIVE_WAVEFORM_DATA_FAILURE: {
+      const { payload: { mediaId, error } } = action;
+      return {
+        ...state,
+        [mediaId]: {
+          isFetching: false,
+          error
+        }
+      };
+    }
 
     default:
       return state;

@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import { uploadMediaFile } from '../../actions/uploadedMediaActions';
+import { uploadMediaFile } from '../../../../actions/uploadedMediaActions';
 import FileUploader from './FileUploader.jsx';
 
 const mapStateToProps = (state, ownProps) => {
-  const { uploadedMediaFilesList } = state;
+  const { uploadMediaFileRequest } = state;
   return {
-    uploadedMediaFilesList
+    uploadMediaFileRequest
   };
 };
 
 const mapDispatchToProps = dispatch => (
   {
-    uploadMediaFile: (data, progressListener) => (
-      dispatch(uploadMediaFile(data, progressListener))
+    uploadMediaFile: (data) => (
+      dispatch(uploadMediaFile(data))
     )
   }
 );

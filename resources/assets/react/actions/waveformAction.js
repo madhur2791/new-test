@@ -3,11 +3,6 @@ import {
   RECEIVE_WAVEFORM_DATA,
   RECEIVE_WAVEFORM_DATA_FAILURE
 } from '../constants/actionTypes';
-import apiModule from '../api/index';
-
-const { apiClient } = apiModule({
-  apiPrefix: '/' //${SERVICE_URL}/${VERSION}
-});
 
 function requestWaveformData(mediaId) {
   return {
@@ -22,8 +17,18 @@ function receiveWaveformData(mediaId, waveformData) {
   return {
     type: RECEIVE_WAVEFORM_DATA,
     payload: {
+        mediaId,
+        waveformData
+    }
+  };
+}
+
+function receiveWaveformDataError(mediaId, error) {
+  return {
+    type: RECEIVE_WAVEFORM_DATA_FAILURE,
+    payload: {
       mediaId,
-      data: waveformData
+      error
     }
   };
 }
@@ -34,10 +39,10 @@ export function fetchWaveformData(mediaId) {
     (dispatch) => {
       dispatch(requestWaveformData(mediaId));
       return (
-        apiClient.get(`/web-api/waveform-data/${mediaId}`).then((response) => {
-          dispatch(receiveWaveformData(mediaId, response));
+        axios.get(`/web-api/waveform-data/${mediaId}`).then((response) => {
+          dispatch(receiveWaveformData(mediaId, response.data));
         }).catch((error) => {
-          console.log(error);
+          dispatch(receiveWaveformDataError(mediaId, error));
         })
       );
     }

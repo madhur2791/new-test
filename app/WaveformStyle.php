@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MediaFile extends Model
+class WaveformStyle extends Model
 {
     protected $guarded = [];
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\MediaFile');
     }
 }

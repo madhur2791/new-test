@@ -1,13 +1,12 @@
 import React from 'react';
-import FileUploader from '../../../../components/FileUploader/FileUploader.jsx';
 
 class UploadedFilesList extends React.Component {
     render() {
-        if (this.props.uploadedMediaFilesList && this.props.uploadedMediaFilesList.isFetching === false) {
-            return this.props.uploadedMediaFilesList.media_list.map((uploadedMedia, index) => {
+        if (this.props.mediaFilesList && this.props.mediaFilesList.isFetching === false) {
+            return this.props.mediaFilesList.data.map((uploadedMedia, index) => {
                 return (
                     <div
-                        className={`col-md-12 media-file-element ${this.props.selectedMediaIndex === index ? 'active':''}`}
+                        className={`col-md-12 media-file-element ${this.props.mediaFilesList.selectedMediaIndex === index ? 'active':''}`}
                         key={uploadedMedia.id}
                         onClick={() => (this.props.updateSelectedMediaIndex(index))}
                     >

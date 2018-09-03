@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
 
 import waveformReducer from './waveformReducer';
-import uploadedMediaReducer from './uploadedMediaReducer';
+import colorPalletReducer from './colorPalletReducer';
+import mediaFilesListReducer from './mediaFilesListReducer';
+import uploadMediaFileReducer from './uploadMediaFileReducer';
 
 const reducer = combineReducers({
   waveformData: waveformReducer,
-  uploadedMediaFilesList: uploadedMediaReducer
+  mediaFilesList: mediaFilesListReducer,
+  uploadMediaFileRequest: uploadMediaFileReducer,
+  colorPallets: colorPalletReducer
 });
 
 export default reducer;

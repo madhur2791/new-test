@@ -1,17 +1,16 @@
 import {
   REQUEST_UPLOADED_FILES,
   RECEIVE_UPLOADED_FILES,
+  REQUEST_UPLOADED_FILES_ERROR,
   UPDATE_SELECTED_MEDIA_INDEX,
-  REQUEST_CROP_MEDIA_FILE,
-  CROP_MEDIA_FILE_SUCCESS,
+//   REQUEST_CROP_MEDIA_FILE,
+//   CROP_MEDIA_FILE_SUCCESS,
   REQUEST_MEDIA_UPLOAD,
-  MEDIA_UPLOAD_SUCCESS
+  MEDIA_UPLOAD_SUCCESS,
+  MEDIA_UPLOAD_ERROR,
+  MEDIA_UPLOAD_PROGRESS
 } from '../constants/actionTypes';
-import apiModule from '../api/index';
 
-const { apiClient } = apiModule({
-  apiPrefix: '/' //${SERVICE_URL}/${VERSION}
-});
 
 function requestUploadedMediaFiles() {
   return {
@@ -29,11 +28,11 @@ function receiveUploadedMediaFiles(mediaFiles) {
   };
 }
 
-function updateSelectedMediaIndex(selectedMediaIndex) {
+function requestUploadedMediaFilesError(error) {
   return {
-    type: UPDATE_SELECTED_MEDIA_INDEX,
+    type: REQUEST_UPLOADED_FILES_ERROR,
     payload: {
-      selectedMediaIndex
+        error
     }
   };
 }
@@ -43,14 +42,23 @@ export function fetchUploadedMediaFiles() {
     (dispatch) => {
       dispatch(requestUploadedMediaFiles());
       return (
-        apiClient.get(`/web-api/media-files`).then((response) => {
-          dispatch(receiveUploadedMediaFiles(response));
+        axios.get(`/web-api/media-files`).then((response) => {
+          dispatch(receiveUploadedMediaFiles(response.data));
         }).catch((error) => {
-          console.log(error);
+          dispatch(requestUploadedMediaFilesError(error));
         })
       );
     }
   );
+}
+
+function updateSelectedMediaIndex(selectedMediaIndex) {
+  return {
+    type: UPDATE_SELECTED_MEDIA_INDEX,
+    payload: {
+      selectedMediaIndex
+    }
+  };
 }
 
 export function changeSelectedMediaIndex(selectedMediaIndex) {
@@ -59,40 +67,6 @@ export function changeSelectedMediaIndex(selectedMediaIndex) {
         return dispatch(updateSelectedMediaIndex(selectedMediaIndex));
     })
 }
-
-function requestCropMediaFiles() {
-  return {
-    type: REQUEST_CROP_MEDIA_FILE,
-    payload: {}
-  };
-}
-
-function cropMediaFileSuccess() {
-  return {
-    type: CROP_MEDIA_FILE_SUCCESS,
-    payload: {}
-  };
-}
-
-export function cropMediaFile(mediaId, startTime, endTime) {
-    return (
-    (dispatch) => {
-      dispatch(requestCropMediaFiles());
-      return (
-        axios.post(`/web-api/media/${mediaId}/edit`, {
-            startTime,
-            endTime
-        }).then((response) => {
-          dispatch(cropMediaFileSuccess());
-          dispatch(receiveUploadedMediaFiles(response.data));
-        }).catch((error) => {
-          console.log(error);
-        })
-      );
-    }
-  );
-}
-
 
 function requestMediaUpload() {
   return {
@@ -108,8 +82,26 @@ function mediaUploadSuccess() {
   };
 }
 
+function mediaUploadProgress(progressEvent) {
+  return {
+    type: MEDIA_UPLOAD_PROGRESS,
+    payload: {
+        progressEvent
+    }
+  };
+}
 
-export function uploadMediaFile(requestBody, onProgress = () => {}) {
+function mediaUploadError(error) {
+  return {
+    type: MEDIA_UPLOAD_ERROR,
+    payload: {
+        error
+    }
+  };
+}
+
+
+export function uploadMediaFile(requestBody) {
   return (
     (dispatch) => {
       dispatch(requestMediaUpload());
@@ -117,7 +109,9 @@ export function uploadMediaFile(requestBody, onProgress = () => {}) {
             headers: {
                 'content-type': 'multipart/form-data'
             },
-            onUploadProgress: onProgress
+            onUploadProgress: (progressEvent) => {
+                dispatch(mediaUploadProgress(progressEvent))
+            }
         }
 
       return (
@@ -126,9 +120,44 @@ export function uploadMediaFile(requestBody, onProgress = () => {}) {
             dispatch(mediaUploadSuccess());
             dispatch(receiveUploadedMediaFiles(response.data));
         }).catch((error) => {
-          console.log(error);
+          dispatch(mediaUploadError(error));
         })
       );
     }
   );
 }
+
+// function requestCropMediaFiles() {
+//   return {
+//     type: REQUEST_CROP_MEDIA_FILE,
+//     payload: {}
+//   };
+// }
+
+// function cropMediaFileSuccess() {
+//   return {
+//     type: CROP_MEDIA_FILE_SUCCESS,
+//     payload: {}
+//   };
+// }
+
+// export function cropMediaFile(mediaId, startTime, endTime) {
+//     return (
+//     (dispatch) => {
+//       dispatch(requestCropMediaFiles());
+//       return (
+//         axios.post(`/web-api/media/${mediaId}/edit`, {
+//             startTime,
+//             endTime
+//         }).then((response) => {
+//           dispatch(cropMediaFileSuccess());
+//           dispatch(receiveUploadedMediaFiles(response.data));
+//         }).catch((error) => {
+//           console.log(error);
+//         })
+//       );
+//     }
+//   );
+// }
+
+

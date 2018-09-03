@@ -26,10 +26,14 @@ if (token) {
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename="/waveform">
             <Switch>
-                <Route path="/create" component={MediaUploadContainer} exact />
-                <Route path="/create/:mediaId/waveform" component={WaveformContainer} exact />
+                <Route path="/upload" component={MediaUploadContainer} exact />
+                <Route path="/:mediaId/color" component={WaveformContainer} exact />
+                <Route path="/:mediaId/style" component={WaveformContainer} exact />
+                <Route path="/:mediaId/text" component={WaveformContainer} exact />
+                <Route path="/:mediaId/qr-code" component={WaveformContainer} exact />
+                <Route path="/:mediaId/print-option" component={WaveformContainer} exact />
             </Switch>
         </BrowserRouter>
     </Provider>,

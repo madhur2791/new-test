@@ -13,8 +13,7 @@ function waveformData(state = initialState, action) {
       return {
         ...state,
         [mediaId]: {
-          isFetching: true,
-          data: null
+          isFetching: true
         }
       };
     }

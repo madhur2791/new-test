@@ -13,30 +13,54 @@ class WaveformEdit extends React.Component {
     }
     componentDidMount() {
         const {
-            getWaveformData,
+            fetchColorPalletsIfNeeded,
+            fetchWaveformDataIfNeeded,
+            fetchMediaFileIfNeeded,
             match
         } = this.props;
 
-        getWaveformData(match.params.mediaId);
-        this.onSliderChange = this.onSliderChange.bind(this);
+        fetchColorPalletsIfNeeded();
+        fetchWaveformDataIfNeeded(match.params.mediaId);
+        fetchMediaFileIfNeeded(match.params.mediaId);
     }
-    onSliderChange(value) {
 
-        this.setState({
-            sampleRate: value
-        })
+    componentWillReceiveProps() {
+        const {
+            fetchColorPalletsIfNeeded,
+            fetchWaveformDataIfNeeded,
+            fetchMediaFileIfNeeded,
+            match
+        } = this.props;
+
+        fetchColorPalletsIfNeeded();
+        fetchWaveformDataIfNeeded(match.params.mediaId);
+        fetchMediaFileIfNeeded(match.params.mediaId);
     }
+
     render() {
-        console.log('sr', this.state.sampleRate);
+        console.log('render coloras');
         let waveform = <div>Loading</div>
         if (
             this.props.waveformData[this.props.match.params.mediaId] &&
             this.props.waveformData[this.props.match.params.mediaId].isFetching === false
         ){
             waveform = <WaveformRenderer
-                            waveformData={this.props.waveformData[this.props.match.params.mediaId]}
-                            sampleRate={this.state.sampleRate}
-                        />;
+                        waveformData={this.props.waveformData[this.props.match.params.mediaId]}
+                        canvasWidth={900}
+                        canvasHeight={600}
+                        colorOption='mix'
+                        colorPallet={{
+                            name: 'Color Pallet',
+                            colors: ['16B5FF', 'FF1668', '4FC4FF', 'ff0000', 'ffff00']
+                        }}
+                        lineWidth={10}
+                        lineSpacing={3}
+                        lineDashWidth={0}
+                        colorDiffusionPercentage={0}
+                        waveformType='bars'
+                        startAngle={0}
+                        innerRadius={100}
+                    />;
         }
         return (
             <div className="container">

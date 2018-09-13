@@ -6,7 +6,8 @@ import {
 } from '../constants/actionTypes';
 
 const initialState = {
-    selectedMediaIndex: 0
+    selectedMediaIndex: 0,
+    isFetching: false
 };
 
 function uploadedMediaReducer(state = initialState, action) {
@@ -14,15 +15,13 @@ function uploadedMediaReducer(state = initialState, action) {
     case REQUEST_UPLOADED_FILES: {
       return {
         ...state,
-        isFetching: true,
-        data: []
+        isFetching: true
       };
     }
     case RECEIVE_UPLOADED_FILES: {
       const { payload: { mediaFiles } } = action;
       return {
         ...state,
-        selectedMediaIndex: 0,
         isFetching: false,
         data: mediaFiles
       };
@@ -42,19 +41,6 @@ function uploadedMediaReducer(state = initialState, action) {
         selectedMediaIndex
       };
     }
-    // case REQUEST_CROP_MEDIA_FILE: {
-    //   return {
-    //     ...state,
-    //     isCropping: true
-    //   };
-    // }
-    // case CROP_MEDIA_FILE_SUCCESS: {
-    //   return {
-    //     ...state,
-    //     isCropping: false
-    //   };
-    // }
-
 
     default:
       return state;

@@ -1,17 +1,16 @@
 import { connect } from 'react-redux';
 import { fetchUploadedMediaFiles } from '../../actions/uploadedMediaActions';
 import { fetchWaveformData } from '../../actions/waveformAction';
-import { fetchColorPalletsIfNeeded } from '../../actions/colorPalletsActions';
+import { fetchColorPallets } from '../../actions/colorPalletsActions';
 import MediaUpload from './MediaUpload.jsx';
 
 const mapStateToProps = (state) => {
-  const { mediaFilesList, waveformData, uploadMediaFileRequest, cropMediaFileRequest, mediaFileData } = state;
+  const { mediaFilesList, waveformData, uploadMediaFileRequest, cropMediaFileRequest } = state;
   return {
     mediaFilesList,
     waveformData,
     uploadMediaFileRequest,
-    cropMediaFileRequest,
-    mediaFileData
+    cropMediaFileRequest
   };
 };
 
@@ -20,11 +19,14 @@ const mapDispatchToProps = dispatch => (
     getUploadedMediaFiles: () => (
       dispatch(fetchUploadedMediaFiles())
     ),
+    // cropMediaFile: (mediaId, startTime, endTime) => (
+    //   dispatch(cropMediaFile(mediaId, startTime, endTime))
+    // ),
     getWaveformData: (mediaId) => (
         dispatch(fetchWaveformData(mediaId))
     ),
-    fetchColorPalletsIfNeeded: () => (
-        dispatch(fetchColorPalletsIfNeeded())
+    getColorPallets: () => (
+        dispatch(fetchColorPallets())
     ),
   }
 );

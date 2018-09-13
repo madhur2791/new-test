@@ -1,26 +1,39 @@
 import { connect } from 'react-redux';
-import { fetchWaveformData } from '../../actions/waveformAction';
-import WaveformEdit from './WaveformEdit.jsx';
+import { fetchWaveformDataIfNeeded, changeWaveformColor } from '../../actions/waveformAction';
+import { fetchMediaFileIfNeeded } from '../../actions/uploadedMediaActions';
+import { fetchColorPalletsIfNeeded } from '../../actions/colorPalletsActions';
 
-const mapStateToProps = (state, ownProps) => {
-  const { mediaId } = ownProps.match.params;
-  const { waveformData } = state;
+import WaveformColor from './WaveformColor.jsx';
+
+const mapStateToProps = (state) => {
+  const { waveformData, mediaFileData, colorPallets } = state;
   return {
-    waveformData
+    waveformData,
+    mediaFileData,
+    colorPallets
   };
 };
 
 const mapDispatchToProps = dispatch => (
   {
-    getWaveformData: (mediaId) => (
-      dispatch(fetchWaveformData(mediaId))
+    fetchWaveformDataIfNeeded: (mediaId) => (
+      dispatch(fetchWaveformDataIfNeeded(mediaId))
+    ),
+    fetchMediaFileIfNeeded: (mediaId) => (
+      dispatch(fetchMediaFileIfNeeded(mediaId))
+    ),
+    changeWaveformColor: (mediaId, colorObject) => (
+      dispatch(changeWaveformColor(mediaId, colorObject))
+    ),
+    fetchColorPalletsIfNeeded:() => (
+      dispatch(fetchColorPalletsIfNeeded())
     )
   }
 );
 
-const WaveformContainer = connect(
+const WaveformColorContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(WaveformEdit);
+)(WaveformColor);
 
-export default WaveformContainer;
+export default WaveformColorContainer;

@@ -5,6 +5,7 @@ use FFMpeg\FFMpeg;
 use FFMpeg\Format\Audio\Mp3;
 use Illuminate\Support\Facades\Storage;
 use App\MediaFile;
+use App\WaveformStyle;
 use FFMpeg\Coordinate\TimeCode;
 use Illuminate\Http\File;
 use FFMpeg\FFProbe;
@@ -12,7 +13,38 @@ use FFMpeg\FFProbe;
 class MediaService
 {
     public function __construct() {
-
+        $this->defaultColor = [
+            "color_pallet_id" => 1,
+            "colors" => ["dbc3d0", "5e0231", "c7a693", "856046"],
+            "color_pallet_name" => 'Default',
+            "color_option" => "mix",
+            "color_diffusion_percentage" => "100"
+        ];
+        $this->defaultStyle = [
+            "waveform_type" => "bars",
+            "line_width" => "1",
+            "line_spacing" => "0",
+            "line_dash_width" => "0",
+            "start_angle" => "0",
+            "inner_radius" => "50"
+        ];
+        $this->defaultQrCode = [
+            "qr_code_value" => null,
+            "vertical_alignment" => 'bottom',
+            "horizantal_alignment" => 'left',
+            "color" => '000',
+            "size" => '100'
+        ];
+        $this->defaultText = [
+            "text" => "",
+            "font_family" => "open-sans",
+            "font_size" => "14",
+            "font_color" => "#fff",
+            "text_alignment" => [
+                "horizantal" => "bottom",
+                "vertical" => "center"
+            ]
+        ];
     }
 
     public function computeAndStoreMediaInfo($mediaFilePath, $fileOriginalName, $mediaId, $loggedInUser, $isCropped = false)
@@ -80,8 +112,8 @@ class MediaService
         $media = $ffmpeg->open($mediaFileName);
 
         $media->filters()->clip(
-            TimeCode::fromSeconds($endTime),
-            TimeCode::fromSeconds($startTime)
+            TimeCode::fromSeconds($startTime),
+            TimeCode::fromSeconds($endTime - $startTime)
         );
 
         $media->save(new Mp3(), 'clipped_media_'.$mediaFileName);
@@ -91,6 +123,42 @@ class MediaService
 
     public function getUploadedMediaFiles($user)
     {
-        return MediaFile::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+        return MediaFile::where('user_id', $user->id)
+            ->orderBy('id', 'desc')
+            ->with(['currentWaveformStyle' => function ($query) {
+                $query->where('state', 'EDITING');
+            }])->get();
+    }
+
+    public function createDefaultStyle($mediaFileId)
+    {
+        $existingWaveformStyle = WaveformStyle::
+            where('media_file_id', $mediaFileId)
+            ->where('state', 'EDITING')
+            ->orderBy('id', 'desc')->first();
+
+        if(is_null($existingWaveformStyle)) {
+            return
+                WaveformStyle::create([
+                    "media_file_id" => $mediaFileId,
+                    "state" => "EDITING",
+                    "waveform_id" => uniqid($mediaFileId),
+                    "images" => [],
+                    "waveform_color" => $this->defaultColor,
+                    "waveform_style" => $this->defaultStyle,
+                    "waveform_qr_code" => $this->defaultQrCode,
+                    "waveform_text" => $this->defaultText
+                ]);
+        }
+
+        return $existingWaveformStyle;
+    }
+
+    public function getMediaFileData($user, $mediaId) {
+        return MediaFile::where('user_id', $user->id)
+            ->where('media_id', $mediaId)
+            ->with(['currentWaveformStyle' => function ($query) {
+                $query->where('state', 'EDITING');
+            }])->first();
     }
 }

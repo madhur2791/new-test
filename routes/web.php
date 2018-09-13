@@ -37,9 +37,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('web-api')->group(function () {
         Route::get('/media-files', 'MediaUploadController@getUploadedMediaFiles');
-        Route::post('/media-upload', 'MediaUploadController@upload');
-        Route::post('/media/{mediaId}/edit', 'MediaUploadController@editMediaFile');
+
+        Route::post('/media-files', 'MediaUploadController@upload');
+
+        Route::get('/media-files/{mediaId}', 'MediaUploadController@getMediaFileData');
+
+        Route::post('/media-files/{mediaId}/crop', 'MediaUploadController@editMediaFile');
+
         Route::get('/waveform-data/{mediaId}', 'WaveformGenerationController@getWaveformData');
+
         Route::get('/color-pallets', 'WaveformGenerationController@getColorPallets');
     });
 

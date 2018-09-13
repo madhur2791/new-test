@@ -1,12 +1,12 @@
 import {
     REQUEST_COLOR_PALLETS,
     RECEIVE_COLOR_PALLETS,
-    REQUEST_COLOR_PALLETS_ERROR,
-    UPDATE_SELECTED_COLOR_PALLET_INDEX
+    REQUEST_COLOR_PALLETS_ERROR
 } from '../constants/actionTypes';
 
 const initialState = {
-    selectedColorPalletIndex: 0
+    selectedColorPalletId: 0,
+    isFetching: false
 };
 
 function colorPalletsReducer(state = initialState, action) {
@@ -14,8 +14,7 @@ function colorPalletsReducer(state = initialState, action) {
     case REQUEST_COLOR_PALLETS: {
       return {
         ...state,
-        isFetching: true,
-        data: []
+        isFetching: true
       };
     }
     case RECEIVE_COLOR_PALLETS: {
@@ -23,7 +22,8 @@ function colorPalletsReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        data: colorPallets
+        data: colorPallets,
+        selectedColorPalletId: (colorPallets[0] && colorPallets[0].id) || 0
       };
     }
     case REQUEST_COLOR_PALLETS_ERROR: {
@@ -32,13 +32,6 @@ function colorPalletsReducer(state = initialState, action) {
         ...state,
         isFetching: false,
         error
-      };
-    }
-    case UPDATE_SELECTED_COLOR_PALLET_INDEX: {
-        const { payload: { selectedColorPalletIndex } } = action;
-      return {
-        ...state,
-        selectedColorPalletIndex
       };
     }
 

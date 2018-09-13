@@ -36,11 +36,11 @@ function uploadMediaFileReducer(state = initialState, action) {
     }
 
     case MEDIA_UPLOAD_PROGRESS: {
-      const { payload: { progressEvent } } = action;
+      const { payload: { progressPercentage } } = action;
       return {
         ...state,
         isRequesting: true,
-        progressEvent
+        progressPercentage
       };
     }
 

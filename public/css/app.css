@@ -41,9 +41,7 @@
 }
 
 .progress-container {
-  height: 50vh;
-  min-height: 200px;
-  padding: calc(25vh - 10px) 20px;
+  padding: 10px;
 }
 
 .dropzone-contianer {
@@ -58,10 +56,9 @@
   text-align: center;
   display: inline-block;
   position: relative;
-  border: 1px solid #000;
+  outline: 1px solid #ccc;
   margin-top: 50px;
-  width: 640px;
-  height: 120px;
+  background: #fff;
 }
 
 .range-slider-container {
@@ -75,21 +72,9 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  left: -10px;
 }
 
-#audio-seeker {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid red;
-  position: absolute;
-  left: calc(0% - 10px);
-  bottom: -20px;
-}
-
-.rc-slider-rail {
+.range-slider-container .rc-slider-rail {
   position: absolute;
   width: 100%;
   background-color: transparent;
@@ -97,31 +82,87 @@
   border-radius: 6px;
 }
 
-.rc-slider-track {
+.range-slider-container .rc-slider-track {
   position: absolute;
   left: 0;
   border-radius: 0px;
   background: transparent;
 }
 
-.rc-slider-step {
+.range-slider-container .rc-slider-step {
   position: absolute;
   width: 100%;
   background: transparent;
 }
 
-.rc-slider-handle {
-  background: transparent;
-  position: absolute;
+#audio-seeker {
+  width: 0;
+  height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 20px solid red;
+  border-bottom: 20px solid #85C8DD;
   position: absolute;
   left: calc(0% - 10px);
-  -ms-touch-action: pan-x;
-      touch-action: pan-x;
-  top: -20px;
+  bottom: -20px;
+}
+
+.audio-seeker-needle {
+  height: calc(100% + 2px);
+  width: 1px;
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  z-index: 100;
+  border-left: 1px solid black;
+}
+
+.crop-overlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.crop-overlay-1 {
+  left: 0;
+}
+
+.crop-overlay-2 {
+  right: 0;
+}
+
+.audio-editor-container .rc-slider-handle {
+  position: absolute;
+  background: transparent;
+  top: -25px;
   cursor: pointer;
+  width: 15px;
+  height: 10px;
+  background: #85C8DD;
+}
+
+.audio-editor-container .rc-slider-handle:after {
+  content: '';
+  -ms-touch-action: pan-x;
+  touch-action: pan-x;
+  top: 10px;
+  position: absolute;
+  left: 0px;
+}
+
+.audio-editor-container .rc-slider-handle-1 {
+  margin-left: -15px;
+}
+
+.audio-editor-container .rc-slider-handle-1:after {
+  border-left: 15px solid transparent;
+  border-top: 15px solid #85C8DD;
+}
+
+.audio-editor-container .rc-slider-handle-2:after {
+  border-right: 15px solid transparent;
+  border-top: 15px solid #85C8DD;
 }
 
 .media-controls {
@@ -130,6 +171,7 @@
 }
 
 .sidebar-tool-box-nav-button {
+  cursor: pointer;
   color: #85C8DD;
   width: 40px;
   height: 40px;
@@ -138,7 +180,7 @@
   background: #e5eaef;
   padding-top: 5px;
   border-radius: 50px;
-  margin-left: 20px;
+  margin-left: 4%;
 }
 
 .sidebar-tool-box-nav-button:first-child {
@@ -154,6 +196,7 @@
   padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  text-align: center;
 }
 
 .sidebar-container {
@@ -169,10 +212,25 @@
   text-align: center;
 }
 
-.media-list-conatiner {
-  height: 50vh;
-  padding: 10px;
+.next-button-container {
+  text-align: right;
+}
+
+.back-button-container {
+  text-align: left;
+}
+
+.footer-buttons {
+  margin-top: 20px;
+}
+
+.sidebar-tool-options-container {
+  height: calc(100vh - 215px);
   overflow: scroll;
+}
+
+.media-list-conatiner {
+  padding: 10px;
   padding: 10px;
 }
 
@@ -192,10 +250,6 @@
   border: 1px solid #000;
 }
 
-canvas {
-  border: 1px solid black;
-}
-
 .range-slider-container-samplerate {
   margin-top: 20px;
   padding-left: 20px;
@@ -203,7 +257,164 @@ canvas {
   position: relative;
 }
 
-.range-slider-container-samplerate .rc-slider range-slider-container {
-  background-color: blue;
+.waveform-canvas-element {
+  width: 100%;
+  max-width: 900px;
+  background-color: white;
+}
+
+.waveform-canvas-container {
+  padding: 30px 6%;
+  background: ivory;
+  height: 100vh;
+}
+
+.range-slider-time-display {
+  position: absolute;
+  top: -50px;
+  display: block;
+  width: 40px;
+}
+
+.range-slider-time-display-1 {
+  right: -13px;
+}
+
+.range-slider-time-display-2 {
+  left: -13px;
+}
+
+.play-pause-button {
+  background-image: url("/images/playpause.png");
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 45px;
+  background-size: 90px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.crop-button {
+  background-image: url("/images/scissors.png");
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 45px;
+  background-size: 30px;
+  cursor: pointer;
+  border: 3px solid #85C8DD;
+  border-radius: 50px;
+  background-position: 6px;
+  display: inline-block;
+  margin-left: 2%;
+}
+
+.colorPalletColorBlock {
+  margin-right: 8px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+
+.colorPalletContainer {
+  background: white;
+  border: 1px solid white;
+  padding: 0 6px 8px 8px;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-bottom: 4px;
+}
+
+.colorPalletContainer:hover,
+.colorPalletContainer.active {
+  border: 1px solid #ccc;
+}
+
+.colorPalletName {
+  font-size: 10px;
+}
+
+.uploadProgressBarContainer {
+  position: relative;
+  height: 30px;
+  border: 1px solid #efefef;
+}
+
+.uploadProgressBar {
+  position: absolute;
+  width: 0%;
+  background: #85C8DD;
+}
+
+.page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.waveform-loader {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.sidebar-loader {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.loader-image-container {
+  left: calc(50% - 60px);
+  color: #fff;
+  position: absolute;
+  top: calc(50% - 60px);
+  text-align: center;
+}
+
+.loader-image-container .loader-image {
+  width: 120px;
+}
+
+.sidebar-slider {
+  position: relative;
+  width: 90%;
+  margin: auto;
+}
+
+.sidebar-slider .rc-slider-rail {
+  width: 100%;
+  background-color: #85C8DD;
+  height: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sidebar-slider .rc-slider-track {
+  position: absolute;
+  left: 0;
+  border-radius: 0px;
+  background: transparent;
+}
+
+.sidebar-slider .rc-slider-step {
+  width: 100%;
+  background: transparent;
+}
+
+.sidebar-slider .rc-slider-handle {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  background: #e5eaef;
+  position: absolute;
+  top: -8px;
+  margin-left: -10px;
+  cursor: pointer;
 }
 

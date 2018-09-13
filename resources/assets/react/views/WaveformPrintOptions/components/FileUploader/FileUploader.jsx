@@ -15,6 +15,9 @@ class FileUploader extends React.Component {
 
     onDropAccepted(acceptedFiles) {
         console.log('accepted',acceptedFiles[0].size);
+        this.setState({
+            showProgressBar: false
+        })
         const formData = new FormData();
         formData.append('uploaded-media-file', acceptedFiles[0]);
         this.props.uploadMediaFile(formData);

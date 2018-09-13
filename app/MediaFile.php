@@ -12,4 +12,9 @@ class MediaFile extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function currentWaveformStyle()
+    {
+        return $this->hasOne('App\WaveformStyle');
+    }
 }

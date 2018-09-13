@@ -1,8 +1,7 @@
 import {
     REQUEST_COLOR_PALLETS,
     RECEIVE_COLOR_PALLETS,
-    REQUEST_COLOR_PALLETS_ERROR,
-    UPDATE_SELECTED_COLOR_PALLET_INDEX
+    REQUEST_COLOR_PALLETS_ERROR
 } from '../constants/actionTypes';
 
 
@@ -13,7 +12,7 @@ function requestColorPallets() {
     };
 }
 
-function receiveUploadedMediaFiles(colorPallets) {
+function receiveColorPallets(colorPallets) {
     return {
         type: RECEIVE_COLOR_PALLETS,
         payload: {
@@ -22,7 +21,7 @@ function receiveUploadedMediaFiles(colorPallets) {
     };
 }
 
-function requestUploadedMediaFilesError(error) {
+function requestColorPalletsError(error) {
   return {
     type: REQUEST_COLOR_PALLETS_ERROR,
     payload: {
@@ -37,28 +36,28 @@ export function fetchColorPallets() {
       dispatch(requestColorPallets());
       return (
         axios.get(`/web-api/color-pallets`).then((response) => {
-          dispatch(receiveUploadedMediaFiles(response.data));
+          dispatch(receiveColorPallets(response.data));
         }).catch((error) => {
-          dispatch(requestUploadedMediaFilesError(error));
+          dispatch(requestColorPalletsError(error));
         })
       );
     }
   );
 }
 
-function updateSelectedColorPalletIndex(selectedColorPalletIndex) {
-  return {
-    type: UPDATE_SELECTED_COLOR_PALLET_INDEX,
-    payload: {
-      selectedColorPalletIndex
+export function fetchColorPalletsIfNeeded() {
+  return (
+    (dispatch, getState) => {
+        const state = getState();
+        if(
+          !state.colorPallets ||
+          (
+            typeof state.colorPallets.data === "undefined" &&
+            state.colorPallets.isFetching === false
+          )
+        ) {
+        dispatch(fetchColorPallets());
+      }
     }
-  };
+  );
 }
-
-export function changeSelectedColorPalletIndex(selectedColorPalletIndex) {
-    return (
-    (dispatch) => {
-        return dispatch(updateSelectedColorPalletIndex(selectedColorPalletIndex));
-    })
-}
-

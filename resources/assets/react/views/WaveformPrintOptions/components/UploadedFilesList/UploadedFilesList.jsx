@@ -2,7 +2,7 @@ import React from 'react';
 
 class UploadedFilesList extends React.Component {
     render() {
-        if (this.props.mediaFilesList && this.props.mediaFilesList.data && this.props.mediaFilesList.isFetching === false) {
+        if (this.props.mediaFilesList && this.props.mediaFilesList.isFetching === false) {
             return this.props.mediaFilesList.data.map((uploadedMedia, index) => {
                 return (
                     <div

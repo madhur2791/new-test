@@ -31,7 +31,7 @@ function Sidebar(props) {
                             <FontAwesomeIcon  icon="upload" />
                         </div>
                     </div>
-                    <div className="col-md-12 sidebar-tool-options-container">
+                    <div className="col-md-12">
                         {props.children}
                     </div>
                 </div>

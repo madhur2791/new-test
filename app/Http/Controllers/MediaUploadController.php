@@ -35,7 +35,7 @@ class MediaUploadController extends Controller
             $mediaId,
             $loggedInUser
         );
-
+        $this->mediaService->createDefaultStyle($mediaFileObj->id);
         return response()->json($this->mediaService->getUploadedMediaFiles($request->user()));
     }
 
@@ -43,6 +43,7 @@ class MediaUploadController extends Controller
     {
         $startTime = $request->input('startTime');
         $endTime = $request->input('endTime');
+
         if ($endTime - $startTime < 0.98) {
             return [
                 'error' => 'Media file length should be atleast 1 second'
@@ -77,4 +78,9 @@ class MediaUploadController extends Controller
     public function getUploadedMediaFiles(Request $request) {
         return response()->json($this->mediaService->getUploadedMediaFiles($request->user()));
     }
+
+    public function getMediaFileData(Request $request, $mediaId) {
+        return response()->json($this->mediaService->getMediaFileData($request->user(), $mediaId));
+    }
+
 }

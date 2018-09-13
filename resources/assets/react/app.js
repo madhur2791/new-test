@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import MediaUploadContainer from './views/MediaUpload/MediaUploadContainer.jsx';
-import WaveformContainer from './views/WaveformEdit/WaveformContainer.jsx';
+import WaveformColorContainer from './views/WaveformColor/WaveformColorContainer.jsx';
+import WaveformStyleContainer from './views/WaveformStyle/WaveformStyleContainer.jsx';
 import { Provider } from 'react-redux';
 import store from './stores/store';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -29,11 +30,11 @@ ReactDOM.render(
         <BrowserRouter basename="/waveform">
             <Switch>
                 <Route path="/upload" component={MediaUploadContainer} exact />
-                <Route path="/:mediaId/color" component={WaveformContainer} exact />
-                <Route path="/:mediaId/style" component={WaveformContainer} exact />
-                <Route path="/:mediaId/text" component={WaveformContainer} exact />
-                <Route path="/:mediaId/qr-code" component={WaveformContainer} exact />
-                <Route path="/:mediaId/print-option" component={WaveformContainer} exact />
+                <Route path="/:mediaId/color" component={WaveformColorContainer} exact />
+                <Route path="/:mediaId/style" component={WaveformStyleContainer} exact />
+                <Route path="/:mediaId/text" component={WaveformColorContainer} exact />
+                <Route path="/:mediaId/qr-code" component={WaveformColorContainer} exact />
+                <Route path="/:mediaId/print-option" component={WaveformColorContainer} exact />
             </Switch>
         </BrowserRouter>
     </Provider>,

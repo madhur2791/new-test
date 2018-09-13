@@ -18,8 +18,9 @@ class CreateWaveformsTable extends Migration
             $table->unsignedInteger('media_file_id');
             $table->uuid('waveform_id')->unique();
             $table->json('images');
-            $table->json('waveform_color_pallet');
+            $table->json('waveform_color');
             $table->json('waveform_style');
+            $table->json('waveform_qr_code');
             $table->json('waveform_text');
             $table->enum('state', ['EDITING', 'CART', 'ORDERED'])->default('EDITING');
             $table->foreign('media_file_id')->references('id')->on('media_files');

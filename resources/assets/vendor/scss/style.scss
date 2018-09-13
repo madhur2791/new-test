@@ -1976,3 +1976,18 @@ a {
 	}
 }
 
+.canvas-container {
+    position: relative;
+}
+
+.qrcode-canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.qrcode-canvas {
+    height: 100%;
+    width: 100%;
+}

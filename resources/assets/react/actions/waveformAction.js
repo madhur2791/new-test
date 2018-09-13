@@ -1,7 +1,9 @@
 import {
   REQUEST_WAVEFORM_DATA,
   RECEIVE_WAVEFORM_DATA,
-  RECEIVE_WAVEFORM_DATA_FAILURE
+  RECEIVE_WAVEFORM_DATA_FAILURE,
+  CHANGE_WAVEFORM_COLOR,
+  CHANGE_WAVEFORM_STYLE
 } from '../constants/actionTypes';
 
 function requestWaveformData(mediaId) {
@@ -48,3 +50,54 @@ export function fetchWaveformData(mediaId) {
     }
   );
 }
+
+export function fetchWaveformDataIfNeeded(mediaId) {
+    return (
+    (dispatch, getState) => {
+        const state = getState();
+        if(
+          !(state.waveformData &&
+            state.waveformData[mediaId])
+        ) {
+            dispatch(fetchWaveformData(mediaId));
+        }
+    }
+  );
+}
+
+function updateWaveformColor(mediaId, waveformColor) {
+  return {
+    type: CHANGE_WAVEFORM_COLOR,
+    payload: {
+        mediaId,
+        waveformColor
+    }
+  };
+}
+
+export function changeWaveformColor(mediaId, colorObject) {
+    return (
+    (dispatch) => {
+        dispatch(updateWaveformColor(mediaId, colorObject));
+    }
+  );
+}
+
+function updateWaveformStyle(mediaId, waveformStyle) {
+  return {
+    type: CHANGE_WAVEFORM_STYLE,
+    payload: {
+        mediaId,
+        waveformStyle
+    }
+  };
+}
+
+export function changeWaveformStyle(mediaId, styleObject) {
+    return (
+    (dispatch) => {
+        dispatch(updateWaveformStyle(mediaId, styleObject));
+    }
+  );
+}
+

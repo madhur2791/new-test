@@ -37,6 +37,7 @@ class WaveformGenerationController extends Controller
             ->orderBy('user_id', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->get();
+
         return response()->json(json_decode($colorPallets));
     }
 }

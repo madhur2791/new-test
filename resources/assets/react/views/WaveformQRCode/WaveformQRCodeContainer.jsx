@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-import { fetchWaveformDataIfNeeded } from '../../actions/waveformAction';
-import { fetchColorPalletsIfNeeded } from '../../actions/colorPalletsActions';
+import { fetchWaveformDataIfNeeded, changeWaveformQRCode } from '../../actions/waveformAction';
 import { fetchMediaFileIfNeeded } from '../../actions/uploadedMediaActions';
 
-import WaveformColor from './WaveformColor.jsx';
+import WaveformQRCode from './WaveformQRCode.jsx';
 
 const mapStateToProps = (state) => {
   const { waveformData, mediaFileData } = state;
@@ -15,21 +14,21 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchColorPalletsIfNeeded:() => (
-      dispatch(fetchColorPalletsIfNeeded())
-    ),
     fetchWaveformDataIfNeeded: (mediaId) => (
       dispatch(fetchWaveformDataIfNeeded(mediaId))
     ),
     fetchMediaFileIfNeeded: (mediaId) => (
       dispatch(fetchMediaFileIfNeeded(mediaId))
+    ),
+    changeWaveformQRCode: (mediaId, qrCodeObject, updateDatabase) => (
+      dispatch(changeWaveformQRCode(mediaId, qrCodeObject, updateDatabase))
     )
   }
 );
 
-const WaveformColorContainer = connect(
+const WaveformQRCodeContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(WaveformColor);
+)(WaveformQRCode);
 
-export default WaveformColorContainer;
+export default WaveformQRCodeContainer;

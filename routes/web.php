@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/waveform/{any?}', 'WaveformGenerationController@createWaveform')->where('any', '.*');;
 
     Route::prefix('web-api')->group(function () {
+
         Route::get('/media-files', 'MediaUploadController@getUploadedMediaFiles');
 
         Route::post('/media-files', 'MediaUploadController@upload');
@@ -47,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/waveform-data/{mediaId}', 'WaveformGenerationController@getWaveformData');
 
         Route::get('/color-pallets', 'WaveformGenerationController@getColorPallets');
+
+        Route::post('/{mediaId}/waveform-styles', 'WaveformGenerationController@updateMediaFileStyle');
     });
 
 });

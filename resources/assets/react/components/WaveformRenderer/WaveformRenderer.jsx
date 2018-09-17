@@ -14,28 +14,28 @@ const computeColor = (colorOption, colors, dataPointsCount, diffusionPercentage 
     }
 
     const computedColors = [];
-    const individualColorLength = Math.round(dataPointsCount / colors.length);
+    const normalizedDiffusion = diffusionPercentage / 100;
+    let flatColorLength = Math.ceil(dataPointsCount * (1 - normalizedDiffusion) / colors.length);
+    let diffusedColorLength = Math.ceil(dataPointsCount * normalizedDiffusion / (colors.length - 1));
 
+// flatColorLength = 7;
+// diffusedColorLength = 17;
+// console.log(flatColorLength, diffusedColorLength);
     for (let colorIndex = 0; colorIndex < colors.length; colorIndex += 1) {
-        const diffusedColorLength = Math.round(individualColorLength * diffusionPercentage / 100);
-        const flatColorLength = individualColorLength - diffusedColorLength;
 
-
+        computedColors.push(...(new Array(flatColorLength).fill(colors[colorIndex])));
         if(colorIndex < colors.length - 1) {
-            computedColors.push(...(new Array(flatColorLength).fill(colors[colorIndex])));
             const gradient = tinygradient([
                 colors[colorIndex],
                 colors[colorIndex + 1]
             ]);
-
+// console.log(gradient.rgb(diffusedColorLength), gradient.rgb(diffusedColorLength).length)
             if(diffusedColorLength > 2) {
                 computedColors.push(...gradient.rgb(diffusedColorLength));
             } else {
                 computedColors.push(...(new Array(diffusedColorLength).fill(colors[colorIndex])));
             }
 
-        } else {
-            computedColors.push(...(new Array(flatColorLength + diffusedColorLength).fill(colors[colorIndex])));
         }
 
     }
@@ -193,9 +193,17 @@ const renderQrCode = (ctx, qrCodeDetails, canvasDetails) => {
         break;
     }
 
+    ctx.fillStyle = '#fff'
+    ctx.fillRect(
+        position.x - cellSize,
+        position.y - cellSize,
+        (length + 2) * cellSize,
+        (length + 2) * cellSize,
+    );
+
     for (var row = 0; row < length; row++) {
         for (var col = 0; col < length; col++) {
-            ctx.fillStyle = qr.isDark(row, col) ? `#${qrCodeDetails.color}` : 'rgba(0,0,0,0)';
+            ctx.fillStyle = qr.isDark(row, col) ? `#${qrCodeDetails.color}` : '#fff';
             ctx.fillRect(
                 position.x + (row * cellSize),
                 position.y + (col * cellSize),
@@ -207,16 +215,6 @@ const renderQrCode = (ctx, qrCodeDetails, canvasDetails) => {
 };
 
 const renderText = (ctx, textDetails, qrCodeDetails, canvasDetails) => {
-
-    if(
-        qrCodeDetails &&
-        qrCodeDetails.qr_code_value &&
-        qrCodeDetails.horizantal_alignment === textDetails.horizantal_alignment &&
-        qrCodeDetails.vertical_alignment === textDetails.vertical_alignment
-    ) {
-        return null;
-    }
-
     const position = {
         x: 20,
         y: 20
@@ -261,22 +259,46 @@ class WaveformRenderer extends React.Component {
     }
 
     renderWaveform(props) {
-        const { qrCodeDetails, textDetails } = props;
+        const {
+            canvasWidth,
+            canvasHeight,
+            qrCodeDetails,
+            textDetails,
+            wavefromColor,
+            wavefromStyle
+        } = props;
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d")
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if(props.waveformData.data) {
-            const {
-                canvasWidth,
-                canvasHeight,
-                lineWidth,
-                lineSpacing,
-                lineDashWidth,
-                waveformType,
-                innerRadius,
-                startAngle
-            } = props;
+            let waveformType = wavefromStyle.waveform_type;
+            let lineWidth = parseInt(wavefromStyle.line_width, 10);
+            let lineSpacing = parseFloat(wavefromStyle.line_spacing);
+            let lineDashWidth = parseInt(wavefromStyle.line_dash_width ,10);
+            let innerRadius = parseInt(wavefromStyle.inner_radius, 10);
+            let startAngle = parseInt(wavefromStyle.start_angle, 10);
+
+            let lineWidthRange = [1, 40];
+            let lineSpacingRange = [0, 40];
+            let lineDashWidthRange = [0, 18];
+            let innerRadiusRange = [0, 300];
+            let startAngleRange = [0, 360];
+
+            if (wavefromStyle.waveform_type === 'linear') {
+
+            } else if (wavefromStyle.waveform_type === 'bars') {
+
+            } else if (wavefromStyle.waveform_type === 'radial') {
+                lineWidthRange = [0.1, 15];
+                lineSpacingRange = [0, 2];
+            }
+
+            lineWidth = lineWidthRange[0] + (lineWidthRange[1] - lineWidthRange[0]) * lineWidth / 100;
+            lineSpacing = lineSpacingRange[0] + (lineSpacingRange[1] - lineSpacingRange[0]) * lineSpacing / 100;
+            lineDashWidth = lineDashWidthRange[0] + (lineDashWidthRange[1] - lineDashWidthRange[0]) * lineDashWidth / 100;
+            innerRadius = innerRadiusRange[0] + (innerRadiusRange[1] - innerRadiusRange[0]) * innerRadius / 100;
+            startAngle = startAngleRange[0] + (startAngleRange[1] - startAngleRange[0]) * startAngle / 100;
 
             const centerX = Math.ceil(canvasWidth / 2);
             const centerY = Math.ceil(canvasHeight / 2);
@@ -305,17 +327,17 @@ class WaveformRenderer extends React.Component {
             );
 
             const computedColors = computeColor(
-                props.colorOption,
-                props.colorPallet.colors,
+                wavefromColor.color_option,
+                wavefromColor.colors,
                 reSampledDataPoints.length,
-                props.colorDiffusionPercentage
+                wavefromColor.color_diffusion_percentage
             );
 
             let prevSample = 0;
             for(let xPoint = 0; xPoint < reSampledDataPoints.length; xPoint+=1) {
                 const absValue = Math.abs(reSampledDataPoints[xPoint] / maxValue);
                 const amplifiedValue = absValue * amplificationFactor;
-                const sampleColor = fetchColor(computedColors, xPoint, absValue, props.colorOption);
+                const sampleColor = fetchColor(computedColors, xPoint, absValue, wavefromColor.color_option);
 
                 plotSoundWaveSample(
                     ctx,
@@ -347,7 +369,8 @@ class WaveformRenderer extends React.Component {
                 })
             }
 
-            if (qrCodeDetails && qrCodeDetails.qr_code_value) {
+            if (qrCodeDetails && qrCodeDetails.enabled === true && qrCodeDetails.qr_code_value) {
+                console.log(qrCodeDetails);
                 renderQrCode(ctx, qrCodeDetails, {
                     width: canvasWidth,
                     height: canvasHeight

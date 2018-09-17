@@ -22,8 +22,8 @@ const mapDispatchToProps = dispatch => (
     fetchMediaFileIfNeeded: (mediaId) => (
       dispatch(fetchMediaFileIfNeeded(mediaId))
     ),
-    changeWaveformColor: (mediaId, colorObject) => (
-      dispatch(changeWaveformColor(mediaId, colorObject))
+    changeWaveformColor: (mediaId, colorObject, updateDatabase) => (
+      dispatch(changeWaveformColor(mediaId, colorObject, updateDatabase))
     ),
     fetchColorPalletsIfNeeded:() => (
       dispatch(fetchColorPalletsIfNeeded())

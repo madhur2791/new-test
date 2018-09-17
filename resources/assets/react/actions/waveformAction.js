@@ -3,7 +3,9 @@ import {
   RECEIVE_WAVEFORM_DATA,
   RECEIVE_WAVEFORM_DATA_FAILURE,
   CHANGE_WAVEFORM_COLOR,
-  CHANGE_WAVEFORM_STYLE
+  CHANGE_WAVEFORM_STYLE,
+  CHANGE_WAVEFORM_TEXT,
+  CHANGE_WAVEFORM_QR_CODE
 } from '../constants/actionTypes';
 
 function requestWaveformData(mediaId) {
@@ -75,10 +77,15 @@ function updateWaveformColor(mediaId, waveformColor) {
   };
 }
 
-export function changeWaveformColor(mediaId, colorObject) {
+export function changeWaveformColor(mediaId, colorObject, updateDatabase) {
     return (
     (dispatch) => {
         dispatch(updateWaveformColor(mediaId, colorObject));
+        if(updateDatabase === true) {
+            axios.post(`/web-api/${mediaId}/waveform-styles`, {
+                waveform_color: colorObject
+            });
+        }
     }
   );
 }
@@ -93,11 +100,68 @@ function updateWaveformStyle(mediaId, waveformStyle) {
   };
 }
 
-export function changeWaveformStyle(mediaId, styleObject) {
+export function changeWaveformStyle(mediaId, styleObject, updateDatabase) {
     return (
     (dispatch) => {
         dispatch(updateWaveformStyle(mediaId, styleObject));
+        if(updateDatabase === true) {
+            axios.post(`/web-api/${mediaId}/waveform-styles`, {
+                waveform_style: styleObject
+            });
+        }
     }
   );
 }
+
+
+function updateWaveformText(mediaId, waveformText) {
+  return {
+    type: CHANGE_WAVEFORM_TEXT,
+    payload: {
+        mediaId,
+        waveformText
+    }
+  };
+}
+
+export function changeWaveformText(mediaId, textObject, updateDatabase) {
+    return (
+    (dispatch) => {
+        dispatch(updateWaveformText(mediaId, textObject));
+        if(updateDatabase === true) {
+            axios.post(`/web-api/${mediaId}/waveform-styles`, {
+                waveform_text: textObject
+            });
+        }
+    }
+  );
+}
+
+function updateWaveformQRCode(mediaId, qrCodeDetails) {
+  return {
+    type: CHANGE_WAVEFORM_QR_CODE,
+    payload: {
+        mediaId,
+        qrCodeDetails
+    }
+  };
+}
+
+export function changeWaveformQRCode(mediaId, qrCodeDetails, updateDatabase) {
+    return (
+    (dispatch) => {
+        dispatch(updateWaveformQRCode(mediaId, qrCodeDetails));
+        if(updateDatabase === true) {
+            axios.post(`/web-api/${mediaId}/waveform-styles`, {
+                waveform_qr_code: qrCodeDetails
+            });
+        }
+    }
+  );
+}
+
+
+
+
+
 

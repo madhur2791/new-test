@@ -85,7 +85,7 @@ class ColorListRenderer extends React.Component {
                             `colorPalletContainer ${parseInt(selectedColorPallet.color_pallet_id, 10) === parseInt(colorPallet.id, 10) && 'active'}`
                         }
                         key={colorPallet.id}
-                        onClick={() => (colorPalletSelectionHandler(colorPallet))}
+                        onClick={() => (colorPalletSelectionHandler(colorPallet, true))}
                     >
                         <span className="colorPalletName">{colorPallet.name}</span>
                         <div className="colorPallet" >{colorsList}</div>
@@ -95,9 +95,7 @@ class ColorListRenderer extends React.Component {
         }
         return (
             <div>
-                <h2>COLOR</h2>
-                <h6>Select a color palette for your sound wave.</h6>
-                <div>{colorPalletList}</div>
+                {colorPalletList}
             </div>
         );
     }

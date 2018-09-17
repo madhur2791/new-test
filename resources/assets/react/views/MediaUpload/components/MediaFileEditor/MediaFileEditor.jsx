@@ -108,17 +108,8 @@ class MediaEditor extends React.Component {
                     waveformData={waveformData}
                     canvasWidth={900}
                     canvasHeight={400}
-                    colorOption={wavefromColor.color_option}
-                    colorPallet={{
-                        colors: wavefromColor.colors
-                    }}
-                    lineWidth={parseInt(wavefromStyle.line_width, 10)}
-                    lineSpacing={parseInt(wavefromStyle.line_spacing, 10)}
-                    lineDashWidth={parseInt(wavefromStyle.line_dash_width ,10)}
-                    colorDiffusionPercentage={parseInt(wavefromColor.color_diffusion_percentage, 10)}
-                    waveformType={wavefromStyle.waveform_type}
-                    startAngle={parseInt(wavefromStyle.start_angle, 10)}
-                    innerRadius={parseInt(wavefromStyle.inner_radius, 10)}
+                    wavefromColor={wavefromColor}
+                    wavefromStyle={wavefromStyle}
                 />
                 <div
                     id="audio-seeker"

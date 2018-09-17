@@ -4,14 +4,34 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import MediaUploadContainer from './views/MediaUpload/MediaUploadContainer.jsx';
 import WaveformColorContainer from './views/WaveformColor/WaveformColorContainer.jsx';
 import WaveformStyleContainer from './views/WaveformStyle/WaveformStyleContainer.jsx';
+import WaveformTextContainer from './views/WaveformText/WaveformTextContainer.jsx';
+import WaveformQRCodeContainer from './views/WaveformQRCode/WaveformQRCodeContainer.jsx';
 import { Provider } from 'react-redux';
 import store from './stores/store';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFillDrip, faUpload } from '@fortawesome/free-solid-svg-icons'
-
+import {
+    faFillDrip,
+    faUpload,
+    faVolumeUp,
+    faCogs,
+    faFont,
+    faQrcode,
+    faPrint,
+    faChartBar,
+    faChartLine,
+    faSun
+} from '@fortawesome/free-solid-svg-icons'
 
 library.add(faFillDrip);
 library.add(faUpload);
+library.add(faVolumeUp);
+library.add(faFont);
+library.add(faCogs);
+library.add(faQrcode);
+library.add(faPrint);
+library.add(faChartBar);
+library.add(faChartLine);
+library.add(faSun);
 
 window.axios = require('axios');
 
@@ -32,8 +52,8 @@ ReactDOM.render(
                 <Route path="/upload" component={MediaUploadContainer} exact />
                 <Route path="/:mediaId/color" component={WaveformColorContainer} exact />
                 <Route path="/:mediaId/style" component={WaveformStyleContainer} exact />
-                <Route path="/:mediaId/text" component={WaveformColorContainer} exact />
-                <Route path="/:mediaId/qr-code" component={WaveformColorContainer} exact />
+                <Route path="/:mediaId/text" component={WaveformTextContainer} exact />
+                <Route path="/:mediaId/qr-code" component={WaveformQRCodeContainer} exact />
                 <Route path="/:mediaId/print-option" component={WaveformColorContainer} exact />
             </Switch>
         </BrowserRouter>

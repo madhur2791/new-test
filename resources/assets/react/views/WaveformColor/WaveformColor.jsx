@@ -19,27 +19,29 @@ class WaveformColor extends React.Component {
         this.colorDiffusionPercentageHandler = this.colorDiffusionPercentageHandler.bind(this);
     }
 
-    colorPalletSelectionHandler(colorPallet) {
+    colorPalletSelectionHandler(colorPallet, updateDatabase) {
         const { changeWaveformColor, match } = this.props;
         changeWaveformColor(match.params.mediaId, {
-            color_pallet_id: colorPallet.id,
-            color_pallet_name: colorPallet.name,
-            colors: colorPallet.colors
-         });
+                color_pallet_id: colorPallet.id,
+                color_pallet_name: colorPallet.name,
+                colors: colorPallet.colors
+            },
+            updateDatabase
+        );
     }
 
-    colorOptionHandler(selectedColorOption) {
+    colorOptionHandler(selectedColorOption, updateDatabase) {
         const { changeWaveformColor, match } = this.props;
         changeWaveformColor(match.params.mediaId, {
             color_option: selectedColorOption
-         });
+         }, updateDatabase);
     }
 
-    colorDiffusionPercentageHandler(colorDiffusionPercentage) {
+    colorDiffusionPercentageHandler(colorDiffusionPercentage, updateDatabase) {
         const { changeWaveformColor, match } = this.props;
         changeWaveformColor(match.params.mediaId, {
             color_diffusion_percentage: colorDiffusionPercentage
-         });
+         }, updateDatabase);
     }
 
     componentDidMount() {
@@ -98,9 +100,13 @@ class WaveformColor extends React.Component {
         const selectedMediaFileData = mediaFileData[match.params.mediaId];
         let wavefromColor = {};
         let wavefromStyle = {};
+        let qrCodeDetails = {};
+        let textDetails = {};
         if (selectedMediaFileData && selectedMediaFileData.data) {
             wavefromColor = selectedMediaFileData.data.current_waveform_style.waveform_color || {};
             wavefromStyle = selectedMediaFileData.data.current_waveform_style.waveform_style || {};
+            qrCodeDetails = selectedMediaFileData.data.current_waveform_style.waveform_qr_code || {};
+            textDetails =  selectedMediaFileData.data.current_waveform_style.waveform_text || {};
         }
         let loaders = [];
         let NextButton = (
@@ -143,48 +149,57 @@ class WaveformColor extends React.Component {
         let colorDiffusionSlider = '';
         if(wavefromColor.color_option === 'tiered') {
             colorDiffusionSlider = (
-                <div>
-                    <h6>Color diffusion Percentage</h6>
+                <div className="sidebarToolBoxContainer">
+                    <span className="sidebarToolHeadingSmall">Select diffusion</span>
                     <Slider
                         defaultValue={parseInt(wavefromColor.color_diffusion_percentage, 10)}
-                        className="sidebar-slider"
+                        className="sidebar-slider sidebarToolContainer"
                         onChange={(silderPercentage) => {this.colorDiffusionPercentageHandler(silderPercentage)}}
+                        onAfterChange={(silderPercentage) => {this.colorDiffusionPercentageHandler(silderPercentage, true)}}
                     />
                 </div>
             );
         }
-        console.log(wavefromStyle);
+
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3 col-md-4 col-sm-5">
-                        <Sidebar pageName="color">
+                        <Sidebar pageName="color" match={this.props.match}>
                             <div className="row">
                                 <div className="col-md-12 sidebar-tool-options-container">
                                     <div className="row media-list-conatiner">
-                                        <div>
-                                            <h6>Options</h6>
-                                            <div>
+                                        <label className="sidebarToolHeadingBig">COLOR</label>
+                                        <div className="sidebarToolBoxContainer">
+                                            <label className="sidebarToolHeadingSmall">Select color type</label>
+                                            <div className="sidebarToolContainer">
                                                 <div
-                                                    className={`sidebar-tool-box-nav-button ${wavefromColor.color_option === 'mix' ? 'active' : ''}`}
-                                                    onClick={() => {this.colorOptionHandler('mix')}}
+                                                    className={`sidebar-tool-options ${wavefromColor.color_option === 'mix' ? 'active' : ''}`}
+                                                    onClick={() => {this.colorOptionHandler('mix', true)}}
                                                 >
                                                     <FontAwesomeIcon  icon="fill-drip" />
                                                 </div>
                                                 <div
-                                                    className={`sidebar-tool-box-nav-button ${wavefromColor.color_option === 'tiered' ? 'active' : ''}`}
-                                                    onClick={() => {this.colorOptionHandler('tiered')}}
+                                                    className={`sidebar-tool-options ${wavefromColor.color_option === 'tiered' ? 'active' : ''}`}
+                                                    onClick={() => {this.colorOptionHandler('tiered', true)}}
                                                 >
                                                     <FontAwesomeIcon  icon="upload" />
                                                 </div>
                                             </div>
                                         </div>
+
                                         {colorDiffusionSlider}
-                                        <ColorListRenderer
-                                            selectedColorPallet={selectedMediaFileData && selectedMediaFileData.data && selectedMediaFileData.data.current_waveform_style.waveform_color}
-                                            colorPallets={colorPallets}
-                                            colorPalletSelectionHandler={this.colorPalletSelectionHandler}
-                                        />
+
+                                        <div className="sidebarToolBoxContainer">
+                                            <span className="sidebarToolHeadingSmall">Select a color palette for your sound wave.</span>
+                                            <div className="sidebarToolContainer">
+                                                <ColorListRenderer
+                                                    selectedColorPallet={selectedMediaFileData && selectedMediaFileData.data && selectedMediaFileData.data.current_waveform_style.waveform_color}
+                                                    colorPallets={colorPallets}
+                                                    colorPalletSelectionHandler={this.colorPalletSelectionHandler}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -203,17 +218,10 @@ class WaveformColor extends React.Component {
                             waveformData={waveformData[match.params.mediaId] || {}}
                             canvasWidth={1800}
                             canvasHeight={1200}
-                            colorOption={wavefromColor.color_option}
-                            colorPallet={{
-                                colors: wavefromColor.colors
-                            }}
-                            lineWidth={parseInt(wavefromStyle.line_width, 10)}
-                            lineSpacing={parseFloat(wavefromStyle.line_spacing)}
-                            lineDashWidth={parseInt(wavefromStyle.line_dash_width ,10)}
-                            colorDiffusionPercentage={parseInt(wavefromColor.color_diffusion_percentage, 10)}
-                            waveformType={wavefromStyle.waveform_type}
-                            startAngle={parseInt(wavefromStyle.start_angle, 10)}
-                            innerRadius={parseInt(wavefromStyle.inner_radius, 10)}
+                            wavefromColor={wavefromColor}
+                            wavefromStyle={wavefromStyle}
+                            qrCodeDetails={qrCodeDetails}
+                            textDetails={textDetails}
                         />
                     </div>
                 </div>

@@ -134,14 +134,14 @@ class MediaUpload extends React.Component {
         let NextButton = '';
         let BackButton = '';
         let mediaDisplaySection = '';
-
+        let selectedMediaFile = null;
         if (
             mediaFilesList &&
             mediaFilesList.isFetching === false &&
             mediaFilesList.data &&
             mediaFilesList.data.length > 0
         ) {
-            const selectedMediaFile =
+            selectedMediaFile =
                 mediaFilesList.data[mediaFilesList.selectedMediaIndex];
 
             NextButton = (<Link to={`/${selectedMediaFile.media_id}/color`} className="btn btn-primary upload-button">
@@ -167,24 +167,26 @@ class MediaUpload extends React.Component {
                     />
                 );
             } else {
-                const wavefromColor = selectedMediaFile.current_waveform_style.waveform_color;
-                const wavefromStyle = selectedMediaFile.current_waveform_style.waveform_style;
+                const selectedMediaFileData = mediaFileData[selectedMediaFile.media_id];
+                let wavefromColor = {};
+                let wavefromStyle = {};
+                let qrCodeDetails = {};
+                let textDetails = {};
+                if (selectedMediaFileData && selectedMediaFileData.data) {
+                    wavefromColor = selectedMediaFileData.data.current_waveform_style.waveform_color || {};
+                    wavefromStyle = selectedMediaFileData.data.current_waveform_style.waveform_style || {};
+                    qrCodeDetails = selectedMediaFileData.data.current_waveform_style.waveform_qr_code || {};
+                    textDetails =  selectedMediaFileData.data.current_waveform_style.waveform_text || {};
+                }
                 mediaDisplaySection = (
                     <WaveformRenderer
                         waveformData={selectedWaveformData}
                         canvasWidth={1800}
                         canvasHeight={1200}
-                        colorOption={wavefromColor.color_option}
-                        colorPallet={{
-                            colors: wavefromColor.colors
-                        }}
-                        lineWidth={parseInt(wavefromStyle.line_width, 10)}
-                        lineSpacing={parseInt(wavefromStyle.line_spacing, 10)}
-                        lineDashWidth={parseInt(wavefromStyle.line_dash_width ,10)}
-                        colorDiffusionPercentage={parseInt(wavefromColor.color_diffusion_percentage, 10)}
-                        waveformType={wavefromStyle.waveform_type}
-                        startAngle={parseInt(wavefromStyle.start_angle, 10)}
-                        innerRadius={parseInt(wavefromStyle.inner_radius, 10)}
+                        wavefromColor={wavefromColor}
+                        wavefromStyle={wavefromStyle}
+                        qrCodeDetails={qrCodeDetails}
+                        textDetails={textDetails}
                     />
                 );
             }
@@ -193,7 +195,11 @@ class MediaUpload extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3 col-md-4 col-sm-5">
-                        <Sidebar pageName="mediaUpload">
+                        <Sidebar pageName="mediaUpload" match={{
+                            params: {
+                                mediaId: selectedMediaFile && selectedMediaFile.media_id || null
+                            }
+                        }}>
                             <div className="row">
                                 <div className="col-md-12 sidebar-tool-options-container">
                                     <div className="row">

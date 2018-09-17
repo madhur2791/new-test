@@ -11,8 +11,9 @@
 .sidebar-header {
   background-color: #85C8DD;
   height: 60px;
-  padding-bottom: 15px;
-  padding-top: 15px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 5px;
 }
 
 .sidebar-body {
@@ -20,7 +21,7 @@
 }
 
 .sidebar-logo {
-  width: 150px;
+  height: 44px;
 }
 
 .container {
@@ -93,6 +94,21 @@
   position: absolute;
   width: 100%;
   background: transparent;
+}
+
+.canvas-container {
+  position: relative;
+}
+
+.qrcode-canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.qrcode-canvas {
+  height: 100%;
+  width: 100%;
 }
 
 #audio-seeker {
@@ -171,24 +187,33 @@
 }
 
 .sidebar-tool-box-nav-button {
-  cursor: pointer;
-  color: #85C8DD;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  display: inline-block;
-  background: #e5eaef;
-  padding-top: 5px;
-  border-radius: 50px;
   margin-left: 4%;
+  display: inline-block;
+  border-radius: 50px;
 }
 
 .sidebar-tool-box-nav-button:first-child {
   margin-left: 0;
 }
 
-.sidebar-tool-box-nav-button.active {
+.sidebar-tool-box-nav-button a {
+  cursor: pointer;
+  border-radius: 50px;
+  color: #85C8DD;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  display: inline-block;
+  background: #e5eaef;
+  padding-top: 7px;
+}
+
+.sidebar-tool-box-nav-button.active a {
   background: #8ea6bd;
+}
+
+.sidebar-tool-box-nav-button .ionIcon {
+  padding-top: 9px;
 }
 
 .sidebar-tool-box-nav-bar {
@@ -197,6 +222,7 @@
   padding-left: 10px;
   padding-right: 10px;
   text-align: center;
+  border-bottom: 1px solid #efefef;
 }
 
 .sidebar-container {
@@ -221,12 +247,14 @@
 }
 
 .footer-buttons {
-  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #efefef;
 }
 
 .sidebar-tool-options-container {
   height: calc(100vh - 215px);
   overflow: scroll;
+  padding-top: 10px;
 }
 
 .media-list-conatiner {
@@ -385,21 +413,35 @@
   position: relative;
   width: 90%;
   margin: auto;
+  height: 25px;
+  margin-top: 20px;
 }
 
 .sidebar-slider .rc-slider-rail {
-  width: 100%;
-  background-color: #85C8DD;
-  height: 4px;
-  border-radius: 6px;
   cursor: pointer;
+  position: absolute;
+  width: 100%;
+  background-color: transparent;
+  height: 8px;
+  border-radius: 6px;
+  background-color: #E9E9E9;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px 4px 4px 4px;
+  -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2) inset;
+          box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2) inset;
 }
 
 .sidebar-slider .rc-slider-track {
+  cursor: pointer;
   position: absolute;
   left: 0;
   border-radius: 0px;
-  background: transparent;
+  height: 8px;
+  background: #85C8DD;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px 4px 4px 4px;
+  -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2) inset;
+          box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2) inset;
 }
 
 .sidebar-slider .rc-slider-step {
@@ -409,12 +451,178 @@
 
 .sidebar-slider .rc-slider-handle {
   width: 20px;
-  height: 20px;
+  height: 25px;
   border-radius: 100px;
   background: #e5eaef;
   position: absolute;
-  top: -8px;
+  top: -9px;
   margin-left: -10px;
   cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+.onoffswitch {
+  position: relative;
+  width: 90px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+  display: none;
+}
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #999999;
+  border-radius: 20px;
+}
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  -webkit-transition: margin 0.3s ease-in 0s;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 30px;
+  padding: 0;
+  line-height: 30px;
+  font-size: 19px;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-weight: bold;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+  content: "ON";
+  padding-left: 10px;
+  background-color: #34A7C1;
+  color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+  content: "OFF";
+  padding-right: 10px;
+  background-color: #EEEEEE;
+  color: #999999;
+  text-align: right;
+}
+
+.onoffswitch-switch {
+  display: block;
+  width: 21px;
+  margin: 4.5px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 56px;
+  border: 2px solid #999999;
+  border-radius: 20px;
+  -webkit-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0px;
+}
+
+.sidebar-tool-options {
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  display: inline-block;
+  margin-left: 20px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.sidebar-tool-options.active {
+  border: 2px solid #85C8DD;
+}
+
+.sidebar-tool-options svg {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.sidebar-tool-options:first-child {
+  margin-left: 0px;
+}
+
+.sidebarToolBoxContainer {
+  margin-top: 10px;
+}
+
+.sidebarToolHeadingSmall {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-block;
+  margin-bottom: 0px;
+}
+
+.sidebarToolHeadingBig {
+  color: #000;
+  font-size: 32px;
+  font-weight: 400;
+  display: inline-block;
+}
+
+.sidebarToolContainer {
+  margin-top: 10px;
+}
+
+.textColorBlockContainer {
+  display: inline-block;
+  margin-right: 3px;
+  border: 3px solid transparent;
+}
+
+.textColorBlockContainer .textColorBlock {
+  cursor: pointer;
+  margin: 3px;
+  margin: 0px;
+  vertical-align: top;
+  margin: 2px;
+}
+
+.textColorBlockContainer.active {
+  border: 3px solid black;
+}
+
+.alignmentTabs {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0px 10px;
+  border: 1px solid #ccc;
+}
+
+.alignmentTabs.active {
+  background: #ccc;
+}
+
+.textInput {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0px 10px;
 }
 

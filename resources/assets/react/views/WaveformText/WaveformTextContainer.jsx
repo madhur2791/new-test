@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-import { fetchWaveformDataIfNeeded } from '../../actions/waveformAction';
-import { fetchColorPalletsIfNeeded } from '../../actions/colorPalletsActions';
+import { fetchWaveformDataIfNeeded, changeWaveformText } from '../../actions/waveformAction';
 import { fetchMediaFileIfNeeded } from '../../actions/uploadedMediaActions';
 
-import WaveformColor from './WaveformColor.jsx';
+import WaveformText from './WaveformText.jsx';
 
 const mapStateToProps = (state) => {
   const { waveformData, mediaFileData } = state;
@@ -15,21 +14,21 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchColorPalletsIfNeeded:() => (
-      dispatch(fetchColorPalletsIfNeeded())
-    ),
     fetchWaveformDataIfNeeded: (mediaId) => (
       dispatch(fetchWaveformDataIfNeeded(mediaId))
     ),
     fetchMediaFileIfNeeded: (mediaId) => (
       dispatch(fetchMediaFileIfNeeded(mediaId))
+    ),
+    changeWaveformText: (mediaId, textObject, updateDatabase) => (
+      dispatch(changeWaveformText(mediaId, textObject, updateDatabase))
     )
   }
 );
 
-const WaveformColorContainer = connect(
+const WaveformTextContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(WaveformColor);
+)(WaveformText);
 
-export default WaveformColorContainer;
+export default WaveformTextContainer;

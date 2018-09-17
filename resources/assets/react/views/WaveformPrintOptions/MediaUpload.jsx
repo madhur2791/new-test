@@ -150,7 +150,7 @@ class MediaUpload extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3 col-md-4 col-sm-5">
-                        <Sidebar pageName="mediaUpload">
+                        <Sidebar pageName="printOptions" match={this.props.match}>
                             <div className="row">
                                 <div className="col-md-12 sidebar-tool-options-container">
                                     <div className="row">

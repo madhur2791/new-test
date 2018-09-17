@@ -51,46 +51,46 @@ class WaveformStyle extends React.Component {
             });
         }
     }
-    waveformLineWidthHandler(lineWidth) {
+    waveformLineWidthHandler(lineWidth, updateDatabase) {
         const { changeWaveformStyle, match } = this.props;
         changeWaveformStyle(match.params.mediaId, {
             line_width: lineWidth
-        });
+        }, updateDatabase);
     }
 
-    waveformLineSpacingHandler(lineSpacing) {
+    waveformLineSpacingHandler(lineSpacing, updateDatabase) {
         const { changeWaveformStyle, match } = this.props;
         changeWaveformStyle(match.params.mediaId, {
             line_spacing: lineSpacing
-        });
+        }, updateDatabase);
     }
 
-    waveformLineDashWidthHandler(lineDashWidth) {
+    waveformLineDashWidthHandler(lineDashWidth, updateDatabase) {
         const { changeWaveformStyle, match } = this.props;
         changeWaveformStyle(match.params.mediaId, {
             line_dash_width: lineDashWidth
-        });
+        }, updateDatabase);
     }
 
-    waveformTypeHandler(waveformType) {
+    waveformTypeHandler(waveformType, updateDatabase) {
         const { changeWaveformStyle, match } = this.props;
         changeWaveformStyle(match.params.mediaId, {
             waveform_type: waveformType
-        });
+        }, updateDatabase);
     }
 
-    waveformInnerRadiusHandler(innerRadius) {
+    waveformInnerRadiusHandler(innerRadius, updateDatabase) {
         const { changeWaveformStyle, match } = this.props;
         changeWaveformStyle(match.params.mediaId, {
             inner_radius: innerRadius
-        });
+        }, updateDatabase);
     }
 
-    waveformStartAngleHandler(startAngle) {
+    waveformStartAngleHandler(startAngle, updateDatabase) {
         const { changeWaveformStyle, match } = this.props;
         changeWaveformStyle(match.params.mediaId, {
             start_angle: startAngle
-        });
+        }, updateDatabase);
     }
 
     render() {
@@ -151,18 +151,18 @@ class WaveformStyle extends React.Component {
         }
 
         let lineWidthSlider = '';
-        if(wavefromStyle.line_width) {
+        if(typeof  wavefromStyle.line_width !== 'undefined') {
             lineWidthSlider = (
-                <div>
-                    <h6>Line Width</h6>
+                <div className="sidebarToolBoxContainer">
+                    <span className="sidebarToolHeadingSmall">Adjust line width</span>
                     <Slider
-                        min={1}
-                        max={50}
-                        step={0.5}
+                        min={0}
+                        max={100}
+                        step={0.1}
                         defaultValue={parseFloat(wavefromStyle.line_width)}
-                        className="sidebar-slider"
+                        className="sidebar-slider sidebarToolContainer"
                         onChange={(lineWidth) => {this.waveformLineWidthHandler(lineWidth)}}
-
+                        onAfterChange={(lineWidth) => {this.waveformLineWidthHandler(lineWidth, true)}}
                     />
                 </div>
             );
@@ -171,16 +171,16 @@ class WaveformStyle extends React.Component {
         let lineSpaceSlider = '';
         if(typeof wavefromStyle.line_spacing !== 'undefined') {
             lineSpaceSlider = (
-                <div>
-                    <h6>Line Space</h6>
+                <div className="sidebarToolBoxContainer">
+                    <span className="sidebarToolHeadingSmall">Adjust line spacing</span>
                     <Slider
                         min={0}
-                        max={50}
-                        step={0.5}
+                        max={100}
+                        step={0.1}
                         defaultValue={parseFloat(wavefromStyle.line_spacing)}
-                        className="sidebar-slider"
+                        className="sidebar-slider sidebarToolContainer"
                         onChange={(lineSpacing) => {this.waveformLineSpacingHandler(lineSpacing)}}
-
+                        onAfterChange={(lineSpacing) => {this.waveformLineSpacingHandler(lineSpacing, true)}}
                     />
                 </div>
             );
@@ -189,16 +189,16 @@ class WaveformStyle extends React.Component {
         let lineDashWidthSlider = '';
         if(typeof wavefromStyle.line_dash_width !== 'undefined') {
             lineDashWidthSlider = (
-                <div>
-                    <h6>Line Dash width</h6>
+                <div className="sidebarToolBoxContainer">
+                    <span className="sidebarToolHeadingSmall">Adjust Grid spacing</span>
                     <Slider
                         min={0}
-                        max={20}
-                        step={0.5}
+                        max={100}
+                        step={0.1}
                         defaultValue={parseFloat(wavefromStyle.line_dash_width)}
-                        className="sidebar-slider"
+                        className="sidebar-slider sidebarToolContainer"
                         onChange={(lineDashWidth) => {this.waveformLineDashWidthHandler(lineDashWidth)}}
-
+                        onAfterChange={(lineDashWidth) => {this.waveformLineDashWidthHandler(lineDashWidth, true)}}
                     />
                 </div>
             );
@@ -207,16 +207,16 @@ class WaveformStyle extends React.Component {
         let radialWaveformStartAngleSlider = '';
         if(typeof wavefromStyle.start_angle !== 'undefined' && wavefromStyle.waveform_type === 'radial') {
             radialWaveformStartAngleSlider = (
-                <div>
-                    <h6>Start Angle</h6>
+                <div className="sidebarToolBoxContainer">
+                    <span className="sidebarToolHeadingSmall">Adjust start angle</span>
                     <Slider
                         min={0}
-                        max={360}
-                        step={1}
+                        max={100}
+                        step={0.1}
                         defaultValue={parseFloat(wavefromStyle.start_angle)}
-                        className="sidebar-slider"
+                        className="sidebar-slider sidebarToolContainer"
                         onChange={(startAngle) => {this.waveformStartAngleHandler(startAngle)}}
-
+                        onAfterChange={(startAngle) => {this.waveformStartAngleHandler(startAngle, true)}}
                     />
                 </div>
             );
@@ -225,15 +225,16 @@ class WaveformStyle extends React.Component {
         let radialWaveformInnerRadiusSlider = '';
         if(typeof wavefromStyle.inner_radius !== 'undefined' && wavefromStyle.waveform_type === 'radial') {
             radialWaveformInnerRadiusSlider = (
-                <div>
-                    <h6>Inner radius</h6>
+                <div className="sidebarToolBoxContainer">
+                    <span className="sidebarToolHeadingSmall">Adjust Inner radius</span>
                     <Slider
                         min={0}
-                        max={200}
-                        step={1}
+                        max={100}
+                        step={0.1}
                         defaultValue={parseFloat(wavefromStyle.inner_radius)}
-                        className="sidebar-slider"
+                        className="sidebar-slider sidebarToolContainer"
                         onChange={(innerRadius) => {this.waveformInnerRadiusHandler(innerRadius)}}
+                        onAfterChange={(innerRadius) => {this.waveformInnerRadiusHandler(innerRadius, true)}}
                     />
                 </div>
             );
@@ -243,30 +244,31 @@ class WaveformStyle extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3 col-md-4 col-sm-5">
-                        <Sidebar pageName="color">
+                        <Sidebar pageName="style" match={this.props.match}>
                             <div className="row">
                                 <div className="col-md-12 sidebar-tool-options-container">
                                     <div className="row media-list-conatiner">
-                                        <div>
-                                            <h6>Waveform Type</h6>
-                                            <div>
+                                        <label className="sidebarToolHeadingBig">Style</label>
+                                        <div className="sidebarToolBoxContainer">
+                                            <label className="sidebarToolHeadingSmall">Select Waveform Type</label>
+                                            <div className="sidebarToolContainer">
                                                 <div
-                                                    className={`sidebar-tool-box-nav-button ${wavefromStyle.waveform_type === 'bars' ? 'active' : ''}`}
-                                                    onClick={() => {this.waveformTypeHandler('bars')}}
+                                                    className={`sidebar-tool-options ${wavefromStyle.waveform_type === 'bars' ? 'active' : ''}`}
+                                                    onClick={() => {this.waveformTypeHandler('bars', true)}}
                                                 >
-                                                    <FontAwesomeIcon  icon="fill-drip" />
+                                                    <FontAwesomeIcon  icon="chart-bar" />
                                                 </div>
                                                 <div
-                                                    className={`sidebar-tool-box-nav-button ${wavefromStyle.waveform_type === 'linear' ? 'active' : ''}`}
-                                                    onClick={() => {this.waveformTypeHandler('linear')}}
+                                                    className={`sidebar-tool-options ${wavefromStyle.waveform_type === 'linear' ? 'active' : ''}`}
+                                                    onClick={() => {this.waveformTypeHandler('linear', true)}}
                                                 >
-                                                    <FontAwesomeIcon  icon="upload" />
+                                                    <FontAwesomeIcon  icon="chart-line" />
                                                 </div>
                                                 <div
-                                                    className={`sidebar-tool-box-nav-button ${wavefromStyle.waveform_type === 'radial' ? 'active' : ''}`}
-                                                    onClick={() => {this.waveformTypeHandler('radial')}}
+                                                    className={`sidebar-tool-options ${wavefromStyle.waveform_type === 'radial' ? 'active' : ''}`}
+                                                    onClick={() => {this.waveformTypeHandler('radial', true)}}
                                                 >
-                                                    <FontAwesomeIcon  icon="upload" />
+                                                    <FontAwesomeIcon  icon="sun" />
                                                 </div>
                                             </div>
                                         </div>
@@ -293,17 +295,8 @@ class WaveformStyle extends React.Component {
                             waveformData={waveformData[match.params.mediaId] || {}}
                             canvasWidth={1800}
                             canvasHeight={1200}
-                            colorOption={wavefromColor.color_option}
-                            colorPallet={{
-                                colors: wavefromColor.colors
-                            }}
-                            lineWidth={parseInt(wavefromStyle.line_width, 10)}
-                            lineSpacing={parseFloat(wavefromStyle.line_spacing)}
-                            lineDashWidth={parseInt(wavefromStyle.line_dash_width ,10)}
-                            colorDiffusionPercentage={parseInt(wavefromColor.color_diffusion_percentage, 10)}
-                            waveformType={wavefromStyle.waveform_type}
-                            startAngle={parseInt(wavefromStyle.start_angle, 10)}
-                            innerRadius={parseInt(wavefromStyle.inner_radius, 10)}
+                            wavefromColor={wavefromColor}
+                            wavefromStyle={wavefromStyle}
                             qrCodeDetails={qrCodeDetails}
                             textDetails={textDetails}
                         />

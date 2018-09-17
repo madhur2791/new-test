@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\MediaFile;
 use App\ColorPallet;
+use App\Services\MediaService;
 
 class WaveformGenerationController extends Controller
 {
@@ -17,6 +18,7 @@ class WaveformGenerationController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->mediaService = new MediaService();
     }
 
     public function createWaveform()
@@ -39,5 +41,10 @@ class WaveformGenerationController extends Controller
             ->get();
 
         return response()->json(json_decode($colorPallets));
+    }
+
+    public function updateMediaFileStyle(Request $request, $mediaId) {
+        $this->mediaService->updateMediaFileStyle($request->user(), $mediaId, $request->all());
+        return response()->json(json_encode([]));
     }
 }

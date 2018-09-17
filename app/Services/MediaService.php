@@ -29,21 +29,19 @@ class MediaService
             "inner_radius" => "50"
         ];
         $this->defaultQrCode = [
-            "qr_code_value" => null,
+            "qr_code_value" => "https://google.com",
             "vertical_alignment" => 'bottom',
-            "horizantal_alignment" => 'left',
+            "horizantal_alignment" => 'right',
             "color" => '000',
             "size" => '100'
         ];
         $this->defaultText = [
             "text" => "",
-            "font_family" => "open-sans",
-            "font_size" => "14",
-            "font_color" => "#fff",
-            "text_alignment" => [
-                "horizantal" => "bottom",
-                "vertical" => "center"
-            ]
+            "font_family" => "Arial",
+            "font_size" => "20",
+            "font_color" => "000",
+            "vertical_alignment" => 'top',
+            "horizantal_alignment" => 'left',
         ];
     }
 
@@ -160,5 +158,32 @@ class MediaService
             ->with(['currentWaveformStyle' => function ($query) {
                 $query->where('state', 'EDITING');
             }])->first();
+    }
+
+
+    public function updateMediaFileStyle($user, $mediaId, $updatedWaveformStyle) {
+        $mediaFileData = $this->getMediaFileData($user, $mediaId);
+        if(!is_null($mediaFileData)) {
+            $waveformStyle = $mediaFileData->currentWaveformStyle;
+            if (array_key_exists('waveform_color', $updatedWaveformStyle)) {
+                $waveformStyle->waveform_color = array_replace($waveformStyle->waveform_color, $updatedWaveformStyle['waveform_color']);
+            }
+
+            if (array_key_exists('waveform_style', $updatedWaveformStyle)) {
+                $waveformStyle->waveform_style = array_replace($waveformStyle->waveform_style, $updatedWaveformStyle['waveform_style']);
+            }
+
+            if (array_key_exists('waveform_qr_code', $updatedWaveformStyle)) {
+                $waveformStyle->waveform_qr_code = array_replace($waveformStyle->waveform_qr_code, $updatedWaveformStyle['waveform_qr_code']);
+            }
+
+            if (array_key_exists('waveform_text', $updatedWaveformStyle)) {
+                $waveformStyle->waveform_text = array_replace($waveformStyle->waveform_text, $updatedWaveformStyle['waveform_text']);
+            }
+
+            $waveformStyle->save();
+        }
+
+        return [];
     }
 }

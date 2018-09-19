@@ -55,13 +55,18 @@ class MediaService
 
         $ffmpeg = FFMpeg::create(array(
             'timeout' => 36000,
+            'ffmpeg.binaries' => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe'
         ));
 
         $media = $ffmpeg->open($mediaFilePath);
 
         $media->save(new Mp3(), $mediaFileName);
 
-        $ffprobe = FFProbe::create();
+        $ffprobe = FFProbe::create(array(
+            'ffmpeg.binaries' => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe'
+        ));
         $duration = $ffprobe->format($mediaFileName)->get('duration');
         $zoom = round($sampleRate * $duration / $requiredSamples);
 
@@ -105,6 +110,8 @@ class MediaService
     {
         $ffmpeg = FFMpeg::create(array(
             'timeout' => 36000,
+            'ffmpeg.binaries' => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe'
         ));
 
         $media = $ffmpeg->open($mediaFileName);

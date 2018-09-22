@@ -61,7 +61,7 @@ class MediaService
 
         $media = $ffmpeg->open($mediaFilePath);
 
-        $media->save(new Mp3(), $mediaFileName);
+        $media->save(new Mp3(), '/home/ubuntu/new-test/storage/app/uploaded_files/'.$mediaFileName);
 
         $ffprobe = FFProbe::create(array(
             'ffmpeg.binaries' => '/usr/bin/ffmpeg',

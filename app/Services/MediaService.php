@@ -60,8 +60,9 @@ class MediaService
         ));
 
         $media = $ffmpeg->open($mediaFilePath);
-
-        $media->save(new Mp3(), '/home/ubuntu/new-test/storage/app/uploaded_files/'.$mediaFileName);
+        $mediaFileOnlyName = $mediaFileName;
+        $mediaFileName = '/home/ubuntu/new-test/storage/app/uploaded_files/'.$mediaFileName;
+        $media->save(new Mp3(), $mediaFileName);
 
         $ffprobe = FFProbe::create(array(
             'ffmpeg.binaries' => '/usr/bin/ffmpeg',
@@ -81,12 +82,12 @@ class MediaService
         Storage::disk('s3')->putFileAs(
             'resources/media-file',
             new File($mediaFileName),
-            $mediaFileName,
+            $mediaFileOnlyName,
             'public'
         );
 
-        Storage::disk('public')->delete($mediaFileName);
-        Storage::disk('public')->delete($jsonFileName);
+        // Storage::disk('public')->delete($mediaFileName);
+        // Storage::disk('public')->delete($jsonFileName);
 
         $mediaFileObj = MediaFile::updateOrCreate(
             [
@@ -95,7 +96,7 @@ class MediaService
             ],
             [
                 "uploaded_file_name" => $fileOriginalName,
-                "media_file_url" => "resources/media-file/".$mediaFileName,
+                "media_file_url" => "resources/media-file/".$mediaFileOnlyName,
                 "displayed_media_file_url" => "resources/media-file/".$mediaFileName,
                 "waveform_raw_data_url" => "resources/waveform-data/".$jsonFileName,
                 "media_file_type" => 'AUDIO',

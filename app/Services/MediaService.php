@@ -73,7 +73,7 @@ class MediaService
 
         $jsonFileNamePath = '/home/ubuntu/new-test/storage/app/uploaded_files/'.$jsonFileName;
 
-        shell_exec('audiowaveform -i '.$mediaFileName.' -o '.$jsonFileName.' -z '.$zoom.' -b 16');
+        shell_exec('audiowaveform -i '.$mediaFileName.' -o '.$jsonFileNamePath.' -z '.$zoom.' -b 16');
 
         Storage::disk('s3')->putFileAs(
             'resources/waveform-data',

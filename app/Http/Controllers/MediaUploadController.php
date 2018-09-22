@@ -29,7 +29,7 @@ class MediaUploadController extends Controller
         $loggedInUser = $request->user();
         $mediaId = uniqid($loggedInUser->id);
         $fileName = $request->file('uploaded-media-file')->getClientOriginalName();
-        $filePath = $request->file('uploaded-media-file')->store('uploaded_files');
+        $filePath = '/home/ubuntu/new-test/storage/app/'.$request->file('uploaded-media-file')->store('uploaded_files');
         $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
             $filePath,
             $fileName,

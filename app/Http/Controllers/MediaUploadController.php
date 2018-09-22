@@ -28,10 +28,11 @@ class MediaUploadController extends Controller
     {
         $loggedInUser = $request->user();
         $mediaId = uniqid($loggedInUser->id);
-
+        $fileName = $request->file('uploaded-media-file')->getClientOriginalName();
+        $filePath = $request->file('uploaded-media-file')->store('uploaded_files');
         $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
-            $request->file('uploaded-media-file'),
-            $request->file('uploaded-media-file')->getClientOriginalName(),
+            $filePath,
+            $fileName,
             $mediaId,
             $loggedInUser
         );

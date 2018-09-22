@@ -14,20 +14,7 @@
 
 Auth::routes();
 
-Route::get('/', function() {
-
-    // dd((new FFMpeg\Format\Audio\Mp3())->getAudioKiloBitrate());
-    $tempFileName = '/Users/casa01/Desktop/Files/SampleAudio_0.7mb.mp3';
-    $ffprobe = FFMpeg\FFProbe::create();
-
-    $jsonFileName = 'values.json';
-    shell_exec('audiowaveform -i '.$tempFileName.' -o '.$jsonFileName.' -z 128 -b 16');
-    return $ffprobe
-    ->format($tempFileName)
-    ->get('sample rate');
-});
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@landingPage');
 
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 

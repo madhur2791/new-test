@@ -2,6 +2,8 @@
     "/js/build.js": "/js/build.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/static-app.css": "/css/static-app.css",
     "/css/template.css": "/css/template.css",
-    "/css/vendor.css": "/css/vendor.css"
+    "/css/bootstrap.min.css": "/css/bootstrap.min.css",
+    "/css/styles-merged.css": "/css/styles-merged.css"
 }

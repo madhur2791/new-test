@@ -71,11 +71,13 @@ class MediaService
         $duration = $ffprobe->format($mediaFileName)->get('duration');
         $zoom = round($sampleRate * $duration / $requiredSamples);
 
+        $jsonFileNamePath = '/home/ubuntu/new-test/storage/app/uploaded_files/'.$jsonFileName;
+
         shell_exec('audiowaveform -i '.$mediaFileName.' -o '.$jsonFileName.' -z '.$zoom.' -b 16');
 
         Storage::disk('s3')->putFileAs(
             'resources/waveform-data',
-            new File($jsonFileName),
+            new File($jsonFileNamePath),
             $jsonFileName
         );
 

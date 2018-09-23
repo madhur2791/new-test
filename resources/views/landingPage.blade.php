@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.6/wavesurfer.min.js"></script>
     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
       <div class="container">
         <div class="navbar-header">
@@ -146,6 +147,9 @@
             </div>
             <h2>on your wall?</h2>
         </div>
+    </section>
+    <section class="probootstrap-section waveform-section">
+        <div id="waveform-surfer"></div>
     </section>
     <section class="probootstrap-section">
       <div class="container">

@@ -13,15 +13,21 @@ $(document).ready(function(){
         nextArrow: false
     });
 
-    // var sound = new Howl({
-    //     src: ['https://s3.us-east-2.amazonaws.com/soundwave-assets/media_files/happy_together.mp3'],
-    //     autoplay: true,
-    //     volume: 0.5,
-    //     onend: function() {
-    //         console.log('finished');
-    //     },
-    //     onload: () => {
-    //         console.log('loaded');
-    //     }
-    // });
+    var wavesurfer = WaveSurfer.create({
+        container: '#waveform-surfer',
+        progressColor: '#85C8DD',
+        autoCenter: true,
+        interact: false,
+        normalize: true,
+        scrollParent: true,
+        loopSelection: true,
+        height: 400,
+        waveColor: '#85C8DD',
+        barWidth: 5,
+        barGap: 0
+    });
+    wavesurfer.load('happy_together.mp3');
+    wavesurfer.on('ready', function () {
+        wavesurfer.play();
+    });
 });

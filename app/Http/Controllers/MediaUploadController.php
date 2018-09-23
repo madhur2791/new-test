@@ -29,7 +29,7 @@ class MediaUploadController extends Controller
         $loggedInUser = $request->user();
         $mediaId = uniqid($loggedInUser->id);
         $fileName = $request->file('uploaded-media-file')->getClientOriginalName();
-        $filePath = '/home/ubuntu/new-test/storage/app/'.$request->file('uploaded-media-file')->store('uploaded_files');
+        $filePath = $request->file('uploaded-media-file')->store('uploaded_files');
         $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
             $filePath,
             $fileName,
@@ -53,8 +53,8 @@ class MediaUploadController extends Controller
         $loggedInUser = $request->user();
         $mediaFileObject = MediaFile::where('media_id', $mediaId)->first();
 
-        Storage::disk('public')->put(
-            $mediaFileObject->media_id.'.mp3',
+        Storage::disk('local')->put(
+            'uploaded_files/'.$mediaFileObject->media_id.'.mp3',
             Storage::disk('s3')->get($mediaFileObject->media_file_url)
         );
 
@@ -63,7 +63,6 @@ class MediaUploadController extends Controller
             $startTime,
             $endTime
         );
-
 
         $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
             $clippedFilePath,

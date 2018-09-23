@@ -48,3 +48,7 @@ sudo apt-get install ffmpeg
 composer require php-ffmpeg/binary-driver=dev-master
 
 composer require php-ffmpeg/php-ffmpeg
+
+sudo add-apt-repository ppa:chris-needham/ppa
+sudo apt-get update
+sudo apt-get install audiowaveform

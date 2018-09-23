@@ -53,43 +53,44 @@ class MediaService
         $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp3';
         $jsonFileName = uniqid('json_file_name'.$loggedInUser->id).'.json';
 
+
         $ffmpeg = FFMpeg::create(array(
             'timeout' => 36000,
-            'ffmpeg.binaries' => '/usr/bin/ffmpeg',
-            'ffprobe.binaries' => '/usr/bin/ffprobe'
+            'ffmpeg.binaries' => config('ffmpeg.ffmpeg_binaries'),
+            'ffprobe.binaries' => config('ffmpeg.ffprobe_binaries')
         ));
 
-        $media = $ffmpeg->open($mediaFilePath);
-        $mediaFileOnlyName = $mediaFileName;
-        $mediaFileName = '/home/ubuntu/new-test/storage/app/uploaded_files/'.$mediaFileName;
-        $media->save(new Mp3(), $mediaFileName);
+        $media = $ffmpeg->open(storage_path('app').'/'.$mediaFilePath);
+        // $mediaFileOnlyName = $mediaFileName;
+        // $mediaFileName = storage_path('app').'/uploaded_files/'.$mediaFileName;
+
+        $media->save(new Mp3(), storage_path('app').'/converted_files/'.$mediaFileName);
 
         $ffprobe = FFProbe::create(array(
-            'ffmpeg.binaries' => '/usr/bin/ffmpeg',
-            'ffprobe.binaries' => '/usr/bin/ffprobe'
+            'ffmpeg.binaries' => config('ffmpeg.ffmpeg_binaries'),
+            'ffprobe.binaries' => config('ffmpeg.ffprobe_binaries')
         ));
-        $duration = $ffprobe->format($mediaFileName)->get('duration');
+        $duration = $ffprobe->format(storage_path('app').'/converted_files/'.$mediaFileName)->get('duration');
         $zoom = round($sampleRate * $duration / $requiredSamples);
 
-        $jsonFileNamePath = '/home/ubuntu/new-test/storage/app/uploaded_files/'.$jsonFileName;
-
-        shell_exec('audiowaveform -i '.$mediaFileName.' -o '.$jsonFileNamePath.' -z '.$zoom.' -b 16');
+        shell_exec('audiowaveform -i '.storage_path('app').'/converted_files/'.$mediaFileName.' -o '.storage_path('app').'/json_files/'.$jsonFileName.' -z '.$zoom.' -b 16');
 
         Storage::disk('s3')->putFileAs(
             'resources/waveform-data',
-            new File($jsonFileNamePath),
+            new File(storage_path('app').'/json_files/'.$jsonFileName),
             $jsonFileName
         );
 
         Storage::disk('s3')->putFileAs(
             'resources/media-file',
-            new File($mediaFileName),
-            $mediaFileOnlyName,
+            new File(storage_path('app').'/converted_files/'.$mediaFileName),
+            $mediaFileName,
             'public'
         );
 
-        // Storage::disk('public')->delete($mediaFileName);
-        // Storage::disk('public')->delete($jsonFileName);
+        Storage::disk('local')->delete('/converted_files/'.$mediaFileName);
+        Storage::disk('local')->delete($mediaFilePath);
+        Storage::disk('local')->delete('/json_files/'.$jsonFileName);
 
         $mediaFileObj = MediaFile::updateOrCreate(
             [
@@ -98,7 +99,7 @@ class MediaService
             ],
             [
                 "uploaded_file_name" => $fileOriginalName,
-                "media_file_url" => "resources/media-file/".$mediaFileOnlyName,
+                "media_file_url" => "resources/media-file/".$mediaFileName,
                 "displayed_media_file_url" => "resources/media-file/".$mediaFileName,
                 "waveform_raw_data_url" => "resources/waveform-data/".$jsonFileName,
                 "media_file_type" => 'AUDIO',
@@ -113,20 +114,22 @@ class MediaService
     {
         $ffmpeg = FFMpeg::create(array(
             'timeout' => 36000,
-            'ffmpeg.binaries' => '/usr/bin/ffmpeg',
-            'ffprobe.binaries' => '/usr/bin/ffprobe'
+            'ffmpeg.binaries' => config('ffmpeg.ffmpeg_binaries'),
+            'ffprobe.binaries' => config('ffmpeg.ffprobe_binaries')
         ));
 
-        $media = $ffmpeg->open($mediaFileName);
+        $media = $ffmpeg->open(storage_path('app').'/uploaded_files/'.$mediaFileName);
 
         $media->filters()->clip(
             TimeCode::fromSeconds($startTime),
             TimeCode::fromSeconds($endTime - $startTime)
         );
 
-        $media->save(new Mp3(), 'clipped_media_'.$mediaFileName);
+        $media->save(new Mp3(), storage_path('app').'/clipped_files/'.$mediaFileName);
 
-        return 'clipped_media_'.$mediaFileName;
+        Storage::disk('local')->delete('uploaded_files/'.$mediaFileName);
+
+        return 'clipped_files/'.$mediaFileName;
     }
 
     public function getUploadedMediaFiles($user)

@@ -4,3 +4,19 @@
 
 // Variables
 @import 'variables';
+
+.probootstrap-navbar .navbar-brand {
+    background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-white.png');
+    width: 160px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.probootstrap-navbar.scrolled .navbar-brand {
+    background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-coloured.png');
+}
+
+.textslider-container {
+  margin-top: 3rem;
+  text-align: center;
+}

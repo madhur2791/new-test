@@ -86,7 +86,7 @@ class MediaUpload extends React.Component {
         if(this.state && this.state.showLoader) {
             mediaUploadLoader = (
                 <div className="media-upload-loader">
-                    <img className="media-upload-loader-image" src="/images/loader.gif" />
+                    <img className="media-upload-loader-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/loader.gif" />
                 </div>
             );
         }

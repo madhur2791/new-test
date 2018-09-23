@@ -313,7 +313,7 @@
 }
 
 .play-pause-button {
-  background-image: url("/images/playpause.png");
+  background-image: url(/images/playpause.png?85b6ebe3e8d99fb0173ec60f126b3728);
   background-repeat: no-repeat;
   width: 45px;
   height: 45px;
@@ -323,7 +323,7 @@
 }
 
 .crop-button {
-  background-image: url("/images/scissors.png");
+  background-image: url(/images/scissors.png?5b1c3d1712b66235c7bbd3befbbc8d97);
   background-repeat: no-repeat;
   width: 45px;
   height: 45px;
@@ -624,10 +624,5 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 0px 10px;
-}
-
-.textslider-container {
-  margin-top: 3rem;
-  text-align: center;
 }
 

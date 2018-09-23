@@ -31,8 +31,7 @@ mix.react('resources/assets/react/app.js', 'public/js/build.js') // react app
        'resources/assets/vendor/css/owl.carousel.min.css',
        'resources/assets/vendor/css/owl.theme.default.min.css',
        'resources/assets/vendor/css/photoswipe.css',
-       'resources/assets/vendor/css/slick.css',
-       'resources/assets/vendor/css/style.css'
+       'resources/assets/vendor/css/slick.css'
    ], 'public/css/styles-merged.css');
 
 

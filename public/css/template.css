@@ -343,7 +343,6 @@ a:active {
   padding-bottom: 0 !important;
   font-size: 30px;
   text-transform: uppercase;
-  background: url(/vendor-img/logo.png) no-repeat left top;
   top: 30px;
   position: relative;
   width: 117px;
@@ -371,7 +370,6 @@ a:active {
     position: relative;
     width: 117px;
     height: 40px;
-    background: url(/vendor-img/logo@2x.png) no-repeat left 100%;
     background-size: cover;
   }
 }
@@ -851,7 +849,7 @@ a:active {
 }
 
 .probootstrap-section {
-  padding: 7em 0;
+  padding: 2em 0;
 }
 
 .probootstrap-section.probootstrap-border-top {

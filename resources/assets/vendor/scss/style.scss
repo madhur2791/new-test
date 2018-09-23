@@ -264,7 +264,6 @@ a {
 		padding-bottom: 0!important;
 		font-size: 30px;
 		text-transform: uppercase;
-		background: url(/vendor-img/logo.png) no-repeat left top;
 		top: 30px;
 		position: relative;
 		width: 117px;
@@ -289,8 +288,7 @@ a {
 		only screen and (                min-resolution: 2dppx) {
 			position: relative;
 	  	width: 117px;
-			height: 40px;
-	    background: url(/vendor-img/logo@2x.png) no-repeat left 100%;
+		height: 40px;
 	    background-size: cover;
 		}
 
@@ -718,7 +716,7 @@ a {
 	}
 }
 .probootstrap-section {
-	padding: 7em 0;
+	padding: 2em 0;
 	&.probootstrap-border-top {
 		border-top: 1px solid rgba(0,0,0,.1);
 	}

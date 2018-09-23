@@ -128,7 +128,7 @@ class WaveformStyle extends React.Component {
                 <div key={1}>
                     <div className="waveform-loader col-lg-9 col-md-8 col-sm-7">
                         <div className="loader-image-container" >
-                            <img className="loader-image" src="/images/loader.gif" /><br />
+                            <img className="loader-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/loader.gif" /><br />
                             Generating Waveform...
                         </div>
                     </div>
@@ -141,7 +141,7 @@ class WaveformStyle extends React.Component {
                 <div key={2}>
                     <div className="sidebar-loader col-lg-3 col-md-4 col-sm-5">
                         <div className="loader-image-container" >
-                            <img className="loader-image" src="/images/loader.gif" /><br />
+                            <img className="loader-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/loader.gif" /><br />
                             Loading Color Pallets...
                         </div>
                     </div>

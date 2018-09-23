@@ -4,40 +4,15 @@
     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="index.html" title="uiCookies:FineOak">FineOak</a>
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li class="dropdown">
-              <a href="#" data-toggle="dropdown" class="dropdown-toggle">Pages</a>
-              <ul class="dropdown-menu">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="portfolio-single.html">Portfolio Single</a></li>
-                <li class="dropdown-submenu dropdown">
-                  <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span>Sub Menu</span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Second Level Menu</a></li>
-                    <li><a href="#">Second Level Menu</a></li>
-                    <li><a href="#">Second Level Menu</a></li>
-                    <li><a href="#">Second Level Menu</a></li>
-                  </ul>
-                </li>
-                <li><a href="services.html">Services</a></li>
-              </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/waveform/upload">Create Waveform</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="/login">Login</a></li>
           </ul>
         </div>
       </div>
@@ -48,7 +23,7 @@
         <li style="background-image: url(img/slider_1.jpg)" class="overlay">
           <div class="container">
             <div class="row">
-              <div class="col-md-8 col-md-offset-2">
+              <div class="col-md-11 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Turn Your Sound Into a Piece of Art!</h1>
                   <h1 class="probootstrap-heading probootstrap-animate">From $30. Free Shipping*</h1>
@@ -60,7 +35,7 @@
         <li style="background-image: url(img/slider_2.jpg)" class="overlay">
           <div class="container">
             <div class="row">
-              <div class="col-md-8 col-md-offset-2">
+              <div class="col-md-11 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Would you like to have a picture of your favorite music? Now, it is possible.</h1>
                   <h1 class="probootstrap-heading probootstrap-animate">We paint your sound</h1>
@@ -73,7 +48,7 @@
         <li style="background-image: url(img/slider_3.jpg)" class="overlay">
           <div class="container">
             <div class="row">
-              <div class="col-md-8 col-md-offset-2">
+              <div class="col-md-11 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Did you know your voice generates its own distinctive pattern, just as a fingerprint?</h1>
                   <h1 class="probootstrap-heading probootstrap-animate">What about having a picture of it on your wall?</h1>
@@ -161,14 +136,15 @@
     </section>
     <section class="textslider-section">
         <div class="textslider-container">
-            <h1>Find. Connect. Do.</h1>
-            <h2>Find and do a physical activity with someone in your area.</h2>
+            <h2>What about hanging your</h2>
             <div class="text-vertical-slider">
-                <h3>Take a leisurely jog in the park…together</h3>
-                <h3>Try a spin class...together</h3>
-                <h3>Take a bike ride around the city...together</h3>
-                <h3>Go for an indoor tennis practice...together</h3>
+                <h3>1. Wedding Vow</h3>
+                <h3>2. baby's first word</h3>
+                <h3>3. favorite song</h3>
+                <h3>4. most meaningful  two Yesssss</h3>
+                <h3>5. Baby's heartbeat</h3>
             </div>
+            <h2>on your wall?</h2>
         </div>
     </section>
     <section class="probootstrap-section">

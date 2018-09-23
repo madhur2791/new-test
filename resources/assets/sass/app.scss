@@ -332,7 +332,7 @@ body {
 }
 
 .play-pause-button {
-    background-image: url('/images/playpause.png');
+    background-image: url('../images/playpause.png');
     background-repeat: no-repeat;
     width: 45px;
     height: 45px;
@@ -342,7 +342,7 @@ body {
 }
 
 .crop-button {
-    background-image: url('/images/scissors.png');
+    background-image: url('../images/scissors.png');
     background-repeat: no-repeat;
     width: 45px;
     height: 45px;
@@ -605,8 +605,4 @@ body {
     padding: 0px 10px;
 }
 
-.textslider-container {
-  margin-top: 3rem;
-  text-align: center;
-}
 

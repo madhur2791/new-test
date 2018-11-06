@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../../components/SideBar/SideBar.jsx';
-import WaveformRenderer from '../../components/WaveformRenderer/WaveformRenderer.jsx';
+import SVGWaveformRenderer from '../../components/SVGWaveformRenderer/SVGWaveformRenderer.jsx';
 import Slider from 'rc-slider';
 import Select from 'react-select';
 
@@ -360,15 +360,17 @@ class WaveformText extends React.Component {
                         </Sidebar>
                     </div>
                     <div className="col-lg-9 col-md-8 col-sm-7 waveform-canvas-container">
-                        <WaveformRenderer
-                            waveformData={waveformData[match.params.mediaId] || {}}
-                            canvasWidth={1800}
-                            canvasHeight={1200}
-                            wavefromColor={wavefromColor}
-                            wavefromStyle={wavefromStyle}
-                            qrCodeDetails={qrCodeDetails}
-                            textDetails={textDetails}
-                        />
+                        <div className="waveform-canvas-element">
+                            <SVGWaveformRenderer
+                                waveformData={waveformData[match.params.mediaId] || {}}
+                                canvasWidth={1800}
+                                canvasHeight={1200}
+                                wavefromColor={wavefromColor}
+                                wavefromStyle={wavefromStyle}
+                                qrCodeDetails={qrCodeDetails}
+                                textDetails={textDetails}
+                            />
+                        </div>
                     </div>
                 </div>
                 {loaders}

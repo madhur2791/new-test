@@ -25,8 +25,8 @@
             @yield('content')
         </main>
     </div>
-    <script src="compiled/js/scripts.min.js"></script>
-    <script src="compiled/js/custom.min.js"></script>
+    <script src="/compiled/js/scripts.min.js"></script>
+    <script src="/compiled/js/custom.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

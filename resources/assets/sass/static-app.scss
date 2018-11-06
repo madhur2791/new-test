@@ -7,13 +7,22 @@
 
 .probootstrap-navbar .navbar-brand {
     background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-white.png');
-    width: 160px;
+    width: 200px;
+    height: 50px;
     background-size: contain;
     background-repeat: no-repeat;
+    top: 15px;
 }
 
 .probootstrap-navbar.scrolled .navbar-brand {
+    top: 5px;
     background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-coloured.png');
+}
+
+@media screen and (max-width: $screen-sm) {
+    .probootstrap-navbar .navbar-brand {
+        background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-coloured.png');
+    }
 }
 
 .textslider-container {
@@ -24,4 +33,39 @@
 .waveform-section {
     background-color: #fff;
     pointer-events: none;
+}
+
+.cartImage {
+    width: 100px;
+    background: #fff;
+}
+
+.cartItemDescContainer {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.cartImageContainer {
+    display: inline-block;
+}
+
+.priceColumn {
+    text-align: right;
+}
+
+.checkout-button {
+    float: right;
+    color: #fff;
+    border-radius: 0;
+
+    a {
+        color: #fff;
+    }
+}
+
+.orderAddressSection {
+    padding-left: 30px;
+    h4 {
+        font-size: 24px;
+    }
 }

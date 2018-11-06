@@ -18,9 +18,13 @@ Route::get('/', 'HomeController@landingPage');
 
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
+Route::get('/play-media/{any?}', 'WaveformGenerationController@createWaveform')->where('any', '.*');;
+
+Route::get('/media-file-data/{waveformId}', 'OrderController@playMediaFile');
+
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/waveform/{any?}', 'WaveformGenerationController@createWaveform')->where('any', '.*');;
+    Route::get('/waveform/{any?}', 'WaveformGenerationController@createWaveform')->where('any', '.*');
 
     Route::prefix('web-api')->group(function () {
 
@@ -37,8 +41,30 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/color-pallets', 'WaveformGenerationController@getColorPallets');
 
         Route::post('/{mediaId}/waveform-styles', 'WaveformGenerationController@updateMediaFileStyle');
+
+        Route::get('/price-lists', 'OrderController@getPriceList');
+
+        Route::post('/carts', 'OrderController@addToCart');
+
     });
 
+    Route::get('/generated-images/{generatedImageUrl}', 'OrderController@getGeneratedImage');
+
+    Route::get('/carts', 'OrderController@showCart');
+
+    Route::post('/orders', 'OrderController@createOrderFromCart');
+
+    Route::get('/orders/{orderId}/address', 'OrderController@showAddressPage');
+
+    Route::get('/orders/{orderId}/payment', 'OrderController@showPaymentPage');
+
+    Route::post('/orders/{orderId}/address', 'OrderController@addAddressToOrder');
+
+    Route::get('/carts/{cartId}/delete', 'OrderController@removeFromCart');
+
+    Route::post('/orders/{orderId}/confirm_payment', 'OrderController@confirmPayment');
+
+    Route::get('/orders/{orderId}/success', 'OrderController@showPaymentConfirmationPage');
 });
 
 

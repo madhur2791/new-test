@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player'
 import Slider, { Range } from 'rc-slider';
-import WaveformRenderer from '../../../../components/WaveformRenderer/WaveformRenderer.jsx';
+import SVGWaveformRenderer from '../../../../components/SVGWaveformRenderer/SVGWaveformRenderer.jsx';
 
 class MediaEditor extends React.Component {
   constructor(props) {
@@ -104,12 +104,14 @@ class MediaEditor extends React.Component {
     <div>
         <div className="audio-editor-container">
             <div className="audio-player-container">
-                <WaveformRenderer
+                <SVGWaveformRenderer
                     waveformData={waveformData}
                     canvasWidth={900}
                     canvasHeight={400}
                     wavefromColor={wavefromColor}
                     wavefromStyle={wavefromStyle}
+                    horizantalMargin={0}
+                    verticalMargin={0}
                 />
                 <div
                     id="audio-seeker"

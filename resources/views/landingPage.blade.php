@@ -5,7 +5,13 @@
     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.html" title="uiCookies:FineOak">FineOak</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/" title="uiCookies:SoundWavePic">SoundWavePic</a>
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
@@ -21,7 +27,7 @@
 
     <section class="flexslider">
       <ul class="slides">
-        <li style="background-image: url(img/slider_1.jpg)" class="overlay">
+        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_11.jpg')" class="overlay">
           <div class="container">
             <div class="row">
               <div class="col-md-11 col-md-offset-1">
@@ -33,7 +39,7 @@
             </div>
           </div>
         </li>
-        <li style="background-image: url(img/slider_2.jpg)" class="overlay">
+        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_21.jpg')" class="overlay">
           <div class="container">
             <div class="row">
               <div class="col-md-11 col-md-offset-1">
@@ -46,7 +52,7 @@
           </div>
 
         </li>
-        <li style="background-image: url(img/slider_3.jpg)" class="overlay">
+        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_31.jpg')" class="overlay">
           <div class="container">
             <div class="row">
               <div class="col-md-11 col-md-offset-1">
@@ -72,37 +78,37 @@
       <div class="owl-carousel owl-work probootstrap-animate">
         <div class="item">
           <a href="portfolio-single.html">
-            <img src="img/work_1.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_41.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="portfolio-single.html">
-            <img src="img/work_2.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_51.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="portfolio-single.html">
-            <img src="img/work_3.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_61.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="portfolio-single.html">
-            <img src="img/work_4.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_71.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="portfolio-single.html">
-            <img src="img/work_5.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_81.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="portfolio-single.html">
-            <img src="img/work_6.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_91.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="portfolio-single.html">
-            <img src="img/work_7.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_101.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
       </div>
@@ -137,13 +143,13 @@
     </section>
     <section class="textslider-section">
         <div class="textslider-container">
-            <h2>What about hanging your</h2>
+            <h3>What about hanging your</h2>
             <div class="text-vertical-slider">
-                <h3>1. Wedding Vow</h3>
-                <h3>2. baby's first word</h3>
-                <h3>3. favorite song</h3>
-                <h3>4. most meaningful  two Yesssss</h3>
-                <h3>5. Baby's heartbeat</h3>
+                <h3>Wedding Vow</h3>
+                <h3>baby's first word</h3>
+                <h3>favorite song</h3>
+                <h3>most meaningful  two Yesssss</h3>
+                <h3>Baby's heartbeat</h3>
             </div>
             <h2>on your wall?</h2>
         </div>
@@ -232,7 +238,7 @@
         <!-- END row -->
         <div class="row">
           <div class="col-md-12 copyright text-center">
-            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:FineOak</a>. All Rights Reserved. <br> Designed &amp; Developed with <i class="icon icon-heart"></i> by <a href="https://uicookies.com/">uicookies.com</a></p>
+            <p>&copy; 2017 <a href="https://uicookies.com/">uiCookies:SoundWavePic</a>. All Rights Reserved. <br> Designed &amp; Developed with <i class="icon icon-heart"></i> by <a href="https://uicookies.com/">uicookies.com</a></p>
           </div>
         </div>
       </div>

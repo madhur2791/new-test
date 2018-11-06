@@ -6,6 +6,8 @@ import WaveformColorContainer from './views/WaveformColor/WaveformColorContainer
 import WaveformStyleContainer from './views/WaveformStyle/WaveformStyleContainer.jsx';
 import WaveformTextContainer from './views/WaveformText/WaveformTextContainer.jsx';
 import WaveformQRCodeContainer from './views/WaveformQRCode/WaveformQRCodeContainer.jsx';
+import WaveformPrintOptionContainer from './views/WaveformPrintOptions/WaveformPrintOptionContainer.jsx';
+import MediaPlayer from './views/MediaPlayer/MediaPlayer.jsx';
 import { Provider } from 'react-redux';
 import store from './stores/store';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -49,12 +51,13 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter basename="/waveform">
             <Switch>
+                <Route path="/play-media/:waveformId" component={MediaPlayer} exact />
                 <Route path="/upload" component={MediaUploadContainer} exact />
                 <Route path="/:mediaId/color" component={WaveformColorContainer} exact />
                 <Route path="/:mediaId/style" component={WaveformStyleContainer} exact />
                 <Route path="/:mediaId/text" component={WaveformTextContainer} exact />
                 <Route path="/:mediaId/qr-code" component={WaveformQRCodeContainer} exact />
-                <Route path="/:mediaId/print-option" component={WaveformColorContainer} exact />
+                <Route path="/:mediaId/print-option" component={WaveformPrintOptionContainer} exact />
             </Switch>
         </BrowserRouter>
     </Provider>,

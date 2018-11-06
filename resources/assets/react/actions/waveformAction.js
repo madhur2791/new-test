@@ -159,9 +159,3 @@ export function changeWaveformQRCode(mediaId, qrCodeDetails, updateDatabase) {
     }
   );
 }
-
-
-
-
-
-

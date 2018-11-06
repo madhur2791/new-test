@@ -61,8 +61,6 @@ class MediaService
         ));
 
         $media = $ffmpeg->open(storage_path('app').'/'.$mediaFilePath);
-        // $mediaFileOnlyName = $mediaFileName;
-        // $mediaFileName = storage_path('app').'/uploaded_files/'.$mediaFileName;
 
         $media->save(new Mp3(), storage_path('app').'/converted_files/'.$mediaFileName);
 
@@ -149,11 +147,13 @@ class MediaService
             ->orderBy('id', 'desc')->first();
 
         if(is_null($existingWaveformStyle)) {
+            $waveformId = uniqid($mediaFileId);
+            $this->defaultQrCode['qr_code_value'] = env('APP_URL').'/waveform/play-media/'.$waveformId;
             return
                 WaveformStyle::create([
                     "media_file_id" => $mediaFileId,
                     "state" => "EDITING",
-                    "waveform_id" => uniqid($mediaFileId),
+                    "waveform_id" => $waveformId,
                     "images" => [],
                     "waveform_color" => $this->defaultColor,
                     "waveform_style" => $this->defaultStyle,

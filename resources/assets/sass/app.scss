@@ -30,7 +30,7 @@ body {
 }
 
 .sidebar-logo {
-    height: 44px;
+    height: 50px;
 }
 
 .container {
@@ -65,7 +65,6 @@ body {
 
 .audio-player-container {
     text-align: center;
-    display: inline-block;
     position: relative;
     outline: 1px solid #ccc;
     margin-top: 50px;
@@ -306,8 +305,13 @@ body {
 .waveform-canvas-element {
     width: 100%;
     max-width: 900px;
-    background-color: white;
-    // padding: 20px;
+    background-color:transparent;
+    text-align: center;
+}
+
+.waveform-canvas-element svg {
+    background: #fff;
+    max-width: 100%;
 }
 
 .waveform-canvas-container {
@@ -559,6 +563,22 @@ body {
     margin-bottom: 0px;
 }
 
+.sidebarToolDescription {
+    color: #555;
+    font-size: 14px;
+    font-weight: 200;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+.selectInput {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0px 10px;
+}
+
 .sidebarToolHeadingBig {
     color: #000;
     font-size: 32px;
@@ -606,3 +626,35 @@ body {
 }
 
 
+.mediaPlayerContainer {
+    margin-top: 100px;
+}
+
+.mediaPlayerControlsContainer {
+    position: relative;
+    padding: 5px 0px;
+    background: #ddd;
+    margin-top: -5px;
+
+    .bar {
+        height: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .playerBar {
+        background-color: rgba(0,0,0,0.2);
+        width: 100%;
+    }
+    .bufferBar {
+        background-color: rgba(0,0,0,0.4);
+        width: 0%;
+    }
+    .progressBar {
+        background-color: #f00;
+        width: 0%;
+    }
+    .media-controls {
+        margin-top: 5px;
+    }
+}

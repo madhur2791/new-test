@@ -3,7 +3,7 @@ import Sidebar from '../../components/SideBar/SideBar.jsx';
 import FileUploadContainer from './components/FileUploader/FileUploadContainer.jsx';
 import UploadedFilesListContainer from './components/UploadedFilesList/UploadedFilesListContainer.jsx';
 import MediaEditorContainer from './components/MediaFileEditor/MediaFileEditContainer.jsx';
-import WaveformRenderer from '../../components/WaveformRenderer/WaveformRenderer.jsx';
+import SVGWaveformRenderer from '../../components/SVGWaveformRenderer/SVGWaveformRenderer.jsx';
 import { Link } from 'react-router-dom'
 
 class MediaUpload extends React.Component {
@@ -143,10 +143,12 @@ class MediaUpload extends React.Component {
         ) {
             selectedMediaFile =
                 mediaFilesList.data[mediaFilesList.selectedMediaIndex];
-
-            NextButton = (<Link to={`/${selectedMediaFile.media_id}/color`} className="btn btn-primary upload-button">
+            if (selectedMediaFile.is_cropped !== 0){
+                NextButton = (<Link to={`/${selectedMediaFile.media_id}/color`} className="btn btn-primary upload-button">
                             Next
                         </Link>);
+            }
+
 
             let selectedWaveformData = [];
 
@@ -179,7 +181,7 @@ class MediaUpload extends React.Component {
                     textDetails =  selectedMediaFileData.data.current_waveform_style.waveform_text || {};
                 }
                 mediaDisplaySection = (
-                    <WaveformRenderer
+                    <SVGWaveformRenderer
                         waveformData={selectedWaveformData}
                         canvasWidth={1800}
                         canvasHeight={1200}

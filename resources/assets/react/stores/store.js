@@ -9,7 +9,6 @@ delete window.__PRELOADED_STATE__;
 
 const store = createStore(reducer, preloadedState, applyMiddleware(thunk));
 
-console.log(store.getState());
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 
 export default store;

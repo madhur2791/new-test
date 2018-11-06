@@ -15,7 +15,7 @@ class WaveformStyle extends Model
         "waveform_text" => 'array'
     ];
 
-    public function user()
+    public function mediaFile()
     {
         return $this->belongsTo('App\MediaFile');
     }

@@ -6,6 +6,7 @@ import mediaFilesListReducer from './mediaFilesListReducer';
 import mediaFileDataReducer from './mediaFileDataReducer';
 import uploadMediaFileReducer from './uploadMediaFileReducer';
 import cropMediaFileReducer from './cropMediaFileReducer';
+import priceListsReducer from './priceListsReducer';
 
 const reducer = combineReducers({
   waveformData: waveformReducer,
@@ -13,7 +14,8 @@ const reducer = combineReducers({
   mediaFilesList: mediaFilesListReducer,
   uploadMediaFileRequest: uploadMediaFileReducer,
   cropMediaFileRequest: cropMediaFileReducer,
-  colorPallets: colorPalletReducer
+  colorPallets: colorPalletReducer,
+  priceList: priceListsReducer
 });
 
 export default reducer;

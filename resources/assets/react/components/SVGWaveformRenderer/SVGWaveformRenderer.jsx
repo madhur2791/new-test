@@ -272,7 +272,7 @@ class SVGWaveformRenderer extends React.Component {
             qrCodeVerticalAlignment = qrCodeDetails.vertical_alignment;
             qrCodeHorizantalAlignment = qrCodeDetails.horizantal_alignment;
             qrCodeElement = [];
-            const qr = qrcode(4, 'M');
+            const qr = qrcode(0, 'M');
             qr.addData(qrCodeDetails.qr_code_value);
             qr.make();
 

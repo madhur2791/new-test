@@ -1,39 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.6/wavesurfer.min.js"></script>
-    <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/" title="uiCookies:SoundWavePic">SoundWavePic</a>
-        </div>
-
-        <div id="navbar-collapse" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/waveform/upload">Create Waveform</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="/login">Login</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+    @include('partials.navbar')
     <section class="flexslider">
       <ul class="slides">
         <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_11.jpg')" class="overlay">
           <div class="container">
             <div class="row">
-              <div class="col-md-11 col-md-offset-1">
+              <div class="col-md-10 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Turn Your Sound Into a Piece of Art!</h1>
                   <h1 class="probootstrap-heading probootstrap-animate">From $30. Free Shipping*</h1>
+                  <a class="btn btn-primary btn-lg" href="/waveform/upload">Get Started</a>
                 </div>
               </div>
             </div>
@@ -42,10 +20,11 @@
         <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_21.jpg')" class="overlay">
           <div class="container">
             <div class="row">
-              <div class="col-md-11 col-md-offset-1">
+              <div class="col-md-10 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Would you like to have a picture of your favorite music? Now, it is possible.</h1>
                   <h1 class="probootstrap-heading probootstrap-animate">We paint your sound</h1>
+                  <a class="btn btn-primary btn-lg" href="/waveform/upload">Get Started</a>
                 </div>
               </div>
             </div>
@@ -55,10 +34,11 @@
         <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_31.jpg')" class="overlay">
           <div class="container">
             <div class="row">
-              <div class="col-md-11 col-md-offset-1">
+              <div class="col-md-10 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Did you know your voice generates its own distinctive pattern, just as a fingerprint?</h1>
                   <h1 class="probootstrap-heading probootstrap-animate">What about having a picture of it on your wall?</h1>
+                  <a class="btn btn-primary btn-lg" href="/waveform/upload">Get Started</a>
                 </div>
               </div>
             </div>
@@ -145,18 +125,18 @@
         <div class="textslider-container">
             <h3>What about hanging your</h2>
             <div class="text-vertical-slider">
-                <h3>Wedding Vow</h3>
+                <h3>wedding Vow</h3>
                 <h3>baby's first word</h3>
                 <h3>favorite song</h3>
-                <h3>most meaningful  two Yesssss</h3>
-                <h3>Baby's heartbeat</h3>
+                <h3>most meaningful two Yesssss</h3>
+                <h3>baby's heartbeat</h3>
             </div>
-            <h2>on your wall?</h2>
+            <h3>on your wall?</h3>
         </div>
     </section>
-    <section class="probootstrap-section waveform-section">
+    <!--<section class="probootstrap-section waveform-section">
         <div id="waveform-surfer"></div>
-    </section>
+    </section>-->
     <section class="probootstrap-section">
       <div class="container">
         <div class="row">
@@ -251,7 +231,7 @@
                   <blockquote class="quote">&ldquo;My wife loved this! I got the sound wave of my marriage proposal and her Yesssss yell. Every single friend of her scanned the QR to watch the proposal on your website. I recommend it to anyone.&rdquo;</blockquote>
                 </div>
               </div>
-              <div class="item">
+              <!--<div class="item">
                 <div class="probootstrap-testimony-wrap text-center">
                   <blockquote class="quote">&ldquo;The product brought an amazing aura in our living room.  You guys went above and beyond my expectations.&rdquo;</blockquote>
                 </div>
@@ -265,7 +245,7 @@
                 <div class="probootstrap-testimony-wrap text-center">
                   <blockquote class="quote">&ldquo;The ease and comfort of being able to see/make changes to the design is great!&rdquo;</blockquote>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -308,33 +288,6 @@
         </div>
       </div>
     </section>
-    <footer class="probootstrap-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center">
-              <ul class="probootstrap-footer-social probootstrap-footer-links">
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-              </ul>
-          </div>
-        </div>
-        <div class="row footer-social-container">
-          <div class="col-md-12 text-center">
-              <ul class="probootstrap-footer-social">
-                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                <li><a href="#"><i class="icon-instagram"></i></a></li>
-              </ul>
-          </div>
-        </div>
-        <!-- END row -->
-        <div class="row">
-          <div class="col-md-12 copyright text-center">
-            <p>All rights reserved &copy; Sound Wave Pic</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    @include('partials.footer')
 @endsection
 

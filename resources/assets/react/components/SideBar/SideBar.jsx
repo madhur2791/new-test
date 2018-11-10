@@ -1,7 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
-import Ionicon from 'react-ionicons'
 
 function Sidebar(props) {
     const { match } = props;
@@ -17,32 +15,32 @@ function Sidebar(props) {
                     <div className="col-md-12 sidebar-tool-box-nav-bar">
                         <div className={`sidebar-tool-box-nav-button ${props.pageName === 'mediaUpload' ? 'active' : '' }`}>
                             <Link to={`/upload`}>
-                                <FontAwesomeIcon icon="volume-up" />
+                                <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-sound-50.png" />
                             </Link>
                         </div>
                         <div className={`sidebar-tool-box-nav-button ${props.pageName === 'color' ? 'active' : '' }`}>
                             <Link to={`/${match.params.mediaId}/color`}>
-                                <FontAwesomeIcon  icon="fill-drip" />
+                                <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-paint-palette-50.png" />
                             </Link>
                         </div>
                         <div className={`sidebar-tool-box-nav-button ${props.pageName === 'style' ? 'active' : '' }`}>
                             <Link to={`/${match.params.mediaId}/style`}>
-                                <FontAwesomeIcon  icon="cogs" />
+                                <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-tune-50.png" />
                             </Link>
                         </div>
                         <div className={`sidebar-tool-box-nav-button ${props.pageName === 'text' ? 'active' : '' }`}>
                             <Link to={`/${match.params.mediaId}/text`}>
-                                <FontAwesomeIcon  icon="font" />
+                                <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-text-color-50.png" />
                             </Link>
                         </div>
                         <div className={`sidebar-tool-box-nav-button ${props.pageName === 'qrCode' ? 'active' : '' }`}>
                             <Link to={`/${match.params.mediaId}/qr-code`}>
-                                <FontAwesomeIcon  icon="qrcode" />
+                                <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-qr-code-50.png" />
                             </Link>
                         </div>
                         <div className={`sidebar-tool-box-nav-button ${props.pageName === 'printOption' ? 'active' : '' }`}>
                             <Link to={`/${match.params.mediaId}/print-option`}>
-                                <FontAwesomeIcon  icon="print" />
+                                <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-print-50.png" />
                             </Link>
                         </div>
                     </div>

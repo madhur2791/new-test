@@ -213,17 +213,18 @@ body {
     a {
         cursor: pointer;
         border-radius: 50px;
-        color: $brand-primary;
         width: 40px;
         height: 40px;
         text-align: center;
         display: inline-block;
-        background: $brand-secondary;
-        padding-top: 10px;
+        background: #B3CDE0;
+        border-color: #B3CDE0;
+        padding-top: 9px;
     }
     &.active {
         a {
-            background: #8ea6bd;
+            background: #04396C;
+            border-color: #04396C;
         }
     }
 
@@ -316,7 +317,7 @@ body {
 
 .waveform-canvas-container {
     padding: 30px 6%;
-    background: ivory;
+    background: #B3CDE0;
     height: 100vh;
 }
 
@@ -491,7 +492,7 @@ body {
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+    border: 2px solid #031F4B; border-radius: 20px;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -505,12 +506,12 @@ body {
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #34A7C1; color: #FFFFFF;
+    background-color: $brand-primary; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+    background-color: #B3CDE0; color: #ffffff;
     text-align: right;
 }
 .onoffswitch-switch {
@@ -518,7 +519,7 @@ body {
     background: #FFFFFF;
     position: absolute; top: 0; bottom: 0;
     right: 56px;
-    border: 2px solid #999999; border-radius: 20px;
+    border: 2px solid #031F4B; border-radius: 20px;
     transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
@@ -657,4 +658,8 @@ body {
     .media-controls {
         margin-top: 5px;
     }
+}
+
+.sidebarIcon {
+    width: 20px;
 }

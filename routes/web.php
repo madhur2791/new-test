@@ -16,6 +16,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@landingPage');
 
+Route::get('/contact', 'HomeController@contactPage');
+
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::get('/play-media/{any?}', 'WaveformGenerationController@createWaveform')->where('any', '.*');;

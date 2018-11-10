@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('landingPage');
     }
+
+    public function contactPage()
+    {
+        return view('contact');
+    }
 }

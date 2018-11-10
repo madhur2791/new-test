@@ -358,7 +358,7 @@ class SVGWaveformRenderer extends React.Component {
         horizantalMargin = typeof horizantalMargin !== 'undefined' ? horizantalMargin : 50;
         verticalMargin = typeof verticalMargin !== 'undefined' ? verticalMargin : 20;
 
-        if(props.waveformData.data) {
+        if(props.waveformData.data && typeof wavefromColor.colors !== "undefined") {
             let waveformType = wavefromStyle.waveform_type;
             let lineWidth = parseInt(wavefromStyle.line_width, 10);
             let lineSpacing = parseFloat(wavefromStyle.line_spacing);

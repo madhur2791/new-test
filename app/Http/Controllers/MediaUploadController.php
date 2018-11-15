@@ -54,12 +54,12 @@ class MediaUploadController extends Controller
         $mediaFileObject = MediaFile::where('media_id', $mediaId)->first();
 
         Storage::disk('local')->put(
-            'uploaded_files/'.$mediaFileObject->media_id.'.wav',
+            'uploaded_files/'.$mediaFileObject->media_id.'.mp3',
             Storage::disk('s3')->get($mediaFileObject->media_file_url)
         );
 
         $clippedFilePath = $this->mediaService->clipMediaFile(
-            $mediaFileObject->media_id.'.wav',
+            $mediaFileObject->media_id.'.mp3',
             $startTime,
             $endTime
         );

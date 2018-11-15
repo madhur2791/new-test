@@ -2,7 +2,7 @@
 
 namespace App\Services;
 use FFMpeg\FFMpeg;
-use FFMpeg\Format\Audio\Wav;
+use FFMpeg\Format\Audio\Mp3;
 use Illuminate\Support\Facades\Storage;
 use App\MediaFile;
 use App\WaveformStyle;
@@ -50,7 +50,7 @@ class MediaService
         $requiredSamples = 900;
         $sampleRate = 44100;
 
-        $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.wav';
+        $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp3';
         $jsonFileName = uniqid('json_file_name'.$loggedInUser->id).'.json';
 
 
@@ -62,7 +62,7 @@ class MediaService
 
         $media = $ffmpeg->open(storage_path('app').'/'.$mediaFilePath);
 
-        $media->save(new Wav(), storage_path('app').'/converted_files/'.$mediaFileName);
+        $media->save(new Mp3(), storage_path('app').'/converted_files/'.$mediaFileName);
 
         $ffprobe = FFProbe::create(array(
             'ffmpeg.binaries' => config('ffmpeg.ffmpeg_binaries'),
@@ -118,15 +118,12 @@ class MediaService
 
         $media = $ffmpeg->open(storage_path('app').'/uploaded_files/'.$mediaFileName);
 
-        $media->save(new Wav(), storage_path('app').'/uploaded_files/'.$mediaFileName);
-        $media = $ffmpeg->open(storage_path('app').'/uploaded_files/'.$mediaFileName);
-
         $media->filters()->clip(
             TimeCode::fromSeconds($startTime),
             TimeCode::fromSeconds($endTime - $startTime)
         );
 
-        $media->save(new Wav(), storage_path('app').'/clipped_files/'.$mediaFileName);
+        $media->save(new Mp3(), storage_path('app').'/clipped_files/'.$mediaFileName);
 
         Storage::disk('local')->delete('uploaded_files/'.$mediaFileName);
 

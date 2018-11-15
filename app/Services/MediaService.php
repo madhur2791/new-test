@@ -118,9 +118,6 @@ class MediaService
 
         $media = $ffmpeg->open(storage_path('app').'/uploaded_files/'.$mediaFileName);
 
-        $media->save(new Mp3(), storage_path('app').'/uploaded_files/'.$mediaFileName);
-        $media = $ffmpeg->open(storage_path('app').'/uploaded_files/'.$mediaFileName);
-
         $media->filters()->clip(
             TimeCode::fromSeconds($startTime),
             TimeCode::fromSeconds($endTime - $startTime)

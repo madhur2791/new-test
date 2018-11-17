@@ -75,8 +75,9 @@ class MediaEditor extends React.Component {
     e.preventDefault();
     const startTime = (this.state.duration * this.state.startTime) / 100;
     const endTime = (this.state.duration * this.state.endTime) / 100;
-    console.log(this.props.mediaFileId, startTime, endTime);
-    this.props.cropMediaFile(this.props.mediaFileId, startTime, endTime);
+    if((startTime !== 0 || endTime !== 0)){
+        this.props.cropMediaFile(this.props.mediaFileId, startTime, endTime);
+    }
   }
 
 

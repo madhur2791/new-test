@@ -1,7 +1,9 @@
 import {
     REQUEST_COLOR_PALLETS,
     RECEIVE_COLOR_PALLETS,
-    REQUEST_COLOR_PALLETS_ERROR
+    REQUEST_COLOR_PALLETS_ERROR,
+    CREATE_COLOR_PALLET_SUCCESS,
+    COLOR_PALLETS_REARRANGED
 } from '../constants/actionTypes';
 
 
@@ -60,4 +62,21 @@ export function fetchColorPalletsIfNeeded() {
       }
     }
   );
+}
+
+
+export function createColorPalletSuccess(createdColorPallet) {
+    return {
+        type: CREATE_COLOR_PALLET_SUCCESS,
+        payload: {
+            createdColorPallet
+        }
+    };
+}
+
+export function confirmPalletsRearranged() {
+    return {
+        type: COLOR_PALLETS_REARRANGED,
+        payload: {}
+    };
 }

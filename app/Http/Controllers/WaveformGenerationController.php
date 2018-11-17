@@ -47,4 +47,16 @@ class WaveformGenerationController extends Controller
         $this->mediaService->updateMediaFileStyle($request->user(), $mediaId, $request->all());
         return response()->json(json_encode([]));
     }
+
+    public function storeColorPallet(Request $request) {
+        $colorPallet = ColorPallet::
+            create([
+                "name" => $request->input('name'),
+                "colors" => $request->input('colors'),
+                "user_id" => $request->user()->id
+            ]);
+
+        return response()->json(json_decode($colorPallet));
+    }
+
 }

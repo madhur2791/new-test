@@ -2,9 +2,10 @@ import React from 'react';
 import Sidebar from '../../components/SideBar/SideBar.jsx';
 import SVGWaveformRenderer from '../../components/SVGWaveformRenderer/SVGWaveformRenderer.jsx';
 import Slider from 'rc-slider';
-import ColorListRenderer from './components/ColorListRenderer.jsx';
+import ColorListRenderer from './components/ColorListRenderer/ColorListRenderer.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
+import CreateColorPalletContainer from './components/ColorPalletCreator/CreateColorPalletContainer.jsx';
 
 class WaveformColor extends React.Component {
     constructor(props) {
@@ -93,7 +94,8 @@ class WaveformColor extends React.Component {
             waveformData,
             mediaFileData,
             match,
-            colorPallets
+            colorPallets,
+            confirmPalletsRearranged
         } = this.props;
 
         const selctedWaveformData = waveformData[match.params.mediaId];
@@ -189,14 +191,19 @@ class WaveformColor extends React.Component {
                                         </div>
 
                                         {colorDiffusionSlider}
-
                                         <div className="sidebarToolBoxContainer">
                                             <span className="sidebarToolHeadingSmall">Select a color palette for your sound wave.</span>
+                                            <div className="sidebarToolBoxContainer">
+                                                {<CreateColorPalletContainer
+                                                    colorPalletSelectionHandler={this.colorPalletSelectionHandler}
+                                                 />}
+                                            </div>
                                             <div className="sidebarToolContainer">
                                                 <ColorListRenderer
                                                     selectedColorPallet={selectedMediaFileData && selectedMediaFileData.data && selectedMediaFileData.data.current_waveform_style.waveform_color}
                                                     colorPallets={colorPallets}
                                                     colorPalletSelectionHandler={this.colorPalletSelectionHandler}
+                                                    confirmPalletsRearranged={confirmPalletsRearranged}
                                                 />
                                             </div>
                                         </div>

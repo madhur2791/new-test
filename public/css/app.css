@@ -689,3 +689,171 @@
   width: 20px;
 }
 
+.createColorPalletContainer {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 15px 10px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.createColorPalletContainer:hover,
+.createColorPalletContainer.active {
+  border: 1px solid #ccc;
+}
+
+.createColorPalletName {
+  font-size: 16px;
+}
+
+.createColorPalletPlus {
+  color: #ccc;
+  width: 23px;
+  height: 23px;
+  display: inline-block;
+  text-align: center;
+  background: #04396C;
+  margin-right: 10px;
+}
+
+.colorPalletPopup {
+  position: fixed;
+  display: block;
+  width: 500px;
+  left: calc(50% - 250px);
+  top: 50px;
+  z-index: 100;
+  background: #fff;
+  padding: 20px;
+}
+
+.colorPalletPopupOverlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.colorPickerCloseContainer {
+  width: 225px;
+  height: 40px;
+  background: #fff;
+  padding: 5px 20px;
+}
+
+.colorPickerCloseButton {
+  width: 100%;
+  height: 30px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.choosenColorsDisplay {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  cursor: pointer;
+  display: block;
+  border: 1px solid #ddd;
+  float: left;
+  position: relative;
+}
+
+.createdColorPalletName {
+  margin-top: 20px;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 30px;
+}
+
+.createdColorPalletDesc {
+  text-align: center;
+  color: #aaa;
+}
+
+.choosenColorsContainer {
+  margin-top: 30px;
+  margin-left: 110px;
+}
+
+.addColorButton {
+  font-size: 20px;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  padding-top: 4px;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.colorLibraryContainer {
+  position: absolute;
+  left: 135px;
+  border: 1px solid #ccc;
+}
+
+.storeColorButton {
+  width: 100px;
+  padding: 10px;
+  margin: auto;
+  background: #04396C;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 13px;
+}
+
+.colorPalletNameEdit {
+  font-size: 15px;
+  padding-left: 10px;
+  cursor: pointer;
+  color: #6497B1;
+}
+
+.colorPalletPopupClose {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 3px 10px;
+  cursor: pointer;
+  color: #999;
+  font-size: 20px;
+  margin-top: 2px;
+  margin-right: 2px;
+}
+
+.colorPalletPopupClose:hover {
+  color: #555;
+}
+
+.colorPalletNameInputContainer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.saveColorPalletNameButton {
+  margin-top: 20px;
+}
+
+.displayColorDeleteButton {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  border: 1px solid #ccc;
+  padding: 0px 3px;
+  font-size: 10px;
+}
+
+.choosenColorsDisplay:hover .displayColorDeleteButton {
+  display: block;
+}
+

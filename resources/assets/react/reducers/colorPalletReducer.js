@@ -1,7 +1,9 @@
 import {
     REQUEST_COLOR_PALLETS,
     RECEIVE_COLOR_PALLETS,
-    REQUEST_COLOR_PALLETS_ERROR
+    REQUEST_COLOR_PALLETS_ERROR,
+    CREATE_COLOR_PALLET_SUCCESS,
+    COLOR_PALLETS_REARRANGED
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -26,6 +28,17 @@ function colorPalletsReducer(state = initialState, action) {
         selectedColorPalletId: (colorPallets[0] && colorPallets[0].id) || 0
       };
     }
+    case CREATE_COLOR_PALLET_SUCCESS: {
+      const { payload: { createdColorPallet } } = action;
+      const modifiedColorPallet = Object.assign([], state.data);
+      modifiedColorPallet.unshift(createdColorPallet);
+      return {
+        ...state,
+        data: modifiedColorPallet,
+        selectedColorPalletId: createdColorPallet.id,
+        palletsRearranged: false
+      };
+    }
     case REQUEST_COLOR_PALLETS_ERROR: {
       const { payload: { error } } = action;
       return {
@@ -34,10 +47,17 @@ function colorPalletsReducer(state = initialState, action) {
         error
       };
     }
+    case COLOR_PALLETS_REARRANGED: {
+      return {
+        ...state,
+        palletsRearranged: true
+      };
+    }
 
     default:
       return state;
   }
 }
+
 
 export default colorPalletsReducer;

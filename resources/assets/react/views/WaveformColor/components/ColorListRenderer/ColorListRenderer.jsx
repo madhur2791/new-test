@@ -44,19 +44,19 @@ class ColorListRenderer extends React.Component {
     }
 
     componentWillReceiveProps(props) {
-        const { colorPallets, colorPalletSelectionHandler, selectedColorPallet } = props;
+        const { colorPallets, colorPalletSelectionHandler, selectedColorPallet, confirmPalletsRearranged } = props;
         const oldColorPallet = this.props.colorPallets;
-        console.log(typeof oldColorPallet.data === 'undefined');
         if(
             colorPallets &&
             colorPallets.isFetching === false &&
             colorPallets.data &&
             colorPallets.data.length > 0 &&
-            typeof oldColorPallet.data === 'undefined'
+            colorPallets.palletsRearranged !== true
         ) {
             this.setState({
                 reArrangedColorPalltes: this.reArrangeColorPallets(colorPallets.data, selectedColorPallet)
             });
+            confirmPalletsRearranged();
         }
     }
 

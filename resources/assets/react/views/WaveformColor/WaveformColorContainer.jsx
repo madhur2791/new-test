@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchWaveformDataIfNeeded, changeWaveformColor } from '../../actions/waveformAction';
 import { fetchMediaFileIfNeeded } from '../../actions/uploadedMediaActions';
-import { fetchColorPalletsIfNeeded } from '../../actions/colorPalletsActions';
+import { fetchColorPalletsIfNeeded, confirmPalletsRearranged } from '../../actions/colorPalletsActions';
 
 import WaveformColor from './WaveformColor.jsx';
 
@@ -27,6 +27,9 @@ const mapDispatchToProps = dispatch => (
     ),
     fetchColorPalletsIfNeeded:() => (
       dispatch(fetchColorPalletsIfNeeded())
+    ),
+    confirmPalletsRearranged: () => (
+      dispatch(confirmPalletsRearranged())
     )
   }
 );

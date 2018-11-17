@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/color-pallets', 'WaveformGenerationController@getColorPallets');
 
+        Route::post('/color-pallets', 'WaveformGenerationController@storeColorPallet');
+
         Route::post('/{mediaId}/waveform-styles', 'WaveformGenerationController@updateMediaFileStyle');
 
         Route::get('/price-lists', 'OrderController@getPriceList');

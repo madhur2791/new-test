@@ -29,7 +29,7 @@ class MediaService
             "inner_radius" => "50"
         ];
         $this->defaultQrCode = [
-            "qr_code_value" => "https://google.com",
+            "qr_code_value" => "",
             "vertical_alignment" => 'bottom',
             "horizantal_alignment" => 'right',
             "color" => '000',

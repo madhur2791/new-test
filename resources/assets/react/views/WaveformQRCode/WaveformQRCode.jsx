@@ -12,13 +12,17 @@ class WaveformQRCode extends React.Component {
         this.state = {
             showWaveformLoader: false,
             showSidebarLoader: false,
-            isEnabled: false
+            isEnabled: false,
+            qrCodeProtectionEnabled: false,
+            qrCodePassword: ''
         };
 
         this.waveformQRCodeSizeHandler = this.waveformQRCodeSizeHandler.bind(this);
         this.waveformQRCodeHorizantalAlignment = this.waveformQRCodeHorizantalAlignment.bind(this);
         this.waveformQRCodeVerticalAlignment = this.waveformQRCodeVerticalAlignment.bind(this);
         this.toggleQrCodeHandler = this.toggleQrCodeHandler.bind(this);
+        this.handleQrCodeSecurityChange = this.handleQrCodeSecurityChange.bind(this);
+        this.qrCodePasswordHandler = this.qrCodePasswordHandler.bind(this);
 
         const { mediaFileData, match } = this.props;
         const selectedMediaFileData = mediaFileData[match.params.mediaId];
@@ -27,7 +31,9 @@ class WaveformQRCode extends React.Component {
             qrCodeDetails =  selectedMediaFileData.data.current_waveform_style.waveform_qr_code || {};
             if(qrCodeDetails) {
                 this.state = {
-                    isEnabled: qrCodeDetails.enabled
+                    isEnabled: qrCodeDetails.enabled,
+                    qrCodeProtectionEnabled: qrCodeDetails.qrCodeProtectionEnabled,
+                    qrCodePassword: qrCodeDetails.qrCodeSecurityPassword || ''
                 };
             }
         }
@@ -73,7 +79,9 @@ class WaveformQRCode extends React.Component {
             qrCodeDetails =  selectedMediaFileData.data.current_waveform_style.waveform_qr_code || {};
             if(qrCodeDetails) {
                 this.setState({
-                    isEnabled: qrCodeDetails.enabled
+                    isEnabled: qrCodeDetails.enabled,
+                    qrCodeProtectionEnabled: qrCodeDetails.qrCodeProtectionEnabled,
+                    qrCodePassword: qrCodeDetails.qrCodeSecurityPassword || ''
                 });
             }
         }
@@ -112,6 +120,36 @@ class WaveformQRCode extends React.Component {
         }, true);
     }
 
+    handleQrCodeSecurityChange(event) {
+        const { changeWaveformQRCode, match } = this.props;
+        const target = event.target;
+        this.setState({
+            qrCodeProtectionEnabled: target.value === 'yes'
+        });
+
+        if(target.value === 'no') {
+            changeWaveformQRCode(match.params.mediaId, {
+                qrCodeSecurityPassword: '',
+                qrCodeProtectionEnabled: false
+            }, true);
+            this.setState({
+                qrCodePassword: ''
+            })
+        }
+    }
+
+    qrCodePasswordHandler(event) {
+        const { changeWaveformQRCode, match } = this.props;
+        this.setState({
+            qrCodePassword: event.target.value
+        });
+
+        changeWaveformQRCode(match.params.mediaId, {
+            qrCodeSecurityPassword: event.target.value,
+            qrCodeProtectionEnabled: true
+        }, true);
+    }
+
     render() {
         const {
             waveformData,
@@ -132,11 +170,15 @@ class WaveformQRCode extends React.Component {
             textDetails =  selectedMediaFileData.data.current_waveform_style.waveform_text || {};
         }
         let loaders = [];
-        let NextButton = (
-            <Link to={`/${match.params.mediaId}/print-option`} className="btn btn-primary upload-button">
-                Next
-            </Link>
-        );
+        let NextButton = '';
+        if(this.state.qrCodeProtectionEnabled !== true || this.state.qrCodePassword !== '') {
+            NextButton = (
+                <Link to={`/${match.params.mediaId}/print-option`} className="btn btn-primary upload-button">
+                    Next
+                </Link>
+            );
+        }
+
         let BackButton = (
             <Link to={`/${match.params.mediaId}/text`} className="btn btn-primary upload-button">
                 Back
@@ -231,6 +273,51 @@ class WaveformQRCode extends React.Component {
                                 className={`alignmentTabs ${qrCodeDetails.vertical_alignment === 'bottom' ? 'active' : ''}`}
                             >
                                 Bottom
+                            </div>
+                            <div className="sidebarToolContainer">
+                                <span className="sidebarToolDescription">Whoever Scans this QR code is directed to your custom page to view uploaded file and mockup of your ordered product. Would you like this webpage to be password required?</span>
+                            </div>
+                            <div className="sidebarToolContainer">
+                                <div className="radio qrCodeSecurityYesOption">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="qrCodeSecurity"
+                                            onChange={this.handleQrCodeSecurityChange}
+                                            checked={this.state.qrCodeProtectionEnabled === true}
+                                            value='yes'
+                                        />
+                                            Yes
+                                        </label>
+                                </div>
+                                {
+                                    this.state.qrCodeProtectionEnabled === true ?
+                                    (
+                                        <div className="row media-list-conatiner qrCodePwdTextBox">
+                                            <div className="sidebarToolBoxContainer">
+                                                <input
+                                                    type="text"
+                                                    value={this.state.qrCodePassword}
+                                                    onChange={this.qrCodePasswordHandler}
+                                                    className="textInput"
+                                                    placeholder="Generate a Password"
+                                                />
+                                            </div>
+                                        </div>
+                                    ):''
+                                }
+                                <div className="radio">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="qrCodeSecurity"
+                                            onChange={this.handleQrCodeSecurityChange}
+                                            checked={this.state.qrCodeProtectionEnabled !== true}
+                                            value='no'
+                                        />
+                                            No
+                                        </label>
+                                </div>
                             </div>
                         </div>
                     </div>

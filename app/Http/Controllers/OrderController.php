@@ -106,6 +106,7 @@ class OrderController extends Controller
         Order::where("id", $orderId)->update([
             'payment_status' => 'PAID'
         ]);
+        Cart::where('user_id', $request->user()->id)->delete();
         return redirect()->action(
             'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]
         );
@@ -115,20 +116,44 @@ class OrderController extends Controller
         $waveform = WaveformStyle::where('waveform_id', $waveformId)
             ->with('mediaFile')->first();
         if(is_null($waveform)) {
-            abort(404, 'Page Not Found');
+            return response()->json([
+                "status" => "Page Not Found",
+                "httpCode" => 404
+            ], 404);
         }
         if ($waveform->mediaFile->user_id !== $request->user()->id) {
-            abort(403, 'Unauthorized action.');
+            return response()->json([
+                "status" => "Unauthorized action.",
+                "httpCode" => 403
+            ], 403);
         }
         $orderLineItem = OrderLineItem::where('waveform_id', $waveform->id)
             ->with('order')->first();
         if(is_null($orderLineItem)) {
-            abort(404, 'Page Not Found');
+            return response()->json([
+                "status" => "Page Not Found",
+                "httpCode" => 404
+            ], 404);
         }
 
         if($orderLineItem->order->payment_status !== 'PAID') {
-            abort(404, 'Page Not Found');
+             return response()->json([
+                "status" => "Page Not Found",
+                "httpCode" => 404
+            ], 404);
         }
+
+        if(
+            $waveform->waveform_qr_code['qrCodeProtectionEnabled'] === true &&
+            $request->input('password') !== $waveform->waveform_qr_code['qrCodeSecurityPassword']
+        ) {
+            return response()->json([
+                "status" => "Password Required.",
+                "httpCode" => 200,
+                "statusCode" => 4003
+            ]);
+        }
+
 
         return [
             'waveform' => $waveform,

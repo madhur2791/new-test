@@ -20,9 +20,7 @@ Route::get('/contact', 'HomeController@contactPage');
 
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
-Route::get('/play-media/{any?}', 'WaveformGenerationController@createWaveform')->where('any', '.*');;
-
-Route::get('/media-file-data/{waveformId}', 'OrderController@playMediaFile');
+Route::post('/media-file-data/{waveformId}', 'OrderController@playMediaFile');
 
 Route::middleware(['auth'])->group(function () {
 

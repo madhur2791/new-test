@@ -830,3 +830,24 @@ body {
 .choosenColorsDisplay:hover .displayColorDeleteButton {
     display: block;
 }
+
+.qrCodeSecurityYesOption {
+    display: inline-block;
+}
+
+.qrCodePwdTextBox {
+    display: inline-block;
+    margin-left: 0px;
+
+    .sidebarToolBoxContainer {
+        margin-top: 0px;
+    }
+
+    input {
+        height: 30px;
+    }
+}
+
+.mediaPlayerSubmitPasswordButton {
+    margin-top: 20px;
+}

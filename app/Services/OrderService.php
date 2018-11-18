@@ -41,7 +41,11 @@ class OrderService
         $mediaFileData = $this->mediaService->getMediaFileData($user, $cartData['mediaId']);
         $generatedImage = $cartData['generatedImage'];
         $newWaveformStyle = $mediaFileData->currentWaveformStyle->replicate();
-        $newWaveformStyle->waveform_id = uniqid($mediaFileData->media_file_id);
+        $waveformId = uniqid($mediaFileData->media_file_id);
+        $newWaveformStyle->waveform_id = $waveformId;
+        $waveformQrCodeDetails = $newWaveformStyle->waveform_qr_code;
+        $waveformQrCodeDetails['qr_code_value']= env('APP_URL').'/waveform/play-media/'.$waveformId;
+        $newWaveformStyle->waveform_qr_code = $waveformQrCodeDetails;
         $newWaveformStyle->save();
 
         $mediaFileData->currentWaveformStyle->state = 'CART';

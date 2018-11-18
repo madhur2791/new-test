@@ -857,3 +857,24 @@
   display: block;
 }
 
+.qrCodeSecurityYesOption {
+  display: inline-block;
+}
+
+.qrCodePwdTextBox {
+  display: inline-block;
+  margin-left: 0px;
+}
+
+.qrCodePwdTextBox .sidebarToolBoxContainer {
+  margin-top: 0px;
+}
+
+.qrCodePwdTextBox input {
+  height: 30px;
+}
+
+.mediaPlayerSubmitPasswordButton {
+  margin-top: 20px;
+}
+

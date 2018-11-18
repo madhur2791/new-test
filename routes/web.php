@@ -22,6 +22,8 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::post('/media-file-data/{waveformId}', 'OrderController@playMediaFile');
 
+Route::get('/waveform/play-media/{waveformId}', 'WaveformGenerationController@createWaveform')->where('any', '.*');
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/waveform/{any?}', 'WaveformGenerationController@createWaveform')->where('any', '.*');

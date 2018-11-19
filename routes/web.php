@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/carts', 'OrderController@addToCart');
 
+        Route::get('/pngImage', 'ImageController@getPNG');
+
     });
 
     Route::get('/generated-images/{generatedImageUrl}', 'OrderController@getGeneratedImage');

@@ -57,7 +57,7 @@ class OrderService
 
         file_put_contents(
             storage_path('app').'/converted_files/'.$generatedImageFileName,
-            $generatedImage
+            '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'.$generatedImage
         );
         Storage::disk('s3')->putFileAs(
             'resources/generated-images',

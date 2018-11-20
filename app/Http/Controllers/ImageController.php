@@ -26,7 +26,7 @@ class ImageController extends Controller
     public function getPNG(Request $request)
     {
 
-        $generatedImageUrl = '15bf2c81a75644.svg';
+        $generatedImageUrl = '15bf41cedca4a3.svg';
         // $image = new \Imagick('http://127.0.0.1:8000/generated-images/15bf2c81a75644.svg');
         Storage::disk('local')->put(
             'original_image_files/'.$generatedImageUrl,

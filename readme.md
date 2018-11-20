@@ -56,5 +56,7 @@ sudo apt-get install audiowaveform
 
 sudo apt-get install imagemagick
 sudo apt-get install php-imagick
+sudo apt-get libxml2 and librsvg2-bin
+
 
 

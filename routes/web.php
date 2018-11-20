@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    Route::get('/generated-images/{generatedImageUrl}', 'OrderController@getGeneratedImage');
+    Route::get('/generated-images/{generatedImageUrl}', 'ImageController@getGeneratedImage');
 
     Route::get('/carts', 'OrderController@showCart');
 

@@ -29,6 +29,7 @@ server {
 sudo ln -s /etc/nginx/sites-available/soundwavepic.com /etc/nginx/sites-enabled/
 
 sudo systemctl reload nginx
+sudo systemctl restart php7.2-fpm
 
 sudo apt-get install php7.2-xml
 sudo apt-get install php7.2-mbstring
@@ -52,3 +53,8 @@ composer require php-ffmpeg/php-ffmpeg
 sudo add-apt-repository ppa:chris-needham/ppa
 sudo apt-get update
 sudo apt-get install audiowaveform
+
+sudo apt-get install imagemagick
+sudo apt-get install php-imagick
+
+

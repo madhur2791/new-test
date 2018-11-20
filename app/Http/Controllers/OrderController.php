@@ -35,11 +35,6 @@ class OrderController extends Controller
         return response()->json($this->orderService->addToCart($request->user(), $request->input()));
     }
 
-    public function getGeneratedImage(Request $request, $generatedImageUrl) {
-        $imageData = Storage::disk('s3')->get('resources/generated-images/'.$generatedImageUrl);
-        return response($imageData)->header('Content-Type', 'image/svg+xml');
-    }
-
     public function showCart(Request $request) {
         $userId = $request->user()->id;
         $cartItems = Cart::where('user_id', $userId)->get();

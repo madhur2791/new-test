@@ -50,9 +50,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/carts', 'OrderController@addToCart');
 
-        Route::get('/convert/png/{waveformId}', 'ImageController@getPNG');
-
     });
+
+    Route::get('/convert/png/{generatedImageUrl}', 'ImageController@getPNG')->middleware('auth');;
 
     Route::get('/generated-images/{generatedImageUrl}', 'ImageController@getGeneratedImage');
 

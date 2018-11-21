@@ -43,7 +43,7 @@ class ImageController extends Controller
         $newWidth = $image->getImageWidth();
         $newHeight = $image->getImageHeight();
         $image->setImageBackgroundColor('white');
-
+        dd($newWidth, $newWidth);
         $image->extentImage(
             $expectedWidth,
             $expectedHeight,

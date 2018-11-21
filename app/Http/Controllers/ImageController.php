@@ -23,14 +23,13 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPNG(Request $request, $waveformId)
+    public function getPNG(Request $request, $generatedImageUrl)
     {
         $expectedWidth = $request->input('w');
         $expectedHeight = $request->input('h');
         if(is_null($expectedWidth) || is_null($expectedHeight)) {
             abort(404);
         }
-        $generatedImageUrl = $waveformId.'.svg';
         Storage::disk('local')->put(
             'original_image_files/'.$generatedImageUrl,
             Storage::disk('s3')->get('resources/generated-images/'.$generatedImageUrl)

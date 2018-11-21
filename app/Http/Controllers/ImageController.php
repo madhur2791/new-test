@@ -27,7 +27,9 @@ class ImageController extends Controller
     {
         $expectedWidth = $request->input('w');
         $expectedHeight = $request->input('h');
-        dd($expectedWidth, $expectedHeight);
+        if(is_null($expectedWidth) || is_null($expectedHeight)) {
+            abort(404);
+        }
         $generatedImageUrl = $waveformId.'.svg';
         Storage::disk('local')->put(
             'original_image_files/'.$generatedImageUrl,

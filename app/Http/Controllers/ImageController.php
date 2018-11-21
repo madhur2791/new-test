@@ -25,6 +25,7 @@ class ImageController extends Controller
      */
     public function getPNG(Request $request, $generatedImageUrl)
     {
+        $aspctRatio = 1.5;
         $expectedWidth = $request->input('w');
         $expectedHeight = $request->input('h');
         if(is_null($expectedWidth) || is_null($expectedHeight)) {
@@ -37,7 +38,7 @@ class ImageController extends Controller
         $image = new Imagick();
         $image->readImageBlob(file_get_contents(storage_path('app').'/original_image_files/'.$generatedImageUrl));
         $image->setImageFormat("png24");
-        $image->resizeImage($expectedWidth, $expectedHeight, Imagick::FILTER_LANCZOS, 1);
+        $image->resizeImage($expectedWidth, $expectedHeight, Imagick::FILTER_LANCZOS, 1, true);
         $image->writeImage(storage_path('app').'/converted_image_files/converted.png');
         Storage::disk('local')->delete('/original_image_files/'.$generatedImageUrl);
         return response()

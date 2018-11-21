@@ -38,14 +38,14 @@ class ImageController extends Controller
         $image = new Imagick();
         $image->readImageBlob(file_get_contents(storage_path('app').'/original_image_files/'.$generatedImageUrl));
         $image->setImageFormat("png24");
-        $image->scaleImage($expectedWidth, $expectedHeight, true);
+        $image->adaptiveResizeImage($expectedWidth, $expectedHeight, true);
 
         $image->setImageBackgroundColor('white');
 
-        $image->extentImage(
-            $expectedWidth,
-            $expectedHeight
-        );
+        // $image->extentImage(
+        //     $expectedWidth,
+        //     $expectedHeight
+        // );
 
         $image->writeImage(storage_path('app').'/converted_image_files/converted.png');
         Storage::disk('local')->delete('/original_image_files/'.$generatedImageUrl);

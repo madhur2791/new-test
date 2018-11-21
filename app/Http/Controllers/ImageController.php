@@ -23,11 +23,12 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPNG(Request $request)
+    public function getPNG(Request $request, $waveformId)
     {
-
-        $generatedImageUrl = '15bf41cedca4a3.svg';
-        // $image = new \Imagick('http://127.0.0.1:8000/generated-images/15bf2c81a75644.svg');
+        $expectedWidth = $request->input('w');
+        $expectedHeight = $request->input('h');
+        dd($expectedWidth, $expectedHeight);
+        $generatedImageUrl = $waveformId.'.svg';
         Storage::disk('local')->put(
             'original_image_files/'.$generatedImageUrl,
             Storage::disk('s3')->get('resources/generated-images/'.$generatedImageUrl)
@@ -35,13 +36,12 @@ class ImageController extends Controller
         $image = new Imagick();
         $image->readImageBlob(file_get_contents(storage_path('app').'/original_image_files/'.$generatedImageUrl));
         $image->setImageFormat("png24");
-        $image->resizeImage(720, 445, Imagick::FILTER_LANCZOS, 1);  /*Optional, if you need to resize*/
+        $image->resizeImage($expectedWidth, $expectedHeight, Imagick::FILTER_LANCZOS, 1);
         $image->writeImage(storage_path('app').'/converted_image_files/converted.png');
-
-        return [
-            'sda' => 'asd'
-        ];
-
+        Storage::disk('local')->delete('/original_image_files/'.$generatedImageUrl);
+        return response()
+            ->download(storage_path('app').'/converted_image_files/converted.png')
+            ->deleteFileAfterSend();
     }
 
     public function getGeneratedImage(Request $request, $generatedImageUrl) {

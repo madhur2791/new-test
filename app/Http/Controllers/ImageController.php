@@ -43,13 +43,13 @@ class ImageController extends Controller
         $newWidth = $image->getImageWidth();
         $newHeight = $image->getImageHeight();
         $image->setImageBackgroundColor('white');
-        dd($newWidth, $newWidth);
-        $image->extentImage(
-            $expectedWidth,
-            $expectedHeight,
-            ($expectedWidth - $newWidth) / 2,
-            ($expectedHeight - $newHeight) / 2
-        );
+        // dd($newWidth, $newWidth);
+        // $image->extentImage(
+        //     $expectedWidth,
+        //     $expectedHeight,
+        //     ($expectedWidth - $newWidth) / 2,
+        //     ($expectedHeight - $newHeight) / 2
+        // );
 
         $image->writeImage(storage_path('app').'/converted_image_files/converted.png');
         Storage::disk('local')->delete('/original_image_files/'.$generatedImageUrl);

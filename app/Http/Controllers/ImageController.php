@@ -31,7 +31,10 @@ class ImageController extends Controller
         if(is_null($expectedWidth) || is_null($expectedHeight)) {
             abort(404);
         }
-
+        Storage::disk('local')->put(
+            'original_image_files/'.$generatedImageUrl,
+            Storage::disk('s3')->get('resources/generated-images/'.$generatedImageUrl)
+        );
         $mpdf = new Mpdf();
         $mpdf->AddPage('L');
         $size = '';
@@ -42,7 +45,7 @@ class ImageController extends Controller
         }
 
         $mpdf->WriteHTML('<div style="text-align: center; vertical-align: middle"><img '.$size.' src="'.storage_path('app').'/original_image_files/'.$generatedImageUrl.'" /></div>');
-
+        Storage::disk('local')->delete('/original_image_files/'.$generatedImageUrl);
         $mpdf->Output('MyPDF.pdf', 'D');
     }
 

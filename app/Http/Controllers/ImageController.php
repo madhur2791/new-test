@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Imagick;
 use Illuminate\Support\Facades\Storage;
+use Mpdf\Mpdf;
 
 class ImageController extends Controller
 {
@@ -31,27 +31,19 @@ class ImageController extends Controller
         if(is_null($expectedWidth) || is_null($expectedHeight)) {
             abort(404);
         }
-        Storage::disk('local')->put(
-            'original_image_files/'.$generatedImageUrl,
-            Storage::disk('s3')->get('resources/generated-images/'.$generatedImageUrl)
-        );
-        $image = new Imagick();
-        $image->readImageBlob(file_get_contents(storage_path('app').'/original_image_files/'.$generatedImageUrl));
-        $image->setImageFormat("png24");
-        $image->adaptiveResizeImage($expectedWidth, $expectedHeight, true);
 
-        $image->setImageBackgroundColor('white');
+        $mpdf = new Mpdf();
+        $mpdf->AddPage('L');
+        $size = '';
+        if ($expectedWidth < $expectedHeight) {
+            $size = 'width='.$expectedWidth;
+        } else {
+            $size = 'height='.$expectedHeight;
+        }
 
-        // $image->extentImage(
-        //     $expectedWidth,
-        //     $expectedHeight
-        // );
+        $mpdf->WriteHTML('<div style="text-align: center; vertical-align: middle"><img '.$size.' src="'.storage_path('app').'/original_image_files/'.$generatedImageUrl.'" /></div>');
 
-        $image->writeImage(storage_path('app').'/converted_image_files/converted.png');
-        Storage::disk('local')->delete('/original_image_files/'.$generatedImageUrl);
-        return response()
-            ->download(storage_path('app').'/converted_image_files/converted.png')
-            ->deleteFileAfterSend();
+        $mpdf->Output('MyPDF.pdf', 'D');
     }
 
     public function getGeneratedImage(Request $request, $generatedImageUrl) {

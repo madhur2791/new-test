@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('contact');
     }
+
+    public function galleryPage()
+    {
+        return view('gallery');
+    }
 }

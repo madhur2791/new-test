@@ -98,3 +98,59 @@
 .flexslider .probootstrap-slider-text {
     margin-top: 350px;
 }
+
+.client-image {
+    margin: auto;
+}
+
+.soundwaveprocess-images {
+    width: 80px;
+}
+
+
+.get-started-button {
+  padding: 10px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #cc0000;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #cc0000;
+  border-radius: 12px;
+}
+
+.get-started-button:hover {
+background-color: #cc0000;
+color: #ffffff;
+}
+
+.get-started-button:active {
+  background-color: #ffffff;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.try-for-free-button {
+  padding: 10px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #85C7DD;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #85c7dd;
+  border-radius: 12px;
+}
+
+.try-for-free-button:hover {
+background-color: #85C7DD;
+color: #ffffff;
+}
+
+.try-for-free-button:active {
+  background-color: #ffffff;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

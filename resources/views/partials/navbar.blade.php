@@ -13,7 +13,7 @@
     <div id="navbar-collapse" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
         <li><a href="/waveform/upload">Create Waveform</a></li>
-        <li><a href="#">Gallery</a></li>
+        <li><a href="/gallery">Gallery</a></li>
         <li><a href="#">FAQ</a></li>
         <li><a href="/login">Login</a></li>
         </ul>

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12 text-center">
             <ul class="probootstrap-footer-social probootstrap-footer-links">
-            <li><a href="#">Gallery</a></li>
+            <li><a href="/gallery">Gallery</a></li>
             <li><a href="/contact">Contact Us</a></li>
             <li><a href="#">Terms & Conditions</a></li>
             <li><a href="#">Privacy Policy</a></li>

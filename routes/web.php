@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@landingPage');
 
 Route::get('/contact', 'HomeController@contactPage');
 
+Route::get('/gallery', 'HomeController@galleryPage');
+
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::post('/media-file-data/{waveformId}', 'OrderController@playMediaFile');

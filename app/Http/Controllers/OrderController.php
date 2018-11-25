@@ -81,6 +81,18 @@ class OrderController extends Controller
     }
 
     public function addAddressToOrder(Request $request, $orderId) {
+        $request->validate([
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'required|max:255',
+            'address_line_1' => 'required|max:512',
+            'address_line_2' => 'required|max:512',
+            'city' => 'required|max:255',
+            'zipcode' => 'required|max:255',
+            'state' => 'required|max:255',
+            'country' => 'required|max:255'
+        ]);
         $this->orderService->addAddressToOrder($request->all(), $orderId);
         return redirect()->action(
             'OrderController@showPaymentPage', ['orderId' => $orderId]

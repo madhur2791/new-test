@@ -46,7 +46,7 @@ class HomeController extends Controller
     {
         $request->validate([
             'full_name' => 'required|max:255',
-            'email' => 'required|max:255',
+            'email' => 'required|email|max:255',
             'subject' => 'required|max:255',
             'message' => 'required|max:512',
             'uploaded_file' => 'max:40000'

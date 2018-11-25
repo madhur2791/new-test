@@ -4,6 +4,15 @@
 <div class="row cartTableCotainer">
     <div class="col-md-6 col-sm-10 col-md-offset-3 col-sm-offset-1">
         <h3> Address </h3>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="/orders/{{ $orderId }}/address" method="post" class="probootstrap-form">
             @csrf
             <div class="row">

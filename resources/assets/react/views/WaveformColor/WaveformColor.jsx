@@ -3,7 +3,6 @@ import Sidebar from '../../components/SideBar/SideBar.jsx';
 import SVGWaveformRenderer from '../../components/SVGWaveformRenderer/SVGWaveformRenderer.jsx';
 import Slider from 'rc-slider';
 import ColorListRenderer from './components/ColorListRenderer/ColorListRenderer.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
 import CreateColorPalletContainer from './components/ColorPalletCreator/CreateColorPalletContainer.jsx';
 
@@ -179,13 +178,13 @@ class WaveformColor extends React.Component {
                                                     className={`sidebar-tool-options ${wavefromColor.color_option === 'mix' ? 'active' : ''}`}
                                                     onClick={() => {this.colorOptionHandler('mix', true)}}
                                                 >
-                                                    <FontAwesomeIcon  icon="fill-drip" />
+                                                    <img className="sidebar-tool-option-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-paint-roller-100.png" />
                                                 </div>
                                                 <div
                                                     className={`sidebar-tool-options ${wavefromColor.color_option === 'tiered' ? 'active' : ''}`}
                                                     onClick={() => {this.colorOptionHandler('tiered', true)}}
                                                 >
-                                                    <FontAwesomeIcon  icon="upload" />
+                                                    <img className="sidebar-tool-option-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-paint-100.png" />
                                                 </div>
                                             </div>
                                         </div>

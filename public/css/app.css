@@ -240,6 +240,11 @@
   border-bottom: 1px solid #efefef;
 }
 
+.sidebar-tool-option-image {
+  width: 56px;
+  padding: 5px;
+}
+
 .sidebar-container {
   background-color: #fcfcfc;
   height: 100vh;
@@ -567,7 +572,6 @@
 .sidebar-tool-options {
   width: 60px;
   height: 60px;
-  padding: 10px;
   display: inline-block;
   margin-left: 20px;
   border: 2px solid transparent;

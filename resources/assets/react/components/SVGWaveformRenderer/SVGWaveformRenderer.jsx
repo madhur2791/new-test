@@ -253,15 +253,14 @@ const getWatermarkSvg = (canvasDetails) => {
     };
     const stringifiedSvg =
         `<image
-            style="opacity: 0.2"
-            href="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-coloured.png"
-            x="${imagePosition.x}"
-            y="${imagePosition.y}"
-            width="${imageWidth}px"
+            href="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/watermark-overlay.png"
+            x="0"
+            y="0"
+            width="${canvasDetails.width}px"
         />`;
     return <g
         dangerouslySetInnerHTML={{__html: stringifiedSvg}}
-        key={((new Date()).getTime())}
+        key={((new Date()).getTime()) + 1}
     />
 };
 
@@ -492,7 +491,6 @@ class SVGWaveformRenderer extends React.Component {
             }
 
             if (textDetails && textDetails.text) {
-                console.log('get text');
                 svgElements.push(
                     getTextSvg(reSampledDataPoints.length, textDetails, {
                         width: canvasWidth,
@@ -503,8 +501,8 @@ class SVGWaveformRenderer extends React.Component {
 
             svgElements.push(
                 getWatermarkSvg({
-                    width: canvasWidth,
-                    height: canvasHeight
+                    width: canvasWidth + horizantalMargin,
+                    height: canvasHeight + verticalMargin
                 })
             );
         }

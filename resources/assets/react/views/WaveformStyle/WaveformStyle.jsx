@@ -3,7 +3,6 @@ import Sidebar from '../../components/SideBar/SideBar.jsx';
 import SVGWaveformRenderer from '../../components/SVGWaveformRenderer/SVGWaveformRenderer.jsx';
 import Slider from 'rc-slider';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
 
 class WaveformStyle extends React.Component {
@@ -256,19 +255,19 @@ class WaveformStyle extends React.Component {
                                                     className={`sidebar-tool-options ${wavefromStyle.waveform_type === 'bars' ? 'active' : ''}`}
                                                     onClick={() => {this.waveformTypeHandler('bars', true)}}
                                                 >
-                                                    <FontAwesomeIcon  icon="chart-bar" />
+                                                    <img className="sidebar-tool-option-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-bar-chart-100.png" />
                                                 </div>
                                                 <div
                                                     className={`sidebar-tool-options ${wavefromStyle.waveform_type === 'linear' ? 'active' : ''}`}
                                                     onClick={() => {this.waveformTypeHandler('linear', true)}}
                                                 >
-                                                    <FontAwesomeIcon  icon="chart-line" />
+                                                    <img className="sidebar-tool-option-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-pulse-filled-100.png" />
                                                 </div>
                                                 <div
                                                     className={`sidebar-tool-options ${wavefromStyle.waveform_type === 'radial' ? 'active' : ''}`}
                                                     onClick={() => {this.waveformTypeHandler('radial', true)}}
                                                 >
-                                                    <FontAwesomeIcon  icon="sun" />
+                                                    <img className="sidebar-tool-option-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-settings-100.png" />
                                                 </div>
                                             </div>
                                         </div>

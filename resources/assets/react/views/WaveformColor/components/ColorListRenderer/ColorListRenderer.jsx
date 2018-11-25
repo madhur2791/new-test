@@ -66,7 +66,8 @@ class ColorListRenderer extends React.Component {
 
         if(
             this.state &&
-            this.state.reArrangedColorPalltes
+            this.state.reArrangedColorPalltes &&
+            selectedColorPallet
         ) {
             this.state.reArrangedColorPalltes.forEach((colorPallet, index) => {
                 const colorsList = [];

@@ -4,7 +4,7 @@
     @include('partials.navbar')
     <section class="flexslider">
       <ul class="slides">
-        <li style="background-image: url(img/slider_1.jpg)" class="overlay">
+        <li style="background-image: url(https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_21.jpg)" class="overlay">
           <div class="container">
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
@@ -22,11 +22,28 @@
     <section class="probootstrap-section probootstrap-bg-white">
       <div class="container">
         <div class="row">
+            @if (Session::has('contact_us_success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{{ Session::get('contact_us_success') }}</li>
+                    </ul>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
           <div class="col-md-5 probootstrap-animate">
-            <form action="#" method="post" class="probootstrap-form">
+            <form action="/contact" method="post" class="probootstrap-form" enctype='multipart/form-data'>
+            @csrf
               <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" class="form-control" id="name" name="name">
+                <input type="text" class="form-control" id="name" name="full_name">
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
@@ -39,6 +56,10 @@
               <div class="form-group">
                 <label for="message">Message</label>
                 <textarea cols="30" rows="10" class="form-control" id="message" name="message"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="message">Upload (Max 40MB)</label>
+                <input type="file" name="uploaded_media_file" class="form-control-file"/>
               </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Submit Form">

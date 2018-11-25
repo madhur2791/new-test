@@ -243,6 +243,28 @@ const getTextSvg = (uniqueNumber, textDetails, canvasDetails) => {
     );
 };
 
+const getWatermarkSvg = (canvasDetails) => {
+    const imageAspectRatio = 100/394;
+    const imageWidth = canvasDetails.width * 0.5;
+    const imageHeight = imageWidth * imageAspectRatio;
+    const imagePosition = {
+        x: (canvasDetails.width - imageWidth) / 2,
+        y: (canvasDetails.height - imageHeight) / 2
+    };
+    const stringifiedSvg =
+        `<image
+            style="opacity: 0.2"
+            href="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-coloured.png"
+            x="${imagePosition.x}"
+            y="${imagePosition.y}"
+            width="${imageWidth}px"
+        />`;
+    return <g
+        dangerouslySetInnerHTML={{__html: stringifiedSvg}}
+        key={((new Date()).getTime())}
+    />
+};
+
 let qrCodeElement = '';
 let qrCodeSize = 0;
 let qrCodeHorizantalAlignment = '';
@@ -478,6 +500,13 @@ class SVGWaveformRenderer extends React.Component {
                     })
                 );
             }
+
+            svgElements.push(
+                getWatermarkSvg({
+                    width: canvasWidth,
+                    height: canvasHeight
+                })
+            );
         }
 
         return svgElements;

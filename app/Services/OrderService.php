@@ -40,6 +40,15 @@ class OrderService
     public function addToCart($user, $cartData) {
         $mediaFileData = $this->mediaService->getMediaFileData($user, $cartData['mediaId']);
         $generatedImage = $cartData['generatedImage'];
+
+        $start = '<g>';
+        $ini = strpos($generatedImage, $start);
+        $ini += strlen($start);
+        $len = strpos($generatedImage, '</g>', $ini) - $ini;
+        $extractedString = substr($generatedImage, $ini, $len);
+
+        $generatedImage = str_replace('<g>'.$extractedString.'</g>', '', $generatedImage);
+
         $newWaveformStyle = $mediaFileData->currentWaveformStyle->replicate();
         $waveformId = uniqid($mediaFileData->media_file_id);
         $newWaveformStyle->waveform_id = $waveformId;

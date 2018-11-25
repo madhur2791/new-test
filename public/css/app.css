@@ -204,12 +204,27 @@
   display: inline-block;
   background: #B3CDE0;
   border-color: #B3CDE0;
-  padding-top: 9px;
+  padding-top: 7px;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
+}
+
+.sidebar-tool-box-nav-button .sidebarIcon {
+  width: 25px;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
 }
 
 .sidebar-tool-box-nav-button.active a {
+  width: 50px;
+  height: 50px;
+  padding-top: 10px;
   background: #04396C;
   border-color: #04396C;
+}
+
+.sidebar-tool-box-nav-button.active .sidebarIcon {
+  width: 30px;
 }
 
 .sidebar-tool-box-nav-button .ionIcon {
@@ -683,10 +698,6 @@
 
 .mediaPlayerControlsContainer .media-controls {
   margin-top: 5px;
-}
-
-.sidebarIcon {
-  width: 20px;
 }
 
 .createColorPalletContainer {

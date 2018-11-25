@@ -158,14 +158,15 @@ class MediaUpload extends React.Component {
             ) {
                 selectedWaveformData = waveformData[selectedMediaFile.media_id];
             }
-
-            if(selectedMediaFile.is_cropped === 0) {
+// selectedMediaFile.is_cropped === 0
+            if(true) {
                 mediaDisplaySection = (
                     <MediaEditorContainer
                         waveformData={selectedWaveformData}
                         mediaFile={`https://s3.us-east-2.amazonaws.com/soundwavepic-test-media/${selectedMediaFile.media_file_url}`}
                         mediaFileId={selectedMediaFile.media_id}
                         waveformCurrentStyles={selectedMediaFile.current_waveform_style}
+                        isCropped={selectedMediaFile.is_cropped}
                     />
                 );
             } else {

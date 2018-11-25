@@ -86,7 +86,7 @@ class MediaEditor extends React.Component {
   }
 
   render() {
-    const { waveformCurrentStyles, waveformData } = this.props;
+    const { waveformCurrentStyles, waveformData, isCropped } = this.props;
     const startSeconds = Math.round(this.state.startTime * this.state.duration) / 100;
     const endSeconds = Math.round(this.state.endTime * this.state.duration) / 100;
     const startTime = {
@@ -146,13 +146,18 @@ class MediaEditor extends React.Component {
                         { endTime.minutes }:{ endTime.seconds }
                     </span>
                 </div>
-                <Range
-                    className="range-slider-container"
-                    defaultValue={[0, 100]}
-                    step={0.1}
-                    pushable={this.state.pushable}
-                    onChange={this.onRangeChange}
-                />
+                {
+                    isCropped === 0 ?
+                    (
+                        <Range
+                            className="range-slider-container"
+                            defaultValue={[0, 100]}
+                            step={0.1}
+                            pushable={this.state.pushable}
+                            onChange={this.onRangeChange}
+                        />
+                    ) : ''
+                }
             </div>
         </div>
         <ReactPlayer
@@ -173,10 +178,16 @@ class MediaEditor extends React.Component {
                     backgroundPositionX: "-45px"
                 }: {}}
             />
-            <div
-                onClick={this.cropMediaFile}
-                className="crop-button"
-            />
+            {
+                isCropped === 0 ?
+                (
+                    <div
+                        onClick={this.cropMediaFile}
+                        className="crop-button"
+                    />
+                ) : ''
+            }
+
         </div>
 
     </div>

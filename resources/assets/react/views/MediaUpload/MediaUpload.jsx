@@ -158,41 +158,16 @@ class MediaUpload extends React.Component {
             ) {
                 selectedWaveformData = waveformData[selectedMediaFile.media_id];
             }
-// selectedMediaFile.is_cropped === 0
-            if(true) {
-                mediaDisplaySection = (
-                    <MediaEditorContainer
-                        waveformData={selectedWaveformData}
-                        mediaFile={`https://s3.us-east-2.amazonaws.com/soundwavepic-test-media/${selectedMediaFile.media_file_url}`}
-                        mediaFileId={selectedMediaFile.media_id}
-                        waveformCurrentStyles={selectedMediaFile.current_waveform_style}
-                        isCropped={selectedMediaFile.is_cropped}
-                    />
-                );
-            } else {
-                const selectedMediaFileData = mediaFileData[selectedMediaFile.media_id];
-                let wavefromColor = {};
-                let wavefromStyle = {};
-                let qrCodeDetails = {};
-                let textDetails = {};
-                if (selectedMediaFileData && selectedMediaFileData.data) {
-                    wavefromColor = selectedMediaFileData.data.current_waveform_style.waveform_color || {};
-                    wavefromStyle = selectedMediaFileData.data.current_waveform_style.waveform_style || {};
-                    qrCodeDetails = selectedMediaFileData.data.current_waveform_style.waveform_qr_code || {};
-                    textDetails =  selectedMediaFileData.data.current_waveform_style.waveform_text || {};
-                }
-                mediaDisplaySection = (
-                    <SVGWaveformRenderer
-                        waveformData={selectedWaveformData}
-                        canvasWidth={1800}
-                        canvasHeight={1200}
-                        wavefromColor={wavefromColor}
-                        wavefromStyle={wavefromStyle}
-                        qrCodeDetails={qrCodeDetails}
-                        textDetails={textDetails}
-                    />
-                );
-            }
+
+            mediaDisplaySection = (
+                <MediaEditorContainer
+                    waveformData={selectedWaveformData}
+                    mediaFile={`https://s3.us-east-2.amazonaws.com/soundwavepic-test-media/${selectedMediaFile.media_file_url}`}
+                    mediaFileId={selectedMediaFile.media_id}
+                    waveformCurrentStyles={selectedMediaFile.current_waveform_style}
+                    isCropped={selectedMediaFile.is_cropped}
+                />
+            );
         }
         return (
             <div className="container">

@@ -307,7 +307,6 @@
 
 .waveform-canvas-element {
   width: 100%;
-  max-width: 900px;
   background-color: transparent;
   text-align: center;
 }

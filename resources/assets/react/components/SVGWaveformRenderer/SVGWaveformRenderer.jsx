@@ -75,9 +75,9 @@ const getSoundWaveSampleSvg = (xPoint, sampleData, waveType) => {
     if (waveType === 'linear') {
         samples.push(<line
             key={xPoint}
-            x1={((sampleData.xPoint - 0.5) * (sampleData.sampleSpacing))}
+            x1={((sampleData.xPoint - 0.5) * (sampleData.sampleSpacing) + sampleData.xShift)}
             y1={sampleData.centerY - sampleData.prevSample}
-            x2={sampleData.xPoint * (sampleData.sampleSpacing)}
+            x2={sampleData.xPoint * (sampleData.sampleSpacing) + sampleData.xShift}
             y2={sampleData.centerY + sampleData.amplifiedValue}
             stroke={sampleData.color}
             strokeWidth={sampleData.lineWidth}
@@ -86,9 +86,9 @@ const getSoundWaveSampleSvg = (xPoint, sampleData, waveType) => {
 
         samples.push(<line
             key={xPoint + 0.5}
-            x1={sampleData.xPoint * (sampleData.sampleSpacing)}
+            x1={sampleData.xPoint * (sampleData.sampleSpacing) + sampleData.xShift}
             y1={sampleData.centerY + sampleData.amplifiedValue}
-            x2={(sampleData.xPoint + 0.5) * (sampleData.sampleSpacing)}
+            x2={(sampleData.xPoint + 0.5) * (sampleData.sampleSpacing) + sampleData.xShift}
             y2={sampleData.centerY - sampleData.amplifiedValue}
             stroke={sampleData.color}
             strokeWidth={sampleData.lineWidth}
@@ -97,9 +97,9 @@ const getSoundWaveSampleSvg = (xPoint, sampleData, waveType) => {
     } else if (waveType === 'bars') {
         samples.push(<line
             key={xPoint}
-            x1={sampleData.xPoint * (sampleData.sampleSpacing)}
+            x1={sampleData.xPoint * (sampleData.sampleSpacing) + sampleData.xShift}
             y1={sampleData.centerY - sampleData.amplifiedValue}
-            x2={sampleData.xPoint * (sampleData.sampleSpacing)}
+            x2={sampleData.xPoint * (sampleData.sampleSpacing) + sampleData.xShift}
             y2={sampleData.centerY + sampleData.amplifiedValue}
             stroke={sampleData.color}
             strokeWidth={sampleData.lineWidth}
@@ -376,7 +376,7 @@ class SVGWaveformRenderer extends React.Component {
             canvasWidth,
             canvasHeight
         } = props;
-        horizantalMargin = typeof horizantalMargin !== 'undefined' ? horizantalMargin : 50;
+        horizantalMargin = typeof horizantalMargin !== 'undefined' ? horizantalMargin : canvasWidth * 0.05;
         verticalMargin = typeof verticalMargin !== 'undefined' ? verticalMargin : 20;
 
         if(props.waveformData.data && typeof wavefromColor.colors !== "undefined") {
@@ -409,6 +409,7 @@ class SVGWaveformRenderer extends React.Component {
             startAngle = startAngleRange[0] + (startAngleRange[1] - startAngleRange[0]) * startAngle / 100;
             canvasWidth = canvasWidth - horizantalMargin;
             canvasHeight = canvasHeight - verticalMargin;
+            const xShift = lineWidth / 2;
             const centerX = Math.ceil(canvasWidth / 2);
             const centerY = Math.ceil(canvasHeight / 2);
             const amplificationFactor = canvasHeight * 1 / 3;
@@ -465,7 +466,8 @@ class SVGWaveformRenderer extends React.Component {
                         sampleSpacing: canvasWidth / reSampledDataPoints.length,
                         sampleLength: reSampledDataPoints.length,
                         startAngle,
-                        innerRadius
+                        innerRadius,
+                        xShift
                     },
                     waveformType
                 ));

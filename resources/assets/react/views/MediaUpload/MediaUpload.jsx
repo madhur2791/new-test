@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from '../../components/SideBar/SideBar.jsx';
 import FileUploadContainer from './components/FileUploader/FileUploadContainer.jsx';
+import AudioRecorderContainer from './components/AudioRecorder/AudioRecorderContainer.jsx';
 import UploadedFilesListContainer from './components/UploadedFilesList/UploadedFilesListContainer.jsx';
 import MediaEditorContainer from './components/MediaFileEditor/MediaFileEditContainer.jsx';
 import SVGWaveformRenderer from '../../components/SVGWaveformRenderer/SVGWaveformRenderer.jsx';
@@ -185,6 +186,7 @@ class MediaUpload extends React.Component {
                                             <FileUploadContainer >
                                                 Upload Audio
                                             </FileUploadContainer>
+                                            <AudioRecorderContainer />
                                         </div>
                                     </div>
                                     <div className="row media-list-conatiner">

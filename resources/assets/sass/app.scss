@@ -868,3 +868,18 @@ body {
 .mediaPlayerSubmitPasswordButton {
     margin-top: 20px;
 }
+
+.record-audio-button {
+    border-radius: 0;
+    margin-left: 10px;
+}
+
+.recorder-popup {
+    position: fixed;
+    width: 500px;
+    left: calc(50% - 250px);
+    top: 50px;
+    z-index: 100;
+    background: #fff;
+    padding: 20px;
+}

@@ -167,6 +167,7 @@ class MediaUpload extends React.Component {
                     mediaFileId={selectedMediaFile.media_id}
                     waveformCurrentStyles={selectedMediaFile.current_waveform_style}
                     isCropped={selectedMediaFile.is_cropped}
+                    showCroppingLoader={this.state && this.state.showCroppingLoader || false}
                 />
             );
         }

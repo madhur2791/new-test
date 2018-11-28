@@ -80,6 +80,15 @@ class MediaEditor extends React.Component {
     }
   }
 
+  componentWillReceiveProps(props) {
+    if(props.showCroppingLoader === false && this.props.showCroppingLoader === true) {
+        this.setState({
+            startTime: 0,
+            endTime: 100,
+            currentTime: 0
+        });
+    }
+  }
 
   ref(player) {
     this.player = player
@@ -107,12 +116,10 @@ class MediaEditor extends React.Component {
             <div className="audio-player-container">
                 <SVGWaveformRenderer
                     waveformData={waveformData}
-                    canvasWidth={900}
-                    canvasHeight={400}
+                    canvasWidth={1800}
+                    canvasHeight={1200}
                     wavefromColor={wavefromColor}
                     wavefromStyle={wavefromStyle}
-                    horizantalMargin={0}
-                    verticalMargin={0}
                 />
                 <div
                     id="audio-seeker"

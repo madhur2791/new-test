@@ -15,8 +15,18 @@ const computeColor = (colorOption, colors, dataPointsCount, diffusionPercentage 
 
     const computedColors = [];
     const normalizedDiffusion = diffusionPercentage / 100;
-    let flatColorLength = Math.ceil(dataPointsCount * (1 - normalizedDiffusion) / colors.length);
-    let diffusedColorLength = Math.ceil(dataPointsCount * normalizedDiffusion / (colors.length - 1));
+
+    let flatColorLength = 0;
+    let diffusedColorLength = 0;
+
+    if (colors.length === 1) {
+        flatColorLength = dataPointsCount;
+        diffusedColorLength = 0;
+    } else {
+        flatColorLength = Math.ceil(dataPointsCount * (1 - normalizedDiffusion) / colors.length);
+        diffusedColorLength = Math.ceil(dataPointsCount * normalizedDiffusion / (colors.length - 1));
+    }
+
 
     for (let colorIndex = 0; colorIndex < colors.length; colorIndex += 1) {
 

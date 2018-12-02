@@ -278,6 +278,18 @@ class WaveformQRCode extends React.Component {
                                 <span className="sidebarToolDescription">Whoever Scans this QR code is directed to your custom page to view uploaded file and mockup of your ordered product. Would you like this webpage to be password required?</span>
                             </div>
                             <div className="sidebarToolContainer">
+                                <div className="radio">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="qrCodeSecurity"
+                                            onChange={this.handleQrCodeSecurityChange}
+                                            checked={this.state.qrCodeProtectionEnabled !== true}
+                                            value='no'
+                                        />
+                                            No
+                                    </label>
+                                </div>
                                 <div className="radio qrCodeSecurityYesOption">
                                     <label>
                                         <input
@@ -306,18 +318,6 @@ class WaveformQRCode extends React.Component {
                                         </div>
                                     ):''
                                 }
-                                <div className="radio">
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name="qrCodeSecurity"
-                                            onChange={this.handleQrCodeSecurityChange}
-                                            checked={this.state.qrCodeProtectionEnabled !== true}
-                                            value='no'
-                                        />
-                                            No
-                                        </label>
-                                </div>
                             </div>
                         </div>
                     </div>

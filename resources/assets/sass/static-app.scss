@@ -154,3 +154,64 @@ color: #ffffff;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+.profile-pic {
+    width: 34px;
+}
+
+.profile-dropdown {
+    padding: 0 !important;
+    padding-top: 13px !important;
+}
+
+.profile-dropdown:before {
+    margin-top: -2px !important;
+}
+
+.my-ordrs-container {
+    margin-top:100px;
+}
+
+.order-container {
+    background: #fff;
+    margin-top: 5px;
+    padding: 10px;
+    color: #8b8e94;
+}
+
+.order-image {
+    width: 100px;
+}
+
+.order-line-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.play-pause-button {
+    background-image: url('../images/playpause.png');
+    background-repeat: no-repeat;
+    width: 45px;
+    height: 45px;
+    background-size: 90px;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 10px
+}
+
+.order-item-description {
+    display: flex;
+    align-items: center;
+}
+
+.auth-container {
+    background: #fff;
+    padding: 20px 100px;
+    margin-top: 50px;
+}
+
+.login-button {
+    width: 100%;
+}

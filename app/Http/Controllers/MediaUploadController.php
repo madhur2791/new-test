@@ -30,6 +30,11 @@ class MediaUploadController extends Controller
         $mediaId = uniqid($loggedInUser->id);
         $fileName = $request->file('uploaded-media-file')->getClientOriginalName();
         $filePath = $request->file('uploaded-media-file')->store('uploaded_files');
+
+        if ($fileName === 'blob') {
+            $fileName = "Recording";
+        }
+
         $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
             $filePath,
             $fileName,

@@ -168,4 +168,19 @@ class OrderController extends Controller
         ];
     }
 
+    public function showMyOrdersPage(Request $request) {
+        $orders = Order::where('user_id', $request->user()->id)
+        ->where('payment_status', 'PAID')
+        ->with('lineItems.waveformStyle')->with('address')->get();
+        return view('myorders', ['orders' => $orders]);
+    }
+
+    public function showOrderDetailPage(Request $request, $orderId) {
+        $order = Order::where('user_id', $request->user()->id)
+            ->where('id', $orderId)
+            ->where('payment_status', 'PAID')
+            ->with('lineItems')->with('address')->first();
+        return view('order', ['order' => $order]);
+    }
+
 }

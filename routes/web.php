@@ -20,6 +20,8 @@ Route::get('/contact', 'HomeController@contactPage');
 
 Route::post('/contact', 'HomeController@storeContactPageDetails');
 
+Route::get('/logout', 'Auth\LoginController@logout');
+
 Route::get('/gallery', 'HomeController@galleryPage');
 
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
@@ -56,11 +58,17 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    Route::get('/convert/png/{generatedImageUrl}', 'ImageController@getPNG')->middleware('auth');;
+    Route::get('/generated-images/pdf/{generatedImageUrl}', 'ImageController@getPDF');
+
+    Route::get('/generated-images/svg/{generatedImageUrl}', 'ImageController@getSVG');
 
     Route::get('/generated-images/{generatedImageUrl}', 'ImageController@getGeneratedImage');
 
     Route::get('/carts', 'OrderController@showCart');
+
+    Route::get('/myorders', 'OrderController@showMyOrdersPage');
+
+    Route::get('/orders/{orderId}', 'OrderController@showOrderDetailPage');
 
     Route::post('/orders', 'OrderController@createOrderFromCart');
 

@@ -15,7 +15,11 @@
         <li><a href="/waveform/upload">Create Waveform</a></li>
         <li><a href="/gallery">Gallery</a></li>
         <li><a href="#">FAQ</a></li>
+        @if (Auth::check())
+        <li><a href="/logout">Logout</a></li>
+        @else
         <li><a href="/login">Login</a></li>
+        @endif
         </ul>
     </div>
     </div>

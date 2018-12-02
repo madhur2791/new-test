@@ -13,4 +13,9 @@ class OrderLineItem extends Model
     {
         return $this->belongsTo('App\Order');
     }
+
+    public function waveformStyle()
+    {
+        return $this->belongsTo('App\WaveformStyle', 'waveform_id');
+    }
 }

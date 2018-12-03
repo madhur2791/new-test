@@ -68,4 +68,14 @@ class HomeController extends Controller
         $request->session()->flash('contact_us_success', 'Your message has beem successfully submited.');
         return redirect()->action('HomeController@contactPage');
     }
+
+    public function showTAndCPage()
+    {
+        return view('t_and_c');
+    }
+
+    public function showPrivacyPolicyPage()
+    {
+        return view('privacy_policy');
+    }
 }

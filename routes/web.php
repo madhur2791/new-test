@@ -24,6 +24,10 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/gallery', 'HomeController@galleryPage');
 
+Route::get('/terms-and-conditions', 'HomeController@showTAndCPage');
+
+Route::get('/privacy-policy', 'HomeController@showPrivacyPolicyPage');
+
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::post('/media-file-data/{waveformId}', 'OrderController@playMediaFile');

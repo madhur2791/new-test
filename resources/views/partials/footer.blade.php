@@ -5,16 +5,16 @@
             <ul class="probootstrap-footer-social probootstrap-footer-links">
             <li><a href="/gallery">Gallery</a></li>
             <li><a href="/contact">Contact Us</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
             </ul>
         </div>
     </div>
     <div class="row footer-social-container">
         <div class="col-md-12 text-center">
             <ul class="probootstrap-footer-social">
-            <li><a href="#"><i class="icon-facebook"></i></a></li>
-            <li><a href="#"><i class="icon-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com/soundwavepic"><i class="icon-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/soundwavepic"><i class="icon-instagram"></i></a></li>
             </ul>
         </div>
     </div>

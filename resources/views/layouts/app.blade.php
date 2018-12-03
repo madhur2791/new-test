@@ -17,9 +17,15 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    @if (env('ENABLE_SSL') === true)
+    <link href="{{ secure_asset('css/styles-merged.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/template.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/static-app.css') }}" rel="stylesheet">
+    @else
     <link href="{{ asset('css/styles-merged.css') }}" rel="stylesheet">
     <link href="{{ asset('css/template.css') }}" rel="stylesheet">
     <link href="{{ asset('css/static-app.css') }}" rel="stylesheet">
+    @endif
 </head>
 <body>
     <div id="app">
@@ -29,6 +35,10 @@
     </div>
     <script src="/compiled/js/scripts.min.js"></script>
     <script src="/compiled/js/custom.min.js"></script>
+    @if (env('ENABLE_SSL') === true)
+    <script src="{{ secure_asset('js/app.js') }}" defer></script>
+    @else
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @endif
 </body>
 </html>

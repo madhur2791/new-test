@@ -13,17 +13,24 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/build.js') }}" defer></script>
-
+    @if (env('ENABLE_SSL') === true)
+        <script src="{{ secure_asset('js/build.js') }}" defer></script>
+        <link href="{{ secure_asset('css/template.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/styles-merged.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    @else
+        <script src="{{ asset('js/build.js') }}" defer></script>
+        <link href="{{ asset('css/template.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/styles-merged.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link href="{{ asset('css/template.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles-merged.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">

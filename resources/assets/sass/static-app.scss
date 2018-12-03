@@ -220,4 +220,51 @@ color: #ffffff;
     margin: 0px 100px;
     background: #fff;
     padding: 20px;
+    margin-top: 100px;
+}
+
+
+.probootstrap-navbar.static-nav-bar {
+  background: #ffffff;
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.09);
+          box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.09);
+}
+
+.probootstrap-navbar.static-nav-bar .parent-nav-link-padding,
+.probootstrap-navbar.static-nav-bar .navbar-brand,
+.probootstrap-navbar.static-nav-bar .navbar-nav > li > a {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.probootstrap-navbar.static-nav-bar .navbar-brand {
+  top: 10px;
+  background-position: left 100%;
+}
+
+.probootstrap-navbar.static-nav-bar .dropdown > a:before {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.probootstrap-navbar.static-nav-bar .navbar-nav > li > a {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.probootstrap-navbar.static-nav-bar .navbar-nav > li > a:hover {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.probootstrap-navbar.static-nav-bar .navbar-nav > li.active > a {
+  color: black !important;
+}
+
+@media screen and (max-width: 768px) {
+  .probootstrap-navbar.static-nav-bar .navbar-nav > li.active > a {
+    color: black !important;
+  }
+}
+
+.probootstrap-navbar.static-nav-bar .navbar-brand {
+    top: 5px;
+    background-image: url(https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-coloured.png);
 }

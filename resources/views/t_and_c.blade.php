@@ -4,7 +4,7 @@
 @section('content')
 
 
-<!--@include('partials.checkout_header')-->
+@include('partials.checkout_header')
 
 <div class="terms-container">
     <h4>Introduction and Acceptance of the Terms and Conditions</h4>

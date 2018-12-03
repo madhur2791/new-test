@@ -4,7 +4,7 @@
 @section('content')
 
 
-<!--@include('partials.checkout_header')-->
+@include('partials.checkout_header')
 
 <div class="terms-container">
 <h2>PRIVACY POLICY</h2>

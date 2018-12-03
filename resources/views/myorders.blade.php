@@ -2,8 +2,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-ordrs-container">
 @include('partials.checkout_header')
+<div class="container my-orders-container">
     @foreach ($orders as $order)
     <a href="/orders/{{$order->id}}">
         <div class="row">
@@ -33,6 +33,10 @@
         </div>
     </a>
     @endforeach
-@endsection
 </div>
+@include('partials.footer')
+@endsection
+
+
+
 

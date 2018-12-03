@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row cartTableCotainer">
+@include('partials.checkout_header')
+<div class="row cartTableCotainer header-footer-clearence">
     <div class="col-md-6 col-sm-10 col-md-offset-3 col-sm-offset-1">
         <h3> Address </h3>
         @if ($errors->any())
@@ -87,5 +88,6 @@
         </form>
     </div>
 </div>
+@include('partials.footer')
 @endsection
 

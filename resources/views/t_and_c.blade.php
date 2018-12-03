@@ -109,7 +109,7 @@
     <p>Please contact us <a href="mailto:hello@soundwavepic.com">hello@soundwavepic.com</a> for any inquiry.</p>
 </div>
 
-
+@include('partials.footer')
 @endsection
 
 

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row cartTableCotainer">
+@include('partials.checkout_header')
+<div class="row cartTableCotainer header-footer-clearence">
     <div class="col-md-8 col-sm-12 col-md-offset-2">
         <h3> Order Summary </h3>
         <table class="table">
@@ -46,7 +47,7 @@
                 <div>{{$order->address->country}}</div>
                 <div>Phone: {{$order->address->phone_number}}</div>
                 <div>Email: {{$order->address->email}} </div>
-            <div class="col-md-8 col-sm-12 col-md-offset-2">
+            </div>
         </div>
         <div class="checkout-button">
             <form action="/orders/{{ $order->id }}/confirm_payment" method="post">
@@ -56,5 +57,6 @@
         </div>
     </div>
 </div>
+@include('partials.footer')
 @endsection
 

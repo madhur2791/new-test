@@ -62,7 +62,7 @@
 
 </div>
 
-
+@include('partials.footer')
 @endsection
 
 

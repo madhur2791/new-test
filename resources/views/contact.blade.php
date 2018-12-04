@@ -71,16 +71,9 @@
 
             <h4>USA</h4>
             <ul class="probootstrap-contact-info">
-              <li><i class="icon-pin"></i> <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
-              <li><i class="icon-email"></i><span>info@domain.com</span></li>
-              <li><i class="icon-phone"></i><span>+123 456 7890</span></li>
-            </ul>
-
-            <h4>Europe</h4>
-            <ul class="probootstrap-contact-info">
-              <li><i class="icon-pin"></i> <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
-              <li><i class="icon-email"></i><span>info@domain.com</span></li>
-              <li><i class="icon-phone"></i><span>+123 456 7890</span></li>
+              <li><i class="icon-pin"></i> <span>1732 First Avenue, #25613 New York NY</span></li>
+              <li><i class="icon-email"></i><span>hello@soundwavepic.com</span></li>
+              <!--<li><i class="icon-phone"></i><span>+123 456 7890</span></li>-->
             </ul>
 
           </div>

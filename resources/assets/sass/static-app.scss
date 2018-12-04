@@ -275,3 +275,24 @@ color: #ffffff;
     top: 5px;
     background-image: url(https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-coloured.png);
 }
+
+@media screen and (max-width: 480px) {
+    .slider-height, .flexslider, .flexslider .slides > li {
+        height: 700px;
+    }
+
+    .flexslider .probootstrap-slider-text {
+        margin-top: 330px;
+    }
+
+    .probootstrap-navbar .navbar-brand {
+        top: 0px !important;
+    }
+}
+
+@media screen and (max-width: $screen-md) {
+    .terms-container {
+        margin: 0px;
+        padding-top: 50px;
+    }
+}

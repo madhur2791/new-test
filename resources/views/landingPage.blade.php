@@ -160,7 +160,20 @@
         </div>
       </div>
     </section>
-    <section class="probootstrap-section">
+    <section class="textslider-section probootstrap-section probootstrap-bg-white">
+        <div class="textslider-container">
+            <h3>What about hanging your</h2>
+            <div class="text-vertical-slider">
+                <h3>wedding vov</h3>
+                <h3>baby's first word</h3>
+                <h3>favorite song</h3>
+                <h3>most meaningful two Yesssss</h3>
+                <h3>baby's heartbeat</h3>
+            </div>
+            <h3>on your wall?</h3>
+        </div>
+    </section>
+    <section class="probootstrap-section probootstrap-bg-white">
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2 section-heading text-center probootstrap-animate">
@@ -207,19 +220,7 @@
       </div>
     </section>
 
-    <section class="textslider-section probootstrap-section probootstrap-bg-white">
-        <div class="textslider-container">
-            <h3>What about hanging your</h2>
-            <div class="text-vertical-slider">
-                <h3>wedding Vow</h3>
-                <h3>baby's first word</h3>
-                <h3>favorite song</h3>
-                <h3>most meaningful two Yesssss</h3>
-                <h3>baby's heartbeat</h3>
-            </div>
-            <h3>on your wall?</h3>
-        </div>
-    </section>
+
     <!--<section class="probootstrap-section waveform-section">
         <div id="waveform-surfer"></div>
     </section>-->

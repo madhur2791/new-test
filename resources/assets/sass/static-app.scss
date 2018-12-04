@@ -127,6 +127,7 @@ color: #ffffff;
 
 .get-started-button:active {
   background-color: #ffffff;
+  color: #cc0000;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -151,6 +152,7 @@ color: #ffffff;
 
 .try-for-free-button:active {
   background-color: #ffffff;
+  color: #85C7DD;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -274,6 +276,17 @@ color: #ffffff;
 .probootstrap-navbar.static-nav-bar .navbar-brand {
     top: 5px;
     background-image: url(https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-coloured.png);
+}
+
+.probootstrap-section.probootstrap-bg-white.textslider-section {
+    background: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/brick_wall_bg_1.png');
+    background-size: cover;
+
+    h3 {
+        color: #fff;
+        font-size: 34px;
+        // text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff;
+    }
 }
 
 @media screen and (max-width: 480px) {

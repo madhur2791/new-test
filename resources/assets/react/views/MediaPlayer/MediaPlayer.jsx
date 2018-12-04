@@ -111,7 +111,7 @@ class MediaPlayer extends React.Component {
     render() {
         if(this.state.mediaFileData && !this.state.error && this.state.passwordRequired === false) {
             return (
-                <div className="row">
+                <div className="row media-player-page">
                     <div className="col-md-6 col-md-offset-3">
                         <div className="mediaPlayerContainer">
                             <ReactPlayer

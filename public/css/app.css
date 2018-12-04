@@ -667,7 +667,7 @@
 }
 
 .mediaPlayerContainer {
-  margin-top: 100px;
+  margin-top: calc(50% - 65px);
 }
 
 .mediaPlayerControlsContainer {
@@ -934,5 +934,11 @@
   text-decoration: underline;
   color: #bbb;
   cursor: pointer;
+}
+
+.media-player-page {
+  height: 100vh;
+  background: url("https://s3.us-east-2.amazonaws.com/soundwave-assets/images/mediaplay_bg.png");
+  background-size: cover;
 }
 

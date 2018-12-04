@@ -52,14 +52,14 @@
                 <div class="col-md-12">
                     <div class="col-md-3 animated fadeInUp">
                         <div class="icon">
-                            <img class="soundwaveprocess-images" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-add-record-100.png" />
+                            <img class="soundwaveprocess-images" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-microphone-100.png" />
                         </div>
                         <h3>1. Upload or Record</h3>
                         <p>Upload your audio/video or record it online. You'll be able to edit or cut it online once uploaded.</p>
                     </div>
                     <div class="col-md-3 animated fadeInUp">
                         <div class="icon">
-                            <img class="soundwaveprocess-images" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-tune-100.png" />
+                            <img class="soundwaveprocess-images" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-paint-palette-100.png" />
                         </div>
                         <h3>2. Style and Design</h3>
                         <p>Customize your soundwave's shape and color along with the option to add a text and a QR code.</p>
@@ -95,7 +95,7 @@
             <div class="probootstrap-service-2 probootstrap-animate">
               <div class="image">
                 <div class="image-bg">
-                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_1.jpeg" alt="Free Bootstrap Template by uicookies.com">
+                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_1.png" alt="Free Bootstrap Template by uicookies.com">
                 </div>
               </div>
               <div class="text">
@@ -105,7 +105,7 @@
             <div class="probootstrap-service-2 probootstrap-animate">
               <div class="image">
                 <div class="image-bg">
-                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_5.jpeg" alt="Free Bootstrap Template by uicookies.com">
+                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_5.png" alt="Free Bootstrap Template by uicookies.com">
                 </div>
               </div>
               <div class="text">
@@ -115,7 +115,7 @@
             <div class="probootstrap-service-2 probootstrap-animate">
               <div class="image">
                 <div class="image-bg">
-                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_3.jpeg" alt="Free Bootstrap Template by uicookies.com">
+                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_3.png" alt="Free Bootstrap Template by uicookies.com">
                 </div>
               </div>
               <div class="text">
@@ -127,7 +127,7 @@
             <div class="probootstrap-service-2 probootstrap-animate">
               <div class="image">
                 <div class="image-bg">
-                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_2.jpeg" alt="Free Bootstrap Template by uicookies.com">
+                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_2.png" alt="Free Bootstrap Template by uicookies.com">
                 </div>
               </div>
               <div class="text">
@@ -137,7 +137,7 @@
             <div class="probootstrap-service-2 probootstrap-animate">
               <div class="image">
                 <div class="image-bg">
-                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_4.jpeg" alt="Free Bootstrap Template by uicookies.com">
+                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_4.png" alt="Free Bootstrap Template by uicookies.com">
                 </div>
               </div>
               <div class="text">
@@ -149,7 +149,7 @@
             <div class="probootstrap-service-2 probootstrap-animate">
               <div class="image">
                 <div class="image-bg">
-                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_6.jpeg" alt="Free Bootstrap Template by uicookies.com">
+                  <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_6.png" alt="Free Bootstrap Template by uicookies.com">
                 </div>
               </div>
               <div class="text">
@@ -285,72 +285,8 @@
         </div>
       </div>
     </section>
-    <section class="probootstrap-section probootstrap-border-top probootstrap-bg-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate">
-            <h2>Testimonial</h2>
-          </div>
-        </div>
-        <!-- END row -->
-        <div class="row">
-          <div class="col-md-12 probootstrap-animate">
-            <div class="owl-carousel owl-carousel-testimony owl-carousel-fullwidth">
-              <div class="item">
-                <div class="probootstrap-testimony-wrap text-center">
-                  <figure>
-                    <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_1.jpeg" alt="Free Bootstrap Template by uicookies.com">
-                  </figure>
-                  <blockquote class="quote">&ldquo;We uploaded our wedding dance music and turned it into soundwave. We are so pleased with the product and the shipping. We had it shipped to Japan and arrived with no harm. It is the same as I designed online. Great piece to fit in our living room.&rdquo;</blockquote>
-                </div>
-              </div>
-              <div class="item">
-                <div class="probootstrap-testimony-wrap text-center">
-                <figure>
-                    <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_2.jpeg" alt="Free Bootstrap Template by uicookies.com">
-                  </figure>
-                  <blockquote class="quote">&ldquo;My experience was great with this company. I loved my product. I got the heartbeats of my baby recorded and uploaded them on your website. The product is awesome. Now, we hanged it on the wall and even our guests can listen to our baby's heartbeats by scanning the QR Code. Not to mention how cool the soundwave itself looks. You will be having a returning customer for sure. Thanks!&rdquo;</blockquote>
-                </div>
-              </div>
-              <div class="item">
-                <div class="probootstrap-testimony-wrap text-center">
-                <figure>
-                    <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_3.jpeg" alt="Free Bootstrap Template by uicookies.com">
-                  </figure>
-                  <blockquote class="quote">&ldquo;I was searching internet for a romantic gift for weeks and finally discovered your website. I uploaded a short part of our wedding Vow and cut everything but two "Yessssss" es... Now with the final product in my hands, it is everything I was hoping for and can't wait to give it to my wife on Valentine's day!&rdquo;</blockquote>
-                </div>
-              </div>
-              <div class="item">
-                <div class="probootstrap-testimony-wrap text-center">
-                <figure>
-                    <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_4.jpeg" alt="Free Bootstrap Template by uicookies.com">
-                  </figure>
-                  <blockquote class="quote">&ldquo;My wife loved this! I got the sound wave of my marriage proposal and her Yesssss yell. Every single friend of her scanned the QR to watch the proposal on your website. I recommend it to anyone.&rdquo;</blockquote>
-                </div>
-              </div>
-              <div class="item">
-                <div class="probootstrap-testimony-wrap text-center">
-                <figure>
-                    <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_5.jpeg" alt="Free Bootstrap Template by uicookies.com">
-                  </figure>
-                  <blockquote class="quote">&ldquo;The product brought an amazing aura in our living room.  You guys went above and beyond my expectations.&rdquo;</blockquote>
-                </div>
-              </div>
-              <div class="item">
-                <div class="probootstrap-testimony-wrap text-center">
-                <figure>
-                    <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/testimonial_6.jpeg" alt="Free Bootstrap Template by uicookies.com">
-                  </figure>
-                  <blockquote class="quote">&ldquo;I still remember my baby called me mom for the first time and I recorded that magical word and turned it into some piece of art on your website.&rdquo;</blockquote>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- END row -->
-      </div>
-    </section>
-    <section class='try-for-free-section'>
+
+    <section class='try-for-free-section probootstrap-bg-white'>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -359,7 +295,7 @@
             </div>
         </div>
     </section>
-    <section class="probootstrap-section proboostrap-clients probootstrap-bg-white probootstrap-zindex-above-showcase">
+    <section class="probootstrap-section proboostrap-clients probootstrap-zindex-above-showcase">
       <div class="container">
 
         <div class="row">

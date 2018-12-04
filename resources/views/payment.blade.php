@@ -49,12 +49,14 @@
                 <div>Email: {{$order->address->email}} </div>
             </div>
         </div>
+        @if (in_array(Auth::user()->email, ['test@soundwavepic.com', 'madhur2791@gmail.com']))
         <div class="checkout-button">
             <form action="/orders/{{ $order->id }}/confirm_payment" method="post">
                 @csrf
                 <input class="btn btn-primary btn-lg" type="submit" value="Pay"/>
             </form>
         </div>
+        @endif
     </div>
 </div>
 @include('partials.footer')

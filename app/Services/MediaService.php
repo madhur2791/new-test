@@ -33,7 +33,8 @@ class MediaService
             "vertical_alignment" => 'bottom',
             "horizantal_alignment" => 'right',
             "color" => '000',
-            "size" => '100'
+            "size" => '100',
+            "enabled" => false
         ];
         $this->defaultText = [
             "text" => "",

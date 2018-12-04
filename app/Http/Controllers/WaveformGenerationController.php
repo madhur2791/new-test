@@ -17,7 +17,6 @@ class WaveformGenerationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
         $this->mediaService = new MediaService();
     }
 

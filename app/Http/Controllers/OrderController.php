@@ -151,7 +151,9 @@ class OrderController extends Controller
         }
 
         if(
+            array_key_exists('qrCodeProtectionEnabled', $waveform->waveform_qr_code) &&
             $waveform->waveform_qr_code['qrCodeProtectionEnabled'] === true &&
+            array_key_exists('qrCodeSecurityPassword', $waveform->waveform_qr_code) &&
             $request->input('password') !== $waveform->waveform_qr_code['qrCodeSecurityPassword']
         ) {
             return response()->json([

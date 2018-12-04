@@ -296,3 +296,11 @@ color: #ffffff;
         padding-top: 50px;
     }
 }
+
+
+@media screen and (max-width: $screen-sm) {
+    .side-margins {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

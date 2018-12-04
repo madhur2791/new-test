@@ -2,7 +2,7 @@
 
 @section('content')
 @include('partials.checkout_header')
-<div class="row cartTableCotainer header-footer-clearence">
+<div class="row cartTableCotainer header-footer-clearence side-margins">
     <div class="col-md-6 col-sm-10 col-md-offset-3 col-sm-offset-1">
         <h3> Address </h3>
         @if ($errors->any())

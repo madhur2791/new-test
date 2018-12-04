@@ -3,7 +3,7 @@
 
 @section('content')
 @include('partials.checkout_header')
-<div class="container my-orders-container">
+<div class="container my-orders-container side-margins">
     @foreach ($orders as $order)
     <a href="/orders/{{$order->id}}">
         <div class="row">

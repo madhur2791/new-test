@@ -3,7 +3,7 @@
 @section('content')
 
 @include('partials.checkout_header')
-<div class="row cartTableCotainer header-footer-clearence">
+<div class="row cartTableCotainer header-footer-clearence side-margins">
     <div class="col-md-8 col-sm-12 col-md-offset-2">
         <h3> Cart </h3>
         @if(count($cartItems) > 0)

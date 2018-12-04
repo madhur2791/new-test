@@ -3,7 +3,7 @@
 
 @section('content')
 @include('partials.checkout_header')
-<div class="container my-orders-container">
+<div class="container my-orders-container side-margins">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             @include('partials.order_detail')

@@ -67,13 +67,13 @@ ol {
 a {
   -webkit-transition: .3s all;
   transition: .3s all;
-  color: #6497B1;
+  color: #04396B;
 }
 
 a:hover,
 a:focus,
 a:active {
-  color: #548ba7;
+  color: #032c52;
   text-decoration: none;
 }
 
@@ -634,7 +634,7 @@ a:active {
 }
 
 .probootstrap-hero.probootstrap-hero-colored {
-  background: #6497B1;
+  background: #04396B;
 }
 
 .probootstrap-hero.probootstrap-hero-colored h1 {
@@ -777,7 +777,7 @@ a:active {
 }
 
 .probootstrap-showcase-nav ul li.active > a {
-  color: #6497B1;
+  color: #04396B;
   padding-left: 0px;
   display: block;
 }
@@ -812,31 +812,31 @@ a:active {
 }
 
 .btn.btn-primary {
-  border: 1px solid #6497B1;
-  background: #6497B1;
+  border: 1px solid #04396B;
+  background: #04396B;
   color: #ffffff;
 }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:active,
 .btn.btn-primary:focus {
-  background: #6b9cb4;
+  background: #043e75;
 }
 
 .btn.btn-primary:focus,
 .btn.btn-primary:active {
   outline: none;
-  border: 1px solid #6497B1;
+  border: 1px solid #04396B;
 }
 
 .btn.btn-ghost {
   background: transparent;
-  border: 1px solid #6497B1;
-  color: #6497B1;
+  border: 1px solid #04396B;
+  color: #04396B;
 }
 
 .btn.btn-ghost:hover {
-  background: #6497B1;
+  background: #04396B;
   color: #ffffff;
 }
 
@@ -844,8 +844,8 @@ a:active {
 .btn.btn-ghost:active {
   outline: none;
   background: transparent;
-  color: #6497B1;
-  border: 1px solid #6497B1;
+  color: #04396B;
+  border: 1px solid #04396B;
 }
 
 .probootstrap-section {
@@ -910,7 +910,7 @@ a:active {
 
 .probootstrap-cta {
   padding: 3em 0;
-  background: #6497B1;
+  background: #04396B;
   color: #ffffff;
 }
 
@@ -964,7 +964,7 @@ a:active {
 
 .probootstrap-cta .btn.btn-ghost:hover {
   background: #ffffff;
-  color: #6497B1;
+  color: #04396B;
 }
 
 .probootstrap-footer {
@@ -1045,7 +1045,7 @@ a:active {
 .service .icon i {
   font-size: 40px;
   color: rgba(0, 0, 0, 0.2);
-  color: #6497B1;
+  color: #04396B;
 }
 
 .service h3 {
@@ -1401,7 +1401,7 @@ a:active {
 .probootstrap-form .form-control:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
-  border-color: #6497B1;
+  border-color: #04396B;
 }
 
 .probootstrap-form textarea.form-control {
@@ -1857,7 +1857,7 @@ a:active {
   display: block;
   text-transform: none;
   letter-spacing: normal;
-  color: #6497B1;
+  color: #04396B;
   font-size: 14px;
 }
 
@@ -1867,7 +1867,7 @@ a:active {
 
 .probootstrap-pricing .probootstrap-price-wrap .probootstrap-price {
   font-size: 50px;
-  color: #6497B1;
+  color: #04396B;
   font-weight: 100;
   display: block;
   margin-bottom: 10px;
@@ -2193,7 +2193,7 @@ a:active {
 
 .owl-theme .owl-controls .owl-nav [class*="owl-"] i {
   font-size: 24px;
-  background: #6497b1 !important;
+  background: #04396b !important;
   padding: 12px;
   -webkit-transition: .5s all;
   transition: .5s all;
@@ -2201,7 +2201,7 @@ a:active {
 
 .owl-theme .owl-controls .owl-nav [class*="owl-"]:hover i,
 .owl-theme .owl-controls .owl-nav [class*="owl-"]:focus i {
-  background: #6497b1 !important;
+  background: #04396b !important;
 }
 
 .owl-theme .owl-dots {

@@ -10,7 +10,7 @@
               <div class="col-md-10 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Turn Your Sound Into a Piece of Art!</h1>
-                  <h1 class="probootstrap-heading probootstrap-animate">From $30. Free Shipping*</h1>
+                  <h1 class="probootstrap-heading probootstrap-animate">From $25. Free Shipping*</h1>
                   <a class="btn get-started-button" href="/waveform/upload">Get Started</a>
                 </div>
               </div>
@@ -23,7 +23,6 @@
               <div class="col-md-10 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Would you like to have a picture of your favorite music? Now, it is possible.</h1>
-                  <h1 class="probootstrap-heading probootstrap-animate">We paint your sound</h1>
                   <a class="btn get-started-button" href="/waveform/upload">Get Started</a>
                 </div>
               </div>
@@ -37,7 +36,6 @@
               <div class="col-md-10 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
                   <h1 class="probootstrap-heading probootstrap-animate">Did you know your voice generates its own distinctive pattern, just as a fingerprint?</h1>
-                  <h1 class="probootstrap-heading probootstrap-animate">What about having a picture of it on your wall?</h1>
                   <a class="btn get-started-button" href="/waveform/upload">Get Started</a>
                 </div>
               </div>
@@ -109,7 +107,7 @@
                 </div>
               </div>
               <div class="text">
-                <p>The product brought an amazing aura in our living room.  You guys went above and beyond my expectations.</p>
+                <p>The product brought an amazing aura in our living room. Now, I have my favorite song -like a rolling stone-hung on my wall. You guys went above and beyond my expectations.</p>
               </div>
             </div>
             <div class="probootstrap-service-2 probootstrap-animate">

@@ -172,7 +172,7 @@ class WaveformColor extends React.Component {
                                     <div className="row media-list-conatiner">
                                         <label className="sidebarToolHeadingBig">COLOR</label>
                                         <div className="sidebarToolBoxContainer">
-                                            <label className="sidebarToolHeadingSmall">Select color type</label>
+                                            <label className="sidebarToolHeadingSmall">Select coloring type</label>
                                             <div className="sidebarToolContainer">
                                                 <div
                                                     className={`sidebar-tool-options ${wavefromColor.color_option === 'mix' ? 'active' : ''}`}

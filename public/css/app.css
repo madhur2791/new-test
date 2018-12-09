@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);body {
   background-color: #fff;
+  font-family: "Bellefair", serif;
 }
 
 .navbar-laravel {
@@ -9,7 +10,7 @@
 }
 
 .sidebar-header {
-  background-color: #6497B1;
+  background-color: #04396B;
   height: 60px;
   padding-bottom: 8px;
   padding-top: 8px;
@@ -51,6 +52,8 @@
 
 .audio-editor-container {
   text-align: center;
+  width: 90%;
+  margin: auto;
 }
 
 .audio-player-container {
@@ -115,7 +118,7 @@
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 20px solid #6497B1;
+  border-bottom: 20px solid #04396B;
   position: absolute;
   left: calc(0% - 10px);
   bottom: -20px;
@@ -154,7 +157,7 @@
   cursor: pointer;
   width: 15px;
   height: 10px;
-  background: #6497B1;
+  background: #04396B;
 }
 
 .audio-editor-container .rc-slider-handle:after {
@@ -172,12 +175,12 @@
 
 .audio-editor-container .rc-slider-handle-1:after {
   border-left: 15px solid transparent;
-  border-top: 15px solid #6497B1;
+  border-top: 15px solid #04396B;
 }
 
 .audio-editor-container .rc-slider-handle-2:after {
   border-right: 15px solid transparent;
-  border-top: 15px solid #6497B1;
+  border-top: 15px solid #04396B;
 }
 
 .media-controls {
@@ -318,7 +321,7 @@
 
 .waveform-canvas-container {
   padding: 30px 6%;
-  background: #B3CDE0;
+  background: #CCCCCC;
   height: 100vh;
 }
 
@@ -395,7 +398,7 @@
 .uploadProgressBar {
   position: absolute;
   width: 0%;
-  background: #6497B1;
+  background: #04396B;
 }
 
 .page-overlay {
@@ -462,7 +465,7 @@
   left: 0;
   border-radius: 0px;
   height: 8px;
-  background: #6497B1;
+  background: #04396B;
   border: 1px solid #CCCCCC;
   border-radius: 4px 4px 4px 4px;
   -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2) inset;
@@ -533,7 +536,7 @@
 .onoffswitch-inner:before {
   content: "ON";
   padding-left: 10px;
-  background-color: #6497B1;
+  background-color: #04396B;
   color: #FFFFFF;
 }
 
@@ -578,7 +581,7 @@
 }
 
 .sidebar-tool-options.active {
-  border: 2px solid #6497B1;
+  border: 2px solid #04396B;
 }
 
 .sidebar-tool-options svg {
@@ -641,6 +644,7 @@
   margin: 0px;
   vertical-align: top;
   margin: 2px;
+  border: 1px solid #ccc;
 }
 
 .textColorBlockContainer.active {
@@ -828,7 +832,7 @@
   font-size: 15px;
   padding-left: 10px;
   cursor: pointer;
-  color: #6497B1;
+  color: #04396B;
 }
 
 .colorPalletPopupClose {

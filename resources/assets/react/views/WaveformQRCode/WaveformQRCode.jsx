@@ -335,7 +335,7 @@ class WaveformQRCode extends React.Component {
                                     <div className="row media-list-conatiner">
                                         <label className="sidebarToolHeadingBig">QR Code</label>
                                         <div className="sidebarToolBoxContainer">
-                                            <label className="sidebarToolHeadingSmall">Enable QR Code</label>
+                                            <label className="sidebarToolHeadingSmall">Enable QR Code which directs you to your special webpage where you can play uploaded audio/video associated with your soundwave. We charge additional $10 for QR Code extension.</label>
                                             <div className="onoffswitch">
                                                 <input
                                                     type="checkbox"

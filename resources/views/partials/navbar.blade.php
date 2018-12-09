@@ -12,7 +12,7 @@
 
     <div id="navbar-collapse" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-        <li><a href="/waveform/upload">Create Waveform</a></li>
+        <li><a href="/waveform/upload">Create Now</a></li>
         <li><a href="/gallery">Gallery</a></li>
         <li><a href="#">FAQ</a></li>
         @if (Auth::check())

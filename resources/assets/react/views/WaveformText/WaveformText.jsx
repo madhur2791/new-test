@@ -203,6 +203,20 @@ class WaveformText extends React.Component {
                     </div>
                 );
             });
+
+            colorPallet.push(
+                <div
+                    key={wavefromColor.colors.length + 1}
+                    className={`textColorBlockContainer  ${'fff' === textDetails.font_color ? 'active' : ''}`}
+                >
+                    <div
+                        className="colorPalletColorBlock textColorBlock"
+                        style={{backgroundColor: `#fff`}}
+                        onClick={() => this.waveformTextColorHandler('fff', true)}
+                    />
+                </div>
+            );
+
             colorPallet.push(
                 <div
                     key={wavefromColor.colors.length}
@@ -214,7 +228,7 @@ class WaveformText extends React.Component {
                         onClick={() => this.waveformTextColorHandler('000', true)}
                     />
                 </div>
-            )
+            );
 
             textFormatters = (
                 <div>

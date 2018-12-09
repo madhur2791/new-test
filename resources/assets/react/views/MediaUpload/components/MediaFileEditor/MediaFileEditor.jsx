@@ -20,6 +20,7 @@ class MediaEditor extends React.Component {
     this.handlePlayPauseClick = this.handlePlayPauseClick.bind(this);
     this.cropMediaFile = this.cropMediaFile.bind(this);
     this.onDuration = this.onDuration.bind(this);
+    this.onEnded = this.onEnded.bind(this);
   }
 
   handlePlayPauseClick(e) {
@@ -41,6 +42,17 @@ class MediaEditor extends React.Component {
     this.setState({
         duration,
         pushable: pushableValue >= 100 ? 100 : pushableValue
+    });
+  }
+
+  onEnded() {
+    this.setState((prevState) => {
+
+        this.player.seekTo(prevState.startTime / 100);
+        return {
+            currentTime: prevState.startTime,
+            isPlaying: false
+        };
     });
   }
 
@@ -176,6 +188,7 @@ class MediaEditor extends React.Component {
             ref={this.ref}
             playing={this.state.isPlaying}
             onDuration={this.onDuration}
+            onEnded={this.onEnded}
         />
         <div className="media-controls">
             <div

@@ -220,9 +220,9 @@ body {
         height: 40px;
         text-align: center;
         display: inline-block;
-        background: #B3CDE0;
-        border-color: #B3CDE0;
-        padding-top: 7px;
+        background: transparent;
+        border: 1px solid $brand-primary;
+        padding-top: 6px;
         -webkit-transition: width 0.5s;
         transition: width 0.5s;
     }
@@ -238,8 +238,8 @@ body {
             width: 50px;
             height: 50px;
             padding-top: 10px;
-            background: #04396C;
-            border-color: #04396C;
+            background: $brand-primary;
+            border-color: $brand-primary;
         }
 
         .sidebarIcon {

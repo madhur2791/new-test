@@ -13,17 +13,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    @if (env('ENABLE_SSL') === true)
-        <script src="{{ secure_asset('js/build.js') }}" defer></script>
-        <link href="{{ secure_asset('css/template.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/styles-merged.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-    @else
-        <script src="{{ asset('js/build.js') }}" defer></script>
-        <link href="{{ asset('css/template.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/styles-merged.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @endif
+    <script src="{{ mix('js/build.js') }}" defer></script>
+    <link href="{{ mix('css/template.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/styles-merged.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">

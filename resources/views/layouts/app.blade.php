@@ -17,15 +17,11 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    @if (env('ENABLE_SSL') === true)
-    <link href="{{ secure_asset('css/styles-merged.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/template.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/static-app.css') }}" rel="stylesheet">
-    @else
-    <link href="{{ asset('css/styles-merged.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/template.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/static-app.css') }}" rel="stylesheet">
-    @endif
+
+    <link href="{{ mix('css/styles-merged.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/template.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/static-app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">

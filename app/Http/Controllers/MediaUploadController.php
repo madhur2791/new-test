@@ -39,7 +39,9 @@ class MediaUploadController extends Controller
             $filePath,
             $fileName,
             $mediaId,
-            $loggedInUser
+            $loggedInUser,
+            false,
+            'VIDEO'
         );
         $this->mediaService->createDefaultStyle($mediaFileObj->id);
         return response()->json($this->mediaService->getUploadedMediaFiles($request->user()));

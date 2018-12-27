@@ -9,6 +9,7 @@ use App\WaveformStyle;
 use FFMpeg\Coordinate\TimeCode;
 use Illuminate\Http\File;
 use FFMpeg\FFProbe;
+use FFMpeg\Format\Video\X264;
 
 class MediaService
 {
@@ -46,14 +47,19 @@ class MediaService
         ];
     }
 
-    public function computeAndStoreMediaInfo($mediaFilePath, $fileOriginalName, $mediaId, $loggedInUser, $isCropped = false)
+    public function computeAndStoreMediaInfo($mediaFilePath, $fileOriginalName, $mediaId, $loggedInUser, $isCropped = false, $fileType = 'AUDIO')
     {
         $requiredSamples = 900;
         $sampleRate = 44100;
 
-        $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp3';
-        $jsonFileName = uniqid('json_file_name'.$loggedInUser->id).'.json';
+        if($fileType === 'AUDIO') {
+            $audioFileName = $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp3';
+        } else {
+            $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp4';
+            $audioFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp3';
+        }
 
+        $jsonFileName = uniqid('json_file_name'.$loggedInUser->id).'.json';
 
         $ffmpeg = FFMpeg::create(array(
             'timeout' => 36000,
@@ -63,16 +69,21 @@ class MediaService
 
         $media = $ffmpeg->open(storage_path('app').'/'.$mediaFilePath);
 
-        $media->save(new Mp3(), storage_path('app').'/converted_files/'.$mediaFileName);
+
+        $media->save(new Mp3(), storage_path('app').'/converted_files/'.$audioFileName);
+
+        if($fileType === 'VIDEO') {
+            $media->save(new X264(), storage_path('app').'/converted_files/'.$mediaFileName);
+        }
 
         $ffprobe = FFProbe::create(array(
             'ffmpeg.binaries' => config('ffmpeg.ffmpeg_binaries'),
             'ffprobe.binaries' => config('ffmpeg.ffprobe_binaries')
         ));
-        $duration = $ffprobe->format(storage_path('app').'/converted_files/'.$mediaFileName)->get('duration');
+        $duration = $ffprobe->format(storage_path('app').'/converted_files/'.$audioFileName)->get('duration');
         $zoom = round($sampleRate * $duration / $requiredSamples);
 
-        shell_exec('audiowaveform -i '.storage_path('app').'/converted_files/'.$mediaFileName.' -o '.storage_path('app').'/json_files/'.$jsonFileName.' -z '.$zoom.' -b 16');
+        shell_exec('audiowaveform -i '.storage_path('app').'/converted_files/'.$audioFileName.' -o '.storage_path('app').'/json_files/'.$jsonFileName.' -z '.$zoom.' -b 16');
 
         Storage::disk('s3')->putFileAs(
             'resources/waveform-data',
@@ -90,6 +101,9 @@ class MediaService
         Storage::disk('local')->delete('/converted_files/'.$mediaFileName);
         Storage::disk('local')->delete($mediaFilePath);
         Storage::disk('local')->delete('/json_files/'.$jsonFileName);
+        if($fileType === 'VIDEO') {
+            Storage::disk('local')->delete('/converted_files/'.$audioFileName);
+        }
 
         $mediaFileObj = MediaFile::updateOrCreate(
             [

@@ -258,6 +258,41 @@
                 <td>0</td>
             </tr>
             </table>
+
+            <table class="table-bordered">
+            <tr>
+                <th>Poster</th>
+                <th>Price</th>
+                <th>Shipping to US & Canada & GB</th>
+                <th>Shipping to EU Countries</th>
+                <th>Other Countries	Additional Item</th>
+            </tr>
+
+            <tr>
+                <td>11"x17"</td>
+                <td>40</td>
+                <td>0</td>
+                <td>0</td>
+                <td>5</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>18"x24"</td>
+                <td>90</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>24"x36"</td>
+                <td>120</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            </table>
         Optional QR Code extension is $10.
     </div>
     </div>

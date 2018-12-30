@@ -68,6 +68,11 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-12 offset-md-12">
+                                By clicking register, you agree to our <a href="/terms-and-conditions">Terms & Conditions</a> and <a href="/privacy-policy">Privacy Policy</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

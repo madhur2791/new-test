@@ -17,8 +17,7 @@
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
                 <div class="probootstrap-slider-text text-center">
-                  <h1 class="probootstrap-heading probootstrap-animate">Turn Your Sound Into a Piece of Art!</h1>
-                  <h1 class="probootstrap-heading probootstrap-animate">From $25. Free Shipping*</h1>
+                  <h1 class="probootstrap-heading probootstrap-animate">Turn Your Sound Into a Piece of Art! <br> From $25. Free Shipping*</h1>
                   <a class="btn get-started-button" href="/waveform/upload">Get Started</a>
                 </div>
               </div>

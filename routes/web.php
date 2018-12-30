@@ -24,6 +24,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/gallery', 'HomeController@galleryPage');
 
+Route::get('/faq', 'HomeController@faqPage');
+
 Route::get('/terms-and-conditions', 'HomeController@showTAndCPage');
 
 Route::get('/privacy-policy', 'HomeController@showPrivacyPolicyPage');
@@ -33,6 +35,8 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::post('/media-file-data/{waveformId}', 'OrderController@playMediaFile');
 
 Route::get('/waveform/play-media/{waveformId}', 'WaveformGenerationController@createWaveform')->where('any', '.*');
+
+Route::get('/generated-images/{generatedImageUrl}', 'ImageController@getGeneratedImage');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -65,8 +69,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/generated-images/pdf/{generatedImageUrl}', 'ImageController@getPDF');
 
     Route::get('/generated-images/svg/{generatedImageUrl}', 'ImageController@getSVG');
-
-    Route::get('/generated-images/{generatedImageUrl}', 'ImageController@getGeneratedImage');
 
     Route::get('/carts', 'OrderController@showCart');
 

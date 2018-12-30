@@ -62,7 +62,7 @@ function Sidebar(props) {
                             <Link to={`/${match.params.mediaId}/print-option`}>
                                 {
                                     props.pageName === 'printOption' ?
-                                    <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-white-print-50.png" /> :
+                                    <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-print-50-white-1.png" /> :
                                     <img className="sidebarIcon" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-print-50-1.png" />
                                 }
                             </Link>

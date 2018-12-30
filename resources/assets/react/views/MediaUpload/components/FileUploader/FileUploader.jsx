@@ -37,22 +37,6 @@ class FileUploader extends React.Component {
             </div>
         );
     }
-      /*if(!this.state.showProgressBar) {
-
-      } else {
-          return (
-            <div className="progress-container" >
-                <div className="progress">
-                    <div className="progress-bar" role="progressbar" aria-valuenow="70"
-                    aria-valuemin="0" aria-valuemax="100" style={{ width:`${this.state.progress}%` }}>
-                        <span className="sr-only">70% Complete</span>
-                    </div>
-                </div>
-            </div>
-          )
-      }*/
-
-//   }
 }
 
 

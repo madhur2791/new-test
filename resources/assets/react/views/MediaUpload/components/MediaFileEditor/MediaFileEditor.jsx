@@ -3,6 +3,10 @@ import ReactPlayer from 'react-player'
 import Slider, { Range } from 'rc-slider';
 import SVGWaveformRenderer from '../../../../components/SVGWaveformRenderer/SVGWaveformRenderer.jsx';
 
+
+const horizantalMarginPercentage = 7.5;
+const totalWidthPercentage = 100 - (2 * horizantalMarginPercentage);
+const audioSeekerWidthFactor = totalWidthPercentage / 100;
 class MediaEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +17,7 @@ class MediaEditor extends React.Component {
         isPlaying: false,
         duration: 0,
         pushable: 1,
+        sliderRangeKey: 10000
     };
     this.onProgress = this.onProgress.bind(this);
     this.ref = this.ref.bind(this);
@@ -100,6 +105,17 @@ class MediaEditor extends React.Component {
             currentTime: 0
         });
     }
+
+    if(
+        props.mediaFileId &&
+        props.cropMediaFileRequest[props.mediaFileId] &&
+        this.props.cropMediaFileRequest[props.mediaFileId] &&
+        this.props.cropMediaFileRequest[props.mediaFileId].isRequesting === true &&
+        props.cropMediaFileRequest[props.mediaFileId].isRequesting === false
+
+    ) {
+        this.state.sliderRangeKey += 1;
+    }
   }
 
   ref(player) {
@@ -136,19 +152,20 @@ class MediaEditor extends React.Component {
                 <div
                     id="audio-seeker"
                     style={{
-                        left: `calc(${this.state.currentTime}% - 10px)`
+                        left: `calc(${(this.state.currentTime * audioSeekerWidthFactor) + horizantalMarginPercentage}% - 10px)`
                     }}
                 />
                 <div
                     className="audio-seeker-needle"
                     style={{
-                        left: `calc(${this.state.currentTime}% - 1px)`
+                        left: `calc(${(this.state.currentTime * audioSeekerWidthFactor) + horizantalMarginPercentage}% - 1px)`
                     }}
                 />
                 <div
                     className="crop-overlay crop-overlay-1"
                     style={{
-                        width: `calc(${this.state.startTime}%)`
+                        width: `calc(${(this.state.startTime * audioSeekerWidthFactor)}%)`,
+                        left: `${horizantalMarginPercentage}%`
                     }}
                 >
                 <span className="range-slider-time-display range-slider-time-display-1" >
@@ -158,7 +175,8 @@ class MediaEditor extends React.Component {
                 <div
                     className="crop-overlay crop-overlay-2"
                     style={{
-                        width: `calc(${100 - this.state.endTime}%)`
+                        width: `calc(${((100 - this.state.endTime) * audioSeekerWidthFactor)}%)`,
+                        right: `${horizantalMarginPercentage}%`
                     }}
                 >
                     <span className="range-slider-time-display range-slider-time-display-2" >
@@ -169,6 +187,7 @@ class MediaEditor extends React.Component {
                     isCropped === 0 ?
                     (
                         <Range
+                            key={this.state.sliderRangeKey}
                             className="range-slider-container"
                             defaultValue={[0, 100]}
                             step={0.1}

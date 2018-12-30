@@ -60,15 +60,23 @@ class MediaUploadController extends Controller
         $loggedInUser = $request->user();
         $mediaFileObject = MediaFile::where('media_id', $mediaId)->first();
 
+
+        if($mediaFileObject->media_file_type === "AUDIO") {
+            $mediaFileName = $mediaFileObject->media_id.'.mp3';
+        } else {
+            $mediaFileName = $mediaFileObject->media_id.'.webm';
+        }
+
         Storage::disk('local')->put(
-            'uploaded_files/'.$mediaFileObject->media_id.'.mp3',
+            'uploaded_files/'.$mediaFileName,
             Storage::disk('s3')->get($mediaFileObject->media_file_url)
         );
 
         $clippedFilePath = $this->mediaService->clipMediaFile(
-            $mediaFileObject->media_id.'.mp3',
+            $mediaFileName,
             $startTime,
-            $endTime
+            $endTime,
+            $mediaFileObject->media_file_type
         );
 
         $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
@@ -76,7 +84,8 @@ class MediaUploadController extends Controller
             $mediaFileObject->uploaded_file_name,
             $mediaId,
             $loggedInUser,
-            true
+            true,
+            $mediaFileObject->media_file_type
         );
 
         return response()->json($this->mediaService->getUploadedMediaFiles($request->user()));

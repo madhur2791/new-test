@@ -166,6 +166,7 @@ class OrderController extends Controller
 
         return [
             'waveform' => $waveform,
+            'order_line_item' => $orderLineItem,
             'baseUrl' => 'https://s3.us-east-2.amazonaws.com/'.env('SOUNDWAVE_AWS_BUCKET')
         ];
     }

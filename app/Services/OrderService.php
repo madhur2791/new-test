@@ -63,6 +63,8 @@ class OrderService
         $sizeDetails = PricingList::find($cartData['priceOptions']['size_option']);
 
         $generatedImageFileName = uniqid($user->id).'.svg';
+        $mediaFileData->is_cropped = true;
+        $mediaFileData->save();
 
         file_put_contents(
             storage_path('app').'/converted_files/'.$generatedImageFileName,
@@ -103,8 +105,8 @@ class OrderService
         $foundOrder = null;
         foreach($orders as $index => $order) {
             foreach($order->lineItems as $lineItem) {
-                $carthavingImage = Cart::where('generated_image_url', $lineItem->generated_image_url)->get();
-                if(count($carthavingImage) === 0) {
+                $cartHavingImage = Cart::where('generated_image_url', $lineItem->generated_image_url)->get();
+                if(count($cartHavingImage) === 0) {
                     Storage::disk('s3')->delete('resources/generated-images/'.$lineItem->generated_image_url);
                 }
                 $lineItem->delete();

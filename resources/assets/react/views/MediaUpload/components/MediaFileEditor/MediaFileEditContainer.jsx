@@ -3,8 +3,10 @@ import MediaFileEditor from './MediaFileEditor.jsx';
 import { cropMediaFile } from '../../../../actions/uploadedMediaActions';
 
 const mapStateToProps = (state, ownProps) => {
-  const {} = state;
-  return {};
+  const { cropMediaFileRequest } = state;
+  return {
+      cropMediaFileRequest
+  };
 };
 
 const mapDispatchToProps = dispatch => (

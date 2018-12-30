@@ -114,6 +114,12 @@ class MediaPlayer extends React.Component {
                 <div className="row media-player-page">
                     <div className="col-md-6 col-md-offset-3">
                         <div className="mediaPlayerContainer">
+                            <div class="media-player-waveform-container">
+                                <img
+                                    className="media-player-waveform"
+                                    src={`/generated-images/${this.state.mediaFileData.order_line_item.generated_image_url}`}
+                                />
+                            </div>
                             <ReactPlayer
                                 url={`${this.state.mediaFileData.baseUrl}/${this.state.mediaFileData.waveform.media_file.displayed_media_file_url}`}
                                 onProgress={this.onProgress}
@@ -189,7 +195,14 @@ class MediaPlayer extends React.Component {
                 </div>
             );
         }
-        return <div />
+        return <div>
+            <div className="waveform-loader col-lg-12 col-md-12 col-sm-12">
+                <div className="loader-image-container" >
+                    <img className="loader-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Spin-1s-200px.svg" /><br />
+                    Fetching Waveform...
+                </div>
+            </div>
+        </div>
     }
 }
 

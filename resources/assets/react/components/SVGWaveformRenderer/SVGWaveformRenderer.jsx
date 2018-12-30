@@ -378,6 +378,7 @@ class SVGWaveformRenderer extends React.Component {
             textDetails,
             wavefromColor,
             wavefromStyle,
+            showWatermarkGrid
         } = props;
 
         let {
@@ -386,7 +387,7 @@ class SVGWaveformRenderer extends React.Component {
             canvasWidth,
             canvasHeight
         } = props;
-        horizantalMargin = typeof horizantalMargin !== 'undefined' ? horizantalMargin : canvasWidth * 0.05;
+        horizantalMargin = typeof horizantalMargin !== 'undefined' ? horizantalMargin : canvasWidth * 0.075;
         verticalMargin = typeof verticalMargin !== 'undefined' ? verticalMargin : 20;
 
         if(props.waveformData.data && typeof wavefromColor.colors !== "undefined") {
@@ -511,12 +512,14 @@ class SVGWaveformRenderer extends React.Component {
                 );
             }
 
-            svgElements.push(
-                getWatermarkSvg({
-                    width: canvasWidth + horizantalMargin,
-                    height: canvasHeight + verticalMargin
-                })
-            );
+            if(showWatermarkGrid && showWatermarkGrid !== false) {
+                svgElements.push(
+                    getWatermarkSvg({
+                        width: canvasWidth + horizantalMargin,
+                        height: canvasHeight + verticalMargin
+                    })
+                );
+            }
         }
 
         return svgElements;

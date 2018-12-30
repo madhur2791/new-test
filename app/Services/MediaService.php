@@ -9,7 +9,7 @@ use App\WaveformStyle;
 use FFMpeg\Coordinate\TimeCode;
 use Illuminate\Http\File;
 use FFMpeg\FFProbe;
-use FFMpeg\Format\Video\X264;
+use FFMpeg\Format\Video\WebM;
 
 class MediaService
 {
@@ -55,7 +55,7 @@ class MediaService
         if($fileType === 'AUDIO') {
             $audioFileName = $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp3';
         } else {
-            $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp4';
+            $mediaFileName = uniqid('media_file_name'.$loggedInUser->id).'.webm';
             $audioFileName = uniqid('media_file_name'.$loggedInUser->id).'.mp3';
         }
 
@@ -73,7 +73,7 @@ class MediaService
         $media->save(new Mp3(), storage_path('app').'/converted_files/'.$audioFileName);
 
         if($fileType === 'VIDEO') {
-            $media->save(new X264(), storage_path('app').'/converted_files/'.$mediaFileName);
+            $media->save(new WebM(), storage_path('app').'/converted_files/'.$mediaFileName);
         }
 
         $ffprobe = FFProbe::create(array(
@@ -115,15 +115,15 @@ class MediaService
                 "media_file_url" => "resources/media-file/".$mediaFileName,
                 "displayed_media_file_url" => "resources/media-file/".$mediaFileName,
                 "waveform_raw_data_url" => "resources/waveform-data/".$jsonFileName,
-                "media_file_type" => 'AUDIO',
-                "is_cropped" => $isCropped
+                "media_file_type" => $fileType,
+                "is_cropped" => 0
             ]
         );
 
         return $mediaFileObj;
     }
 
-    public function clipMediaFile($mediaFileName, $startTime, $endTime)
+    public function clipMediaFile($mediaFileName, $startTime, $endTime, $fileType = 'AUDIO')
     {
         $ffmpeg = FFMpeg::create(array(
             'timeout' => 36000,
@@ -133,8 +133,12 @@ class MediaService
 
         $media = $ffmpeg->open(storage_path('app').'/uploaded_files/'.$mediaFileName);
 
-        $media->filters()->addMetadata();
-        $media->save(new Mp3(), storage_path('app').'/meta_stripped_files/'.$mediaFileName);
+        if($fileType === 'AUDIO') {
+            $media->filters()->addMetadata();
+            $media->save(new Mp3(), storage_path('app').'/meta_stripped_files/'.$mediaFileName);
+        } else {
+            $media->save(new WebM(), storage_path('app').'/meta_stripped_files/'.$mediaFileName);
+        }
 
         $media = $ffmpeg->open(storage_path('app').'/meta_stripped_files/'.$mediaFileName);
 
@@ -143,7 +147,11 @@ class MediaService
             TimeCode::fromSeconds($endTime - $startTime)
         );
 
-        $media->save(new Mp3(), storage_path('app').'/clipped_files/'.$mediaFileName);
+        if($fileType === 'AUDIO') {
+            $media->save(new Mp3(), storage_path('app').'/clipped_files/'.$mediaFileName);
+        } else {
+            $media->save(new WebM(), storage_path('app').'/clipped_files/'.$mediaFileName);
+        }
 
         Storage::disk('local')->delete('uploaded_files/'.$mediaFileName);
 

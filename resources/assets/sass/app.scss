@@ -929,7 +929,8 @@ body {
 
 .media-player-waveform {
     background: #fff;
-    height: 400px;
+    max-height: 400px;
+    width: 90%;
 }
 
 .media-player-page {

@@ -114,7 +114,7 @@ class MediaPlayer extends React.Component {
                 <div className="row media-player-page">
                     <div className="col-md-6 col-md-offset-3">
                         <div className="mediaPlayerContainer">
-                            <div class="media-player-waveform-container">
+                            <div className="media-player-waveform-container">
                                 <img
                                     className="media-player-waveform"
                                     src={`/generated-images/${this.state.mediaFileData.order_line_item.generated_image_url}`}

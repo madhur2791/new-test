@@ -31,13 +31,13 @@
     </p>
     <div class="collapse" id="acc-2">
     <div class="card card-body">
-        In short, a sound wave is the visual display of a sound.
+        First, we extract the sound waves of an audio/video file uploaded on our website. Then we enable users to design awesome soundwaves thanks to our special algorithm where users are free to change colors, form of the waves, add text, etc. Users can also add QR Code to their design so that anyone who scans the QR Code can be redirected to their special webpage to play the uploaded audio/video.
     </div>
     </div>
 
     <p class="accordian-header-container">
     <a class="accordian-header" data-toggle="collapse" href="#acc-3" role="button" aria-expanded="false" aria-controls="acc-3">
-        What is a sound wave?
+        Why would I need a sound wave pic?
     </a>
     </p>
     <div class="collapse" id="acc-3">
@@ -258,40 +258,41 @@
                 <td>0</td>
             </tr>
             </table>
-
+            <br>
             <table class="table-bordered">
-            <tr>
-                <th>Poster</th>
-                <th>Price</th>
-                <th>Shipping to US & Canada & GB</th>
-                <th>Shipping to EU Countries</th>
-                <th>Other Countries	Additional Item</th>
-            </tr>
+                <tr>
+                    <th>Poster</th>
+                    <th>Price</th>
+                    <th>Shipping to US & Canada & GB</th>
+                    <th>Shipping to EU Countries</th>
+                    <th>Other Countries</th>
+                    <th>Other Countries	Additional Item</th>
+                </tr>
 
-            <tr>
-                <td>11"x17"</td>
-                <td>40</td>
-                <td>0</td>
-                <td>0</td>
-                <td>5</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>18"x24"</td>
-                <td>90</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>24"x36"</td>
-                <td>120</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
+                <tr>
+                    <td>11"x17"</td>
+                    <td>40</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>5</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>18"x24"</td>
+                    <td>90</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>24"x36"</td>
+                    <td>120</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
             </table>
         Optional QR Code extension is $10.
     </div>

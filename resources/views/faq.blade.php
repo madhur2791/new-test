@@ -74,7 +74,7 @@
     </p>
     <div class="collapse" id="acc-5">
     <div class="card card-body">
-        The most common reason is DRM (Digital Rights Management) which brings the modification and distribution of a copyrighted item under control. iTunes is one of mostly known DRM user. You cannot play a music bought on iTunes anywhere but iTunes. So, we
+        The most common reason is DRM (Digital Rights Management) which brings the modification and distribution of a copyrighted item under control. iTunes is one of mostly known DRM user. You cannot play a music bought on iTunes anywhere but iTunes.
     </div>
     </div>
 

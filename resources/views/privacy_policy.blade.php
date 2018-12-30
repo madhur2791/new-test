@@ -1,5 +1,13 @@
 @extends('layouts.app')
-
+@section('metadata')
+<title>How can I create a sound wave</title>
+<meta name="description" content="You can upload or record your voice on our website where you'll be able to customize and download your soundwave.">
+<meta name="keywords" content="Sound wave pic">
+<meta property="og:title" content="Create a sound wave picture from your sound." />
+<meta property="og:description" content="You can have a sound wave pic of your wedding vow, favorite song, or any sound you can think of!" />
+<meta property="og:url" content="https://www.soundwavepic.com" />
+<meta property="og:image" content="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo1.jpg" />
+@endsection
 
 @section('content')
 

@@ -128,12 +128,7 @@ class OrderController extends Controller
                 "httpCode" => 404
             ], 404);
         }
-        if ($waveform->mediaFile->user_id !== $request->user()->id) {
-            return response()->json([
-                "status" => "Unauthorized action.",
-                "httpCode" => 403
-            ], 403);
-        }
+
         $orderLineItem = OrderLineItem::where('waveform_id', $waveform->id)
             ->with('order')->first();
         if(is_null($orderLineItem)) {

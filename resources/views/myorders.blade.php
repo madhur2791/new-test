@@ -1,5 +1,6 @@
 
 @extends('layouts.app')
+@section('metadata')
 <title>My Orders</title>
 <meta name="description" content="Create a sound wave picture from your sound. You can have a sound wave pic of your wedding vow, favorite song, or any sound you can think of!">
 <meta name="keywords" content="SoundWave, Sound Wave Picture, SoundWave Art, Soundviz, Sound wave pic">

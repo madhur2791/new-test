@@ -512,7 +512,7 @@ class SVGWaveformRenderer extends React.Component {
                 );
             }
 
-            if(showWatermarkGrid && showWatermarkGrid !== false) {
+            if(!showWatermarkGrid || (showWatermarkGrid && showWatermarkGrid !== false)) {
                 svgElements.push(
                     getWatermarkSvg({
                         width: canvasWidth + horizantalMargin,

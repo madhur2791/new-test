@@ -118,9 +118,11 @@ body {
   cursor: pointer;
   outline: none;
   color: #cc0000;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.3);
   border: 2px solid #cc0000;
   border-radius: 12px;
+  margin-top: 25px;
+
 }
 
 .get-started-button:hover {

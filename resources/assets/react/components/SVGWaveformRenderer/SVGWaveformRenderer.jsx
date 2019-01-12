@@ -225,8 +225,8 @@ const getTextSvg = (uniqueNumber, textDetails, canvasDetails) => {
 
     switch(textDetails.vertical_alignment) {
         case 'top':
-            position.y = 20;
-            verticalAlignment = "hanging";
+            position.y = 20 + textDetails.font_size;
+            verticalAlignment = "baseline";
         break;
         case 'bottom':
             position.y = canvasDetails.height - 20;
@@ -244,7 +244,7 @@ const getTextSvg = (uniqueNumber, textDetails, canvasDetails) => {
             y={position.y}
             fill={`#${textDetails.font_color}`}
             textAnchor={horizantalAlignment}
-            alignmentBaseline={verticalAlignment}
+            dominantBaseline={verticalAlignment}
             fontSize={textDetails.font_size}
             fontFamily={textDetails.font_family}
         >
@@ -530,6 +530,11 @@ class SVGWaveformRenderer extends React.Component {
         return (
             <div className="waveform-canvas-element" ref={c => (this.generatedImage = c)}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${this.props.canvasWidth} ${this.props.canvasHeight}`} preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <style type="text/css">
+                        @import url('https://fonts.googleapis.com/css?family=Aguafina+Script|Amatic+SC|Cormorant+SC|Cormorant+Upright|Cutive+Mono|Dancing+Script|Farsan|Fredericka+the+Great|Give+You+Glory|Great+Vibes|Indie+Flower|Kranky|La+Belle+Aurore|Life+Savers|Mandali|Marvel|Monoton|Nanum+Myeongjo|Nixie+One|Orbitron|Poiret+One|Pompiere|Princess+Sofia|Reenie+Beanie|Roboto|Rouge+Script|Sacramento|Sail|Short+Stack|Special+Elite|Tulpen+One');
+                    </style>
+                </defs>
                     {svgElements}
                 </svg>
             </div>

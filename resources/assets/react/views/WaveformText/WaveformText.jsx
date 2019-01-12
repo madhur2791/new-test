@@ -243,28 +243,124 @@ class WaveformText extends React.Component {
                                 }}
                                 options={[
                                     {
-                                        value: 'Arial',
-                                        label: 'Arial'
+                                        value: "Aguafina Script, aguafinascrip",
+                                        label: "Aguafina Script"
                                     },
                                     {
-                                        value: 'Helvetica',
-                                        label: 'Helvetica'
+                                        value: "Amatic SC, amaticsc",
+                                        label: "Amatic SC"
                                     },
                                     {
-                                        value: 'Times New Roman',
-                                        label: 'Times New Roman'
+                                        value: "Cormorant SC, cormorantsc",
+                                        label: "Cormorant SC"
                                     },
                                     {
-                                        value: 'Courier New',
-                                        label: 'Courier New'
+                                        value: "Cormorant Upright, cormorantupright",
+                                        label: "Cormorant Upright"
                                     },
                                     {
-                                        value: 'Comic Sans MS',
-                                        label: 'Comic Sans MS'
+                                        value: "Cutive Mono, cutivemono",
+                                        label: "Cutive Mono"
                                     },
                                     {
-                                        value: 'Impact',
-                                        label: 'Impact'
+                                        value: "Dancing Script, dancingscript",
+                                        label: "Dancing Script"
+                                    },
+                                    {
+                                        value: "Farsan, farsan",
+                                        label: "Farsan"
+                                    },
+                                    {
+                                        value: "Fredericka the Great, frederickathegreat",
+                                        label: "Fredericka the Great"
+                                    },
+                                    {
+                                        value: "Give You Glory, giveyouglory",
+                                        label: "Give You Glory"
+                                    },
+                                    {
+                                        value: "Great Vibes, greatvibes",
+                                        label: "Great Vibes"
+                                    },
+                                    {
+                                        value: "Indie Flower, indieflower",
+                                        label: "Indie Flower"
+                                    },
+                                    {
+                                        value: "Kranky, kranky",
+                                        label: "Kranky"
+                                    },
+                                    {
+                                        value: "La Belle Aurore, labelleaurore",
+                                        label: "La Belle Aurore"
+                                    },
+                                    {
+                                        value: "Life Savers, lifesavers",
+                                        label: "Life Savers"
+                                    },
+                                    {
+                                        value: "Mandali, mandali",
+                                        label: "Mandali"
+                                    },
+                                    {
+                                        value: "Marvel, marvel",
+                                        label: "Marvel"
+                                    },
+                                    {
+                                        value: "Monoton, monoton",
+                                        label: "Monoton"
+                                    },
+                                    {
+                                        value: "Nanum Myeongjo, nanummyeongjo",
+                                        label: "Nanum Myeongjo"
+                                    },
+                                    {
+                                        value: "Nixie One, nixieone",
+                                        label: "Nixie One"
+                                    },
+                                    {
+                                        value: "Orbitron, orbitron",
+                                        label: "Orbitron"
+                                    },
+                                    {
+                                        value: "Poiret One, poiretone",
+                                        label: "Poiret One"
+                                    },
+                                    {
+                                        value: "Pompiere, pompiere",
+                                        label: "Pompiere"
+                                    },
+                                    {
+                                        value: "Princess Sofia, princesssofia",
+                                        label: "Princess Sofia"
+                                    },
+                                    {
+                                        value: "Reenie Beanie, reeniebeanie",
+                                        label: "Reenie Beanie"
+                                    },
+                                    {
+                                        value: "Rouge Script, rougescript",
+                                        label: "Rouge Script"
+                                    },
+                                    {
+                                        value: "Sacramento, sacramento",
+                                        label: "Sacramento"
+                                    },
+                                    {
+                                        value: "Sail, sail",
+                                        label: "Sail"
+                                    },
+                                    {
+                                        value: "Short Stack, shortstack",
+                                        label: "Short Stack"
+                                    },
+                                    {
+                                        value: "Special Elite, specialelite",
+                                        label: "Special Elite"
+                                    },
+                                    {
+                                        value: "Tulpen One, tulpenone",
+                                        label: "Tulpen One"
                                     }
                                 ]}
                                 onChange={this.waveformTextFontHandler}

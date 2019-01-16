@@ -182,7 +182,7 @@ class OrderService
         $maxShippingCharge = 0;
         $selectedShippingLineItemId = null;
         $totalItemCost = 0;
-
+        dd($indexedShippingCharges, $order->lineItems);
         foreach ($order->lineItems as $orderLineItem) {
             if($maxShippingCharge < $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge) {
                 $maxShippingCharge = $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge;

@@ -172,7 +172,7 @@ class OrderService
         $shippingCharges = ShippingChargeGroup::where('shipping_charge_group_id', $countryShippingCharge->shipping_charge_group_id)
             ->whereIn('pricing_list_id', $pricingListIds)->get();
         $indexedShippingCharges = [];
-
+        dd($indexedShippingCharges, $pricingListIds, $shippingCharges, $countryShippingCharge->shipping_charge_group_id);
         foreach ($shippingCharges as $shippingCharge) {
             $indexedShippingCharges[$shippingCharge->pricing_list_id] = $shippingCharge;
         }
@@ -182,7 +182,7 @@ class OrderService
         $maxShippingCharge = 0;
         $selectedShippingLineItemId = null;
         $totalItemCost = 0;
-        dd($indexedShippingCharges, $order->lineItems, $pricingListIds);
+
         foreach ($order->lineItems as $orderLineItem) {
             if($maxShippingCharge < $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge) {
                 $maxShippingCharge = $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge;

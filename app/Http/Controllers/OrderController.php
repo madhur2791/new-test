@@ -79,9 +79,9 @@ class OrderController extends Controller
         return view('address', ['orderId' => $orderId, 'address' => $address, 'countries' => $countries]);
     }
 
-    public function showPaymentPage(Request $request, $orderId) {
+    public function showPaymentPage(Request $request, $orderId, $paymentError = '') {
         $order = $this->orderService->getOrderDetails($orderId);
-        return view('payment', ['order' => $order]);
+        return view('payment', ['order' => $order, 'paymentError' => $paymentError]);
     }
 
     public function addAddressToOrder(Request $request, $orderId) {
@@ -137,7 +137,7 @@ class OrderController extends Controller
             );
         } else {
             return redirect()->action(
-                'OrderController@showPaymentFailedPage', ['orderId' => $orderId]
+                'OrderController@showPaymentPage', ['orderId' => $orderId, 'paymentError' => 'Payment failed, please try again.']
             );
         }
 

@@ -9,6 +9,13 @@
 <div class="row cartTableCotainer header-footer-clearence side-margins">
     <div class="col-md-8 col-sm-12 col-md-offset-2">
         <h3> Order Summary </h3>
+        @if ($paymentError)
+            <div class="alert alert-danger">
+                <ul>
+                    {{$paymentError}}
+                </ul>
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>

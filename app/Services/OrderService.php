@@ -172,7 +172,7 @@ class OrderService
         $shippingCharges = ShippingChargeGroup::where('shipping_charge_group_id', $countryShippingCharge->shipping_charge_group_id)
             ->whereIn('pricing_list_id', $pricingListIds)->get();
         $indexedShippingCharges = [];
-        dd($indexedShippingCharges, $pricingListIds, $shippingCharges, $countryShippingCharge->shipping_charge_group_id);
+
         foreach ($shippingCharges as $shippingCharge) {
             $indexedShippingCharges[$shippingCharge->pricing_list_id] = $shippingCharge;
         }

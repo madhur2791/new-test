@@ -25,25 +25,25 @@
                 <tbody>
                     <?php $total = 0 ?>
                     @foreach ($cartItems as $cartItem)
-                        <?php $total += $cartItem->price  ?>
+                        <?php $total += $cartItem->pricingList->price  ?>
                         <tr>
                             <td>
                                 <div class="cartImageContainer">
                                     <img class="cartImage" src="/generated-images/{{ $cartItem->generated_image_url }}" />
                                 </div>
                                 <div class="cartItemDescContainer">
-                                    {{ $cartItem->print_type }} {{ $cartItem->size }}
+                                    {{ $cartItem->pricingList->print_type }} {{ $cartItem->pricingList->size }}
                                     <br>
                                     <a href="/waveform/{{ $cartItem->waveformData->mediaFile->media_id }}/color">Edit</a> -
                                     <a href="/carts/{{ $cartItem->id }}/delete">Remove</a>
                                 </div>
                             </td>
-                            <td class="priceColumn">{{ $cartItem->price }}</td>
+                            <td class="priceColumn">{{ $cartItem->pricingList->price }}</td>
                         </tr>
                     @endforeach
                         <tr>
                             <td class="priceColumn">Total</td>
-                            <td class="priceColumn">&euro; {{ $total }}</td>
+                            <td class="priceColumn">$ {{ $total }}</td>
                         </tr>
                 </tbody>
             </table>

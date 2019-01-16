@@ -21,24 +21,26 @@
                 </tr>
             <thead>
             <tbody>
-                <?php $total = 0 ?>
                 @foreach ($order->lineItems as $lineItem)
-                    <?php $total += $lineItem->price  ?>
                     <tr>
                         <td>
                             <div class="cartImageContainer">
                                 <img class="cartImage" src="/generated-images/{{ $lineItem->generated_image_url }}" />
                             </div>
                             <div class="cartItemDescContainer">
-                                {{ $lineItem->print_type }} {{ $lineItem->size }}
+                                {{ $lineItem->pricingList->print_type }} {{ $lineItem->pricingList->size }}
                             </div>
                         </td>
-                        <td class="priceColumn">{{ $lineItem->price }}</td>
+                        <td class="priceColumn">{{ $lineItem->pricingList->price }}</td>
                     </tr>
                 @endforeach
                     <tr>
+                        <td class="priceColumn">Shipping Charge</td>
+                        <td class="priceColumn">${{ $order->shippingCharge + $order->additionalShippingCharge }}</td>
+                    </tr>
+                    <tr>
                         <td class="priceColumn">Total</td>
-                        <td class="priceColumn">&euro; {{ $total }}</td>
+                        <td class="priceColumn">${{ $order->totalCost }}</td>
                     </tr>
             </tbody>
         </table>
@@ -55,9 +57,17 @@
         </div>
         @if (in_array(Auth::user()->email, ['test@soundwavepic.com', 'madhur2791@gmail.com']))
         <div class="checkout-button">
-            <form action="/orders/{{ $order->id }}/confirm_payment" method="post">
+            <form action="/orders/{{ $order->id }}/confirm_payment" method="POST">
                 @csrf
-                <input class="btn btn-primary btn-lg" type="submit" value="Pay"/>
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_93NM7kruAu8YbszfnFAkCaEs"
+                    data-amount="{{ $order->totalCost * 100 }}"
+                    data-name="Sound Wave Picture"
+                    data-description="Widget"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-locale="auto">
+                </script>
             </form>
         </div>
         @endif

@@ -14,7 +14,7 @@
         <ul class="nav navbar-nav navbar-right">
         <li><a href="/waveform/upload">Create Now</a></li>
         <li><a href="/gallery">Gallery</a></li>
-        <li><a href="#">FAQ</a></li>
+        <li><a href="/faq">FAQ</a></li>
         @if (Auth::check())
         <li><a href="/logout">Logout</a></li>
         @else

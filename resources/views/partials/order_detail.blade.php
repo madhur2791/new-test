@@ -10,7 +10,7 @@
                 <img class="order-image" src="/generated-images/{{ $lineItem->generated_image_url }}" />
             </div>
             <div class="col-md-2 order-item-description">
-                {{ $lineItem->print_type }} <br/> {{ $lineItem->size }}
+                {{ $lineItem->pricingList->print_type }} <br/> {{ $lineItem->pricingList->size }}
             </div>
             <div class="col-md-1">
                 @if ($lineItem->waveformStyle->waveform_qr_code['enabled'] === true)
@@ -18,7 +18,7 @@
                 @endif
             </div>
             <div class="col-md-3 text-right">
-                @if ($lineItem->print_type === 'Digital')
+                @if ($lineItem->pricingList->print_type === 'Digital')
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#downloadModal{{$lineItem->id}}">Download</button>
                 <div id="downloadModal{{$lineItem->id}}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -40,14 +40,18 @@
                 @endif
             </div>
             <div class="col-md-2 text-right">
-                {{ $lineItem->price }}
+                ${{ $lineItem->pricingList->price }}
             </div>
         </div>
     @endforeach
     <div class="row">
             <div class="col-md-6 text-right"></div>
             <div class="col-md-6 text-right">
-                Total&nbsp;&nbsp; &euro; {{ $total }}
+                Shipping Charges&nbsp;&nbsp; ${{ $order->shippingCharge + $order->additionalShippingCharge }}
+            </div>
+            <div class="col-md-6 text-right"></div>
+            <div class="col-md-6 text-right">
+                Total&nbsp;&nbsp; ${{ $order->totalCost }}
             </div>
         </div>
 </div>

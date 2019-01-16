@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePricingListsTable extends Migration
+class CreateCountryShippingChargesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreatePricingListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pricing_lists', function (Blueprint $table) {
+        Schema::create('country_shipping_charges', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('size');
-            $table->double('price', 8, 2);
-            $table->text('print_type');
-            $table->integer('width');
-            $table->integer('height');
-            $table->double('qr_code_charge', 8, 2);
+            $table->unsignedInteger('country_id');
+            $table->unsignedInteger('shipping_charge_group_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreatePricingListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pricing_lists');
+        Schema::dropIfExists('country_shipping_charges');
     }
 }

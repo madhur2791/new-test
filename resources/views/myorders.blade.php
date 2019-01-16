@@ -29,7 +29,7 @@
                     <div class="row">
                             <div class="col-md-6 text-right"></div>
                             <div class="col-md-6 text-right">
-                                Total&nbsp;&nbsp; &euro; {{ $total }}
+                                Total&nbsp;&nbsp; $ {{ $total }}
                             </div>
                         </div>
                 </div>

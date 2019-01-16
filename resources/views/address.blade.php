@@ -80,7 +80,11 @@
             </div>
             <div class="form-group">
                 <label for="message">Country</label>
-                <input type="text" class="form-control" id="subject" name="country" value="{{$address && $address->country}}">
+                <select name="country_id" class="form-control">
+                    @foreach ($countries as $country)
+                        <option value="{{$country->id}}">{{$country->country_name}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Checkout">

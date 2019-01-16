@@ -13,6 +13,9 @@ use App\Order;
 use App\OrderAddress;
 use App\OrderLineItem;
 use App\WaveformStyle;
+use App\ShippingCountry;
+use Stripe\Stripe;
+use Stripe\Charge;
 
 class OrderController extends Controller
 {
@@ -37,7 +40,7 @@ class OrderController extends Controller
 
     public function showCart(Request $request) {
         $userId = $request->user()->id;
-        $cartItems = Cart::where('user_id', $userId)->get();
+        $cartItems = Cart::where('user_id', $userId)->with('pricingList')->get();
         $waveformData = WaveformStyle::whereIn('id', $cartItems->pluck('waveform_id'))->with('mediaFile')->get();
         $indexedWaveformData = [];
         foreach ($waveformData as $waveform) {
@@ -72,11 +75,12 @@ class OrderController extends Controller
 
     public function showAddressPage(Request $request, $orderId) {
         $address = OrderAddress::where('order_id', $orderId)->first();
-        return view('address', ['orderId' => $orderId, 'address' => $address]);
+        $countries = ShippingCountry::all();
+        return view('address', ['orderId' => $orderId, 'address' => $address, 'countries' => $countries]);
     }
 
     public function showPaymentPage(Request $request, $orderId) {
-        $order = Order::where('id', $orderId)->with('lineItems')->with('address')->first();
+        $order = $this->orderService->getOrderDetails($orderId);
         return view('payment', ['order' => $order]);
     }
 
@@ -91,7 +95,7 @@ class OrderController extends Controller
             'city' => 'required|max:255',
             'zipcode' => 'required|max:255',
             'state' => 'required|max:255',
-            'country' => 'required|max:255'
+            'country_id' => 'required|max:255'
         ]);
         $this->orderService->addAddressToOrder($request->all(), $orderId);
         return redirect()->action(
@@ -100,7 +104,7 @@ class OrderController extends Controller
     }
 
     public function showPaymentConfirmationPage(Request $request, $orderId) {
-        $order = Order::where('id', $orderId)->with('lineItems')->with('address')->first();
+        $order = $this->orderService->getOrderDetails($orderId);
         if($order->payment_status === 'PAID') {
             return view('payment_success', ['order' => $order]);
         }
@@ -110,13 +114,33 @@ class OrderController extends Controller
     }
 
     public function confirmPayment(Request $request, $orderId) {
-        Order::where("id", $orderId)->update([
-            'payment_status' => 'PAID'
+        $order = $this->orderService->getOrderDetails($orderId);
+
+        Stripe::setApiKey("sk_test_nvjvIDd8dtdcCIaQP5rw0ICV");
+
+
+        $token = $request->input('stripeToken');
+
+        $charge = Charge::create([
+            'amount' => $order->totalCost,
+            'currency' => 'usd',
+            'description' => 'Soundwave',
+            'source' => $token,
         ]);
-        Cart::where('user_id', $request->user()->id)->delete();
-        return redirect()->action(
-            'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]
-        );
+        if($charge->status === 'succeeded') {
+            Order::where("id", $orderId)->update([
+                'payment_status' => 'PAID'
+            ]);
+            Cart::where('user_id', $request->user()->id)->delete();
+            return redirect()->action(
+                'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]
+            );
+        } else {
+            return redirect()->action(
+                'OrderController@showPaymentFailedPage', ['orderId' => $orderId]
+            );
+        }
+
     }
 
     public function playMediaFile(Request $request, $waveformId) {

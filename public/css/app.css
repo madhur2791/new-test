@@ -953,11 +953,11 @@
 .media-player-waveform {
   background: #fff;
   max-height: 400px;
-  width: 90%;
 }
 
 .media-player-page video {
   background: #000;
   margin-top: 50px;
+  max-height: 500px;
 }
 

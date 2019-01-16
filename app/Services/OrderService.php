@@ -10,6 +10,8 @@ use App\OrderAddress;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use DOMDocument;
+use App\CountryShippingCharge;
+use App\ShippingChargeGroup;
 
 class OrderService
 {
@@ -59,8 +61,7 @@ class OrderService
 
         $mediaFileData->currentWaveformStyle->state = 'CART';
         $mediaFileData->currentWaveformStyle->save();
-
-        $sizeDetails = PricingList::find($cartData['priceOptions']['size_option']);
+        $pricingListId = PricingList::find($cartData['priceOptions']['size_option']);
 
         $generatedImageFileName = uniqid($user->id).'.svg';
         $mediaFileData->is_cropped = true;
@@ -79,16 +80,7 @@ class OrderService
 
         Cart::create([
             "waveform_id" => $mediaFileData->currentWaveformStyle->id,
-            "size" => $sizeDetails->size,
-            "price" => $sizeDetails->price,
-            "print_type" => $sizeDetails->print_type,
-            "additional_item" => $sizeDetails->additional_item,
-            "width" => $sizeDetails->width,
-            "height" => $sizeDetails->height,
-            "us_canada_gb_shipping_charges" => $sizeDetails->us_canada_gb_shipping_charges,
-            "eu_shipping_charges" => $sizeDetails->eu_shipping_charges,
-            "other_shipping_charges" => $sizeDetails->other_shipping_charges,
-            "qr_code_charge" => $sizeDetails->qr_code_charge,
+            "price_list_id" => $pricingListId->id,
             "generated_image_url" => $generatedImageFileName,
             "user_id" => $user->id
         ]);
@@ -132,16 +124,7 @@ class OrderService
         foreach($cartItems as $cartItem) {
             OrderLineItem::create([
                 "waveform_id" => $cartItem->waveform_id,
-                "size" => $cartItem->size,
-                "price" => $cartItem->price,
-                "print_type" => $cartItem->print_type,
-                "additional_item" => $cartItem->additional_item,
-                "width" => $cartItem->width,
-                "height" => $cartItem->height,
-                "us_canada_gb_shipping_charges" => $cartItem->us_canada_gb_shipping_charges,
-                "eu_shipping_charges" => $cartItem->eu_shipping_charges,
-                "other_shipping_charges" => $cartItem->other_shipping_charges,
-                "qr_code_charge" => $cartItem->qr_code_charge,
+                "price_list_id" => $cartItem->price_list_id,
                 "generated_image_url" => $cartItem->generated_image_url,
                 "order_id" => $foundOrder->id
             ]);
@@ -164,7 +147,7 @@ class OrderService
                 "city" => $addressDetails['city'],
                 "zipcode" => $addressDetails['zipcode'],
                 "state" => $addressDetails['state'],
-                "country" => $addressDetails['country'],
+                "country_id" => $addressDetails['country_id'],
             ]);
         }
         return OrderAddress::where("order_id", $orderId)->update([
@@ -177,9 +160,52 @@ class OrderService
             "city" => $addressDetails['city'],
             "zipcode" => $addressDetails['zipcode'],
             "state" => $addressDetails['state'],
-            "country" => $addressDetails['country'],
+            "country_id" => $addressDetails['country_id'],
         ]);
 
+    }
+
+    public function getOrderDetails($orderId) {
+        $order = Order::where('id', $orderId)->with(['lineItems', 'lineItems.pricingList'])->with('address')->first();
+        $pricingListIds = $order->lineItems->pluck('price_list_id');
+        $countryShippingCharge = CountryShippingCharge::where('country_id', $order->address->country_id)->first();
+        $shippingCharges = ShippingChargeGroup::where('shipping_charge_group_id', $countryShippingCharge->shipping_charge_group_id)
+            ->whereIn('pricing_list_id', $pricingListIds)->get();
+        $indexedShippingCharges = [];
+
+        foreach ($shippingCharges as $shippingCharge) {
+            $indexedShippingCharges[$shippingCharge->pricing_list_id] = $shippingCharge;
+        }
+
+        $modifiedLineItems = [];
+
+        $maxShippingCharge = 0;
+        $selectedShippingLineItemId = null;
+        $totalItemCost = 0;
+
+        foreach ($order->lineItems as $orderLineItem) {
+            if($maxShippingCharge < $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge) {
+                $maxShippingCharge = $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge;
+                $selectedShippingLineItemId = $orderLineItem->id;
+            }
+            $orderLineItem['shippingCharge'] = $indexedShippingCharges[$orderLineItem->price_list_id];
+            array_push($modifiedLineItems, $orderLineItem);
+            $totalItemCost += $orderLineItem->pricingList->price;
+        }
+
+        $additionalShippingCharge = 0;
+        foreach ($order->lineItems as $orderLineItem) {
+            if($selectedShippingLineItemId !== $orderLineItem->id) {
+                $additionalShippingCharge += $orderLineItem->pricingList->additional_item;
+            }
+        }
+
+        $order->lineItems = $modifiedLineItems;
+        $order->totalItemCost = $totalItemCost;
+        $order->shippingCharge = $maxShippingCharge;
+        $order->additionalShippingCharge = $additionalShippingCharge;
+        $order->totalCost = $totalItemCost + $maxShippingCharge + $additionalShippingCharge;
+        return $order;
     }
 }
 

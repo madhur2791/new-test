@@ -120,27 +120,36 @@ class OrderController extends Controller
 
 
         $token = $request->input('stripeToken');
-
-        $charge = Charge::create([
-            'amount' => $order->totalCost,
-            'currency' => 'usd',
-            'description' => 'Soundwave',
-            'source' => $token,
-        ]);
-        if($charge->status === 'succeeded') {
-            Order::where("id", $orderId)->update([
-                'payment_status' => 'PAID'
+        $errorMessage = null;
+        try {
+            $charge = Charge::create([
+                'amount' => $order->totalCost,
+                'currency' => 'usd',
+                'description' => 'Soundwave',
+                'source' => $token,
             ]);
-            Cart::where('user_id', $request->user()->id)->delete();
-            return redirect()->action(
-                'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]
-            );
-        } else {
+            if($charge->status === 'succeeded' && !is_null($errorMessage)) {
+                Order::where("id", $orderId)->update([
+                    'payment_status' => 'PAID'
+                ]);
+                Cart::where('user_id', $request->user()->id)->delete();
+                return redirect()->action(
+                    'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]
+                );
+            } else {
             return redirect()->action(
                 'OrderController@showPaymentPage', ['orderId' => $orderId, 'paymentError' => 'Payment failed, please try again.']
             );
         }
-
+        } catch(Exception $e) {
+            return redirect()->action(
+                'OrderController@showPaymentPage', ['orderId' => $orderId, 'paymentError' => $e->getMessage()]
+            );
+        } catch(\Stripe\Error\Base $e) {
+            return redirect()->action(
+                'OrderController@showPaymentPage', ['orderId' => $orderId, 'paymentError' => $e->getMessage()]
+            );
+        }
     }
 
     public function playMediaFile(Request $request, $waveformId) {

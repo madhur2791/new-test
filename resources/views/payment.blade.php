@@ -60,8 +60,8 @@
                     data-key="pk_test_93NM7kruAu8YbszfnFAkCaEs"
                     data-amount="{{ $order->totalCost * 100 }}"
                     data-name="Sound Wave Picture"
-                    data-description="Widget"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-description="soundwavepic.com"
+                    data-image="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/stripe-sound-icon.png"
                     data-locale="auto">
                 </script>
             </form>

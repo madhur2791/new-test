@@ -120,7 +120,7 @@ class OrderController extends Controller
 
 
         $token = $request->input('stripeToken');
-        $errorMessage = null;
+
         try {
             $charge = Charge::create([
                 'amount' => $order->totalCost,
@@ -128,7 +128,7 @@ class OrderController extends Controller
                 'description' => 'Soundwave',
                 'source' => $token,
             ]);
-            if($charge->status === 'succeeded' && !is_null($errorMessage)) {
+            if($charge->status === 'succeeded') {
                 Order::where("id", $orderId)->update([
                     'payment_status' => 'PAID'
                 ]);
@@ -137,10 +137,10 @@ class OrderController extends Controller
                     'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]
                 );
             } else {
-            return redirect()->action(
-                'OrderController@showPaymentPage', ['orderId' => $orderId, 'paymentError' => 'Payment failed, please try again.']
-            );
-        }
+                return redirect()->action(
+                    'OrderController@showPaymentPage', ['orderId' => $orderId, 'paymentError' => 'Payment failed, please try again.']
+                );
+            }
         } catch(Exception $e) {
             return redirect()->action(
                 'OrderController@showPaymentPage', ['orderId' => $orderId, 'paymentError' => $e->getMessage()]

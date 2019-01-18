@@ -123,7 +123,7 @@ class OrderController extends Controller
 
         try {
             $charge = Charge::create([
-                'amount' => $order->totalCost,
+                'amount' => $order->totalCost * 100,
                 'currency' => 'usd',
                 'description' => 'Soundwave',
                 'source' => $token,

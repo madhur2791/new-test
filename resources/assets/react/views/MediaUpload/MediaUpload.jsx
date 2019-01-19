@@ -144,11 +144,11 @@ class MediaUpload extends React.Component {
         ) {
             selectedMediaFile =
                 mediaFilesList.data[mediaFilesList.selectedMediaIndex];
-            if (selectedMediaFile.is_cropped !== 0){
-                NextButton = (<Link to={`/${selectedMediaFile.media_id}/color`} className="btn btn-primary upload-button">
-                            Next
-                        </Link>);
-            }
+
+            NextButton = (<Link to={`/${selectedMediaFile.media_id}/color`} className="btn btn-primary upload-button">
+                        Next
+                    </Link>);
+
 
 
             let selectedWaveformData = [];

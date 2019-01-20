@@ -51,13 +51,12 @@
                     </tr>
             </tbody>
         </table>
-        @if (in_array(Auth::user()->email, ['test@soundwavepic.com', 'madhur2791@gmail.com']))
         <div class="checkout-button">
             <form action="/orders/{{ $order->id }}/confirm_payment" method="POST">
                 @csrf
                 <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_93NM7kruAu8YbszfnFAkCaEs"
+                    data-key="pk_live_kys5dE1IBHcO5z4n5eZdZSgc"
                     data-amount="{{ $order->totalCost * 100 }}"
                     data-name="Sound Wave Picture"
                     data-description="soundwavepic.com"
@@ -66,14 +65,14 @@
                 </script>
             </form>
         </div>
-        @endif
         <div class="row">
             <div class="col-md-12 col-sm-12 orderAddressSection">
                 <h4>Address</h4>
                 <div>{{$order->address->first_name}} {{ $order->address->last_name }}</div>
                 <div>{{$order->address->address_line_1}} {{ $order->address->address_line_2 }}</div>
+                <div>{{$order->address->city}}</div>
                 <div>{{$order->address->state}} {{ $order->address->zipcode }}</div>
-                <div>{{$order->address->country}}</div>
+                <div>{{$order->address->country->country_name}}</div>
                 <div>Phone: {{$order->address->phone_number}}</div>
                 <div>Email: {{$order->address->email}} </div>
             </div>

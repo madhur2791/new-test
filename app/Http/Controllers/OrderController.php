@@ -116,8 +116,7 @@ class OrderController extends Controller
     public function confirmPayment(Request $request, $orderId) {
         $order = $this->orderService->getOrderDetails($orderId);
 
-        Stripe::setApiKey("sk_test_nvjvIDd8dtdcCIaQP5rw0ICV");
-
+        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         $token = $request->input('stripeToken');
 

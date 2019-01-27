@@ -79,7 +79,7 @@ body {
     top: 0px;
     height: 14px;
     width: 85%;
-    margin: 0 7.5%;
+    margin: 0 calc(7.5% - 5px);
     border-radius: 6px;
     -ms-touch-action: none;
     touch-action: none;
@@ -343,7 +343,7 @@ body {
 .waveform-canvas-container {
     padding: 30px 6%;
     background: #CCCCCC;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .range-slider-time-display{

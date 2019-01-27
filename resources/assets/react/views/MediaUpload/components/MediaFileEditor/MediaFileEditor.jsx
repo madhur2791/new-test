@@ -152,7 +152,7 @@ class MediaEditor extends React.Component {
                 <div
                     id="audio-seeker"
                     style={{
-                        left: `calc(${(this.state.currentTime * audioSeekerWidthFactor) + horizantalMarginPercentage}% - 10px)`
+                        left: `calc(${(this.state.currentTime * audioSeekerWidthFactor) + horizantalMarginPercentage}% - 15px)`
                     }}
                 />
                 <div
@@ -165,7 +165,7 @@ class MediaEditor extends React.Component {
                     className="crop-overlay crop-overlay-1"
                     style={{
                         width: `calc(${(this.state.startTime * audioSeekerWidthFactor)}%)`,
-                        left: `${horizantalMarginPercentage}%`
+                        left: `calc(${horizantalMarginPercentage}% - 5px)`
                     }}
                 >
                 <span className="range-slider-time-display range-slider-time-display-1" >
@@ -176,7 +176,7 @@ class MediaEditor extends React.Component {
                     className="crop-overlay crop-overlay-2"
                     style={{
                         width: `calc(${((100 - this.state.endTime) * audioSeekerWidthFactor)}%)`,
-                        right: `${horizantalMarginPercentage}%`
+                        right: `calc(${horizantalMarginPercentage}% + 5px)`
                     }}
                 >
                     <span className="range-slider-time-display range-slider-time-display-2" >

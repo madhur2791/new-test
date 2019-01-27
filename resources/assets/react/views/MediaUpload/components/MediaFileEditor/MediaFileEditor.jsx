@@ -158,7 +158,7 @@ class MediaEditor extends React.Component {
                 <div
                     className="audio-seeker-needle"
                     style={{
-                        left: `calc(${(this.state.currentTime * audioSeekerWidthFactor) + horizantalMarginPercentage}% - 1px)`
+                        left: `calc(${(this.state.currentTime * audioSeekerWidthFactor) + horizantalMarginPercentage}% - 6px)`
                     }}
                 />
                 <div

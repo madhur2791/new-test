@@ -120,6 +120,12 @@ class MediaPlayer extends React.Component {
                                     type="image/svg+xml"
                                     data={`/generated-images/${this.state.mediaFileData.order_line_item.generated_image_url}`}>
                                 </object>
+                                <div
+                                    className="audio-seeker-needle"
+                                    style={{
+                                        left: `calc(${13.5 + (this.state.played/100) * 73}%)`
+                                    }}
+                                />
                             </div>
                             <ReactPlayer
                                 url={`${this.state.mediaFileData.baseUrl}/${this.state.mediaFileData.waveform.media_file.displayed_media_file_url}`}

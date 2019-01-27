@@ -14,7 +14,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>
+                        <th colspan="2">
                             ITEM DESCRIPTION
                         </th>
                         <th class="priceColumn">
@@ -23,14 +23,29 @@
                     </tr>
                 <thead>
                 <tbody>
-                    <?php $total = 0 ?>
+                    <?php
+                        $total = 0;
+                        $qrCodeCharge = 0;
+                    ?>
                     @foreach ($cartItems as $cartItem)
-                        <?php $total += $cartItem->pricingList->price  ?>
+                        <?php
+                            $total += $cartItem->pricingList->price;
+                            if($cartItem->waveformStyle->waveform_qr_code['enabled'] === true) {
+                                $qrCodeCharge += $cartItem->pricingList->qr_code_charge;
+                                $total += $cartItem->pricingList->qr_code_charge;
+                            }
+                        ?>
                         <tr>
                             <td>
                                 <div class="cartImageContainer">
-                                    <img class="cartImage" src="/generated-images/{{ $cartItem->generated_image_url }}" />
+                                    <object
+                                        class="cartImage"
+                                        type="image/svg+xml"
+                                        data="/generated-images/{{ $cartItem->generated_image_url }}">
+                                    </object>
                                 </div>
+                            </td>
+                            <td>
                                 <div class="cartItemDescContainer">
                                     {{ $cartItem->pricingList->print_type }} {{ $cartItem->pricingList->size }}
                                     <br>
@@ -38,12 +53,16 @@
                                     <a href="/carts/{{ $cartItem->id }}/delete">Remove</a>
                                 </div>
                             </td>
-                            <td class="priceColumn">{{ $cartItem->pricingList->price }}</td>
+                            <td class="priceColumn">${{ $cartItem->pricingList->price }}</td>
                         </tr>
                     @endforeach
                         <tr>
-                            <td class="priceColumn">Total</td>
-                            <td class="priceColumn">$ {{ $total }}</td>
+                            <td class="priceColumn" colspan="2">QR Code Charge</td>
+                            <td class="priceColumn">${{ $qrCodeCharge }}</td>
+                        </tr>
+                        <tr>
+                            <td class="priceColumn" colspan="2">Total</td>
+                            <td class="priceColumn">${{ $total }}</td>
                         </tr>
                 </tbody>
             </table>

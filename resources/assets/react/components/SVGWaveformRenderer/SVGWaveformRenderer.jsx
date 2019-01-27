@@ -225,8 +225,10 @@ const getTextSvg = (uniqueNumber, textDetails, canvasDetails) => {
 
     switch(textDetails.vertical_alignment) {
         case 'top':
-            position.y = 20 + textDetails.font_size;
-            verticalAlignment = "baseline";
+            // position.y = 20 + textDetails.font_size;
+            // verticalAlignment = "baseline";
+            position.y = 20;
+            verticalAlignment = "hanging";
         break;
         case 'bottom':
             position.y = canvasDetails.height - 20;
@@ -236,6 +238,8 @@ const getTextSvg = (uniqueNumber, textDetails, canvasDetails) => {
             position.y = canvasDetails.height / 2;
             verticalAlignment = "central";
         break;
+        // auto | baseline | before-edge | text-before-edge | middle | central | after-edge | text-after-edge | ideographic | alphabetic | hanging | mathematical | inherit
+
     }
     return (
         <text
@@ -244,7 +248,7 @@ const getTextSvg = (uniqueNumber, textDetails, canvasDetails) => {
             y={position.y}
             fill={`#${textDetails.font_color}`}
             textAnchor={horizantalAlignment}
-            dominantBaseline={verticalAlignment}
+            alignmentBaseline={verticalAlignment}
             fontSize={textDetails.font_size}
             fontFamily={textDetails.font_family}
         >
@@ -421,8 +425,8 @@ class SVGWaveformRenderer extends React.Component {
             canvasWidth = canvasWidth - horizantalMargin;
             canvasHeight = canvasHeight - verticalMargin;
             const xShift = lineWidth / 2;
-            const centerX = Math.ceil(canvasWidth / 2);
-            const centerY = Math.ceil(canvasHeight / 2);
+            const centerX = Math.ceil((canvasWidth + horizantalMargin) / 2);
+            const centerY = Math.ceil((canvasHeight + verticalMargin) / 2);
             const amplificationFactor = canvasHeight * 1 / 3;
 
             let samplingRate = 1;
@@ -506,8 +510,8 @@ class SVGWaveformRenderer extends React.Component {
             if (textDetails && textDetails.text) {
                 svgElements.push(
                     getTextSvg(reSampledDataPoints.length, textDetails, {
-                        width: canvasWidth,
-                        height: canvasHeight
+                        width: canvasWidth + horizantalMargin,
+                        height: canvasHeight + verticalMargin
                     })
                 );
             }

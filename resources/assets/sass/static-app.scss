@@ -40,7 +40,8 @@ body {
 }
 
 .cartImage {
-    width: 100px;
+    width: 150px;
+    height: 100px;
     background: #fff;
 }
 
@@ -356,4 +357,25 @@ table {
     th {
         padding: 10px;
     }
+}
+
+.cookie-policy-container {
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    padding: 20px;
+    border: 2px solid #ccc;
+    z-index: 1000;
+    display: none;
+}
+
+#cookie-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0px 7px;
+    background: #ccc;
+    margin-right: 2px;
+    margin-top: 4px;
+    cursor: pointer;
 }

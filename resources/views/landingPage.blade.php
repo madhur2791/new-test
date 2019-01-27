@@ -189,37 +189,37 @@
       </div>
       <div class="owl-carousel owl-work probootstrap-animate">
         <div class="item">
-          <a href="portfolio-single.html">
+          <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_41.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
-          <a href="portfolio-single.html">
+          <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_51.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
-          <a href="portfolio-single.html">
+          <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_61.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
-          <a href="portfolio-single.html">
+          <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_71.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
-          <a href="portfolio-single.html">
+          <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_81.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
-          <a href="portfolio-single.html">
+          <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_91.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
-          <a href="portfolio-single.html">
+          <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_101.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
@@ -319,7 +319,9 @@
           </div>
           <div class="clearfix visible-sm-block visible-xs-block"></div>
           <div class="col-md-3 col-sm-6 col-xs-6 text-center client-logo probootstrap-animate">
-            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-pinterest-50.png" class="img-responsive client-image" alt="Free Bootstrap Template by uicookies.com">
+            <a href="https://www.pinterest.com/soundwavepic">
+                <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-pinterest-50.png" class="img-responsive client-image" alt="Free Bootstrap Template by uicookies.com">
+             </a>
           </div>
           <div class="col-md-3 col-sm-6 col-xs-6 text-center client-logo probootstrap-animate">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/icons8-quora-filled-100.png" class="img-responsive client-image" alt="Free Bootstrap Template by uicookies.com">

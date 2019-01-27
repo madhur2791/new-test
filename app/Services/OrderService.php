@@ -166,7 +166,7 @@ class OrderService
     }
 
     public function getOrderDetails($orderId) {
-        $order = Order::where('id', $orderId)->with(['lineItems', 'lineItems.pricingList'])->with('address')->first();
+        $order = Order::where('id', $orderId)->with(['lineItems', 'lineItems.pricingList', 'lineItems.waveformStyle'])->with('address')->first();
         $pricingListIds = $order->lineItems->pluck('price_list_id');
         $countryShippingCharge = CountryShippingCharge::where('country_id', $order->address->country_id)->first();
         $shippingCharges = ShippingChargeGroup::where('shipping_charge_group_id', $countryShippingCharge->shipping_charge_group_id)
@@ -182,7 +182,7 @@ class OrderService
         $maxShippingCharge = 0;
         $selectedShippingLineItemId = null;
         $totalItemCost = 0;
-
+        $qrCodeCharge = 0;
         foreach ($order->lineItems as $orderLineItem) {
             if($maxShippingCharge < $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge) {
                 $maxShippingCharge = $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge;
@@ -191,6 +191,10 @@ class OrderService
             $orderLineItem['shippingCharge'] = $indexedShippingCharges[$orderLineItem->price_list_id];
             array_push($modifiedLineItems, $orderLineItem);
             $totalItemCost += $orderLineItem->pricingList->price;
+
+            if ($orderLineItem->waveformStyle->waveform_qr_code['enabled'] === true) {
+                $qrCodeCharge += $orderLineItem->pricingList->qr_code_charge;
+            }
         }
 
         $additionalShippingCharge = 0;
@@ -204,7 +208,8 @@ class OrderService
         $order->totalItemCost = $totalItemCost;
         $order->shippingCharge = $maxShippingCharge;
         $order->additionalShippingCharge = $additionalShippingCharge;
-        $order->totalCost = $totalItemCost + $maxShippingCharge + $additionalShippingCharge;
+        $order->qrCodeCharge = $qrCodeCharge;
+        $order->totalCost = $totalItemCost + $maxShippingCharge + $additionalShippingCharge + $qrCodeCharge;
         return $order;
     }
 }

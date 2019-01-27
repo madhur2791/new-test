@@ -79,6 +79,11 @@ class HomeController extends Controller
         return view('privacy_policy');
     }
 
+    public function showCookiePolicyPage()
+    {
+        return view('cookie-policy');
+    }
+
     public function faqPage()
     {
         return view('faq');

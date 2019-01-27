@@ -13,4 +13,9 @@ class Cart extends Model
     {
         return $this->belongsTo('App\PricingList', 'price_list_id');
     }
+
+    public function waveformStyle()
+    {
+        return $this->belongsTo('App\WaveformStyle', 'waveform_id');
+    }
 }

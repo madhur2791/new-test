@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-md-offset-2 auth-container">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header" style="font-size: 30px; height: 40px">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="/password/reset" aria-label="{{ __('Reset Password') }}">

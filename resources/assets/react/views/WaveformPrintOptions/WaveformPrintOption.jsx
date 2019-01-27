@@ -217,7 +217,7 @@ class WaveformPrintOption extends React.Component {
                             <div className="row">
                                 <div className="col-md-12 sidebar-tool-options-container">
                                     <div className="row media-list-conatiner">
-                                        <label className="sidebarToolHeadingBig">PRINT OPTION</label>
+                                        <label className="sidebarToolHeadingBig">Print</label>
                                         <div className="sidebarToolBoxContainer">
                                             <span className="sidebarToolHeadingSmall">Download your artwork, or we can print it for you.</span>
                                             <div className="sidebarToolContainer">

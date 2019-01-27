@@ -45,4 +45,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     @endif
 </body>
+<script>
+    document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+@include('partials.cookie-policy')
 </html>

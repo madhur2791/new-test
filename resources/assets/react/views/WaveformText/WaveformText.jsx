@@ -6,6 +6,128 @@ import Select from 'react-select';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
+const allowedFontFamilyList = [
+    {
+        value: "Aguafina Script, aguafinascrip",
+        label: "Aguafina Script"
+    },
+    {
+        value: "Amatic SC, amaticsc",
+        label: "Amatic SC"
+    },
+    {
+        value: "Cormorant SC, cormorantsc",
+        label: "Cormorant SC"
+    },
+    {
+        value: "Cormorant Upright, cormorantupright",
+        label: "Cormorant Upright"
+    },
+    {
+        value: "Cutive Mono, cutivemono",
+        label: "Cutive Mono"
+    },
+    {
+        value: "Dancing Script, dancingscript",
+        label: "Dancing Script"
+    },
+    {
+        value: "Farsan, farsan",
+        label: "Farsan"
+    },
+    {
+        value: "Fredericka the Great, frederickathegreat",
+        label: "Fredericka the Great"
+    },
+    {
+        value: "Give You Glory, giveyouglory",
+        label: "Give You Glory"
+    },
+    {
+        value: "Great Vibes, greatvibes",
+        label: "Great Vibes"
+    },
+    {
+        value: "Indie Flower, indieflower",
+        label: "Indie Flower"
+    },
+    {
+        value: "Kranky, kranky",
+        label: "Kranky"
+    },
+    {
+        value: "La Belle Aurore, labelleaurore",
+        label: "La Belle Aurore"
+    },
+    {
+        value: "Life Savers, lifesavers",
+        label: "Life Savers"
+    },
+    {
+        value: "Mandali, mandali",
+        label: "Mandali"
+    },
+    {
+        value: "Marvel, marvel",
+        label: "Marvel"
+    },
+    {
+        value: "Monoton, monoton",
+        label: "Monoton"
+    },
+    {
+        value: "Nanum Myeongjo, nanummyeongjo",
+        label: "Nanum Myeongjo"
+    },
+    {
+        value: "Nixie One, nixieone",
+        label: "Nixie One"
+    },
+    {
+        value: "Orbitron, orbitron",
+        label: "Orbitron"
+    },
+    {
+        value: "Poiret One, poiretone",
+        label: "Poiret One"
+    },
+    {
+        value: "Pompiere, pompiere",
+        label: "Pompiere"
+    },
+    {
+        value: "Princess Sofia, princesssofia",
+        label: "Princess Sofia"
+    },
+    {
+        value: "Reenie Beanie, reeniebeanie",
+        label: "Reenie Beanie"
+    },
+    {
+        value: "Rouge Script, rougescript",
+        label: "Rouge Script"
+    },
+    {
+        value: "Sacramento, sacramento",
+        label: "Sacramento"
+    },
+    {
+        value: "Sail, sail",
+        label: "Sail"
+    },
+    {
+        value: "Short Stack, shortstack",
+        label: "Short Stack"
+    },
+    {
+        value: "Special Elite, specialelite",
+        label: "Special Elite"
+    },
+    {
+        value: "Tulpen One, tulpenone",
+        label: "Tulpen One"
+    }
+];
 
 class WaveformText extends React.Component {
     constructor(props) {
@@ -23,7 +145,10 @@ class WaveformText extends React.Component {
         this.waveformTextColorHandler = this.waveformTextColorHandler.bind(this);
         this.waveformTextHorizantalAlignment = this.waveformTextHorizantalAlignment.bind(this);
         this.waveformTextVerticalAlignment = this.waveformTextVerticalAlignment.bind(this);
-
+        this.indexedFontFamilyList = {};
+        allowedFontFamilyList.forEach((fontFamily) => {
+            this.indexedFontFamilyList[fontFamily.value] = fontFamily
+        });
         const { mediaFileData, match } = this.props;
         const selectedMediaFileData = mediaFileData[match.params.mediaId];
         let textDetails = {};
@@ -229,140 +354,26 @@ class WaveformText extends React.Component {
                     />
                 </div>
             );
-
+            const customStyles = {
+                option: (provided, state) => ({
+                    ...provided,
+                    fontFamily: state.value
+                })
+            };
             textFormatters = (
                 <div>
                     <div className="sidebarToolBoxContainer">
                         <label className="sidebarToolHeadingSmall">Select Font family</label>
                         <div className="sidebarToolContainer">
+
                             <Select
                                 className="basic-single"
+                                styles={customStyles}
                                 defaultValue={{
                                     value: this.state.fontFamilyValue,
-                                    label: this.state.fontFamilyValue
+                                    label: this.indexedFontFamilyList[this.state.fontFamilyValue].label
                                 }}
-                                options={[
-                                    {
-                                        value: "Aguafina Script, aguafinascrip",
-                                        label: "Aguafina Script"
-                                    },
-                                    {
-                                        value: "Amatic SC, amaticsc",
-                                        label: "Amatic SC"
-                                    },
-                                    {
-                                        value: "Cormorant SC, cormorantsc",
-                                        label: "Cormorant SC"
-                                    },
-                                    {
-                                        value: "Cormorant Upright, cormorantupright",
-                                        label: "Cormorant Upright"
-                                    },
-                                    {
-                                        value: "Cutive Mono, cutivemono",
-                                        label: "Cutive Mono"
-                                    },
-                                    {
-                                        value: "Dancing Script, dancingscript",
-                                        label: "Dancing Script"
-                                    },
-                                    {
-                                        value: "Farsan, farsan",
-                                        label: "Farsan"
-                                    },
-                                    {
-                                        value: "Fredericka the Great, frederickathegreat",
-                                        label: "Fredericka the Great"
-                                    },
-                                    {
-                                        value: "Give You Glory, giveyouglory",
-                                        label: "Give You Glory"
-                                    },
-                                    {
-                                        value: "Great Vibes, greatvibes",
-                                        label: "Great Vibes"
-                                    },
-                                    {
-                                        value: "Indie Flower, indieflower",
-                                        label: "Indie Flower"
-                                    },
-                                    {
-                                        value: "Kranky, kranky",
-                                        label: "Kranky"
-                                    },
-                                    {
-                                        value: "La Belle Aurore, labelleaurore",
-                                        label: "La Belle Aurore"
-                                    },
-                                    {
-                                        value: "Life Savers, lifesavers",
-                                        label: "Life Savers"
-                                    },
-                                    {
-                                        value: "Mandali, mandali",
-                                        label: "Mandali"
-                                    },
-                                    {
-                                        value: "Marvel, marvel",
-                                        label: "Marvel"
-                                    },
-                                    {
-                                        value: "Monoton, monoton",
-                                        label: "Monoton"
-                                    },
-                                    {
-                                        value: "Nanum Myeongjo, nanummyeongjo",
-                                        label: "Nanum Myeongjo"
-                                    },
-                                    {
-                                        value: "Nixie One, nixieone",
-                                        label: "Nixie One"
-                                    },
-                                    {
-                                        value: "Orbitron, orbitron",
-                                        label: "Orbitron"
-                                    },
-                                    {
-                                        value: "Poiret One, poiretone",
-                                        label: "Poiret One"
-                                    },
-                                    {
-                                        value: "Pompiere, pompiere",
-                                        label: "Pompiere"
-                                    },
-                                    {
-                                        value: "Princess Sofia, princesssofia",
-                                        label: "Princess Sofia"
-                                    },
-                                    {
-                                        value: "Reenie Beanie, reeniebeanie",
-                                        label: "Reenie Beanie"
-                                    },
-                                    {
-                                        value: "Rouge Script, rougescript",
-                                        label: "Rouge Script"
-                                    },
-                                    {
-                                        value: "Sacramento, sacramento",
-                                        label: "Sacramento"
-                                    },
-                                    {
-                                        value: "Sail, sail",
-                                        label: "Sail"
-                                    },
-                                    {
-                                        value: "Short Stack, shortstack",
-                                        label: "Short Stack"
-                                    },
-                                    {
-                                        value: "Special Elite, specialelite",
-                                        label: "Special Elite"
-                                    },
-                                    {
-                                        value: "Tulpen One, tulpenone",
-                                        label: "Tulpen One"
-                                    }
-                                ]}
+                                options={allowedFontFamilyList}
                                 onChange={this.waveformTextFontHandler}
                             />
 

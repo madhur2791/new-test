@@ -185,7 +185,14 @@ class MediaUpload extends React.Component {
                                     <div className="row">
                                         <div className="col-md-12 upload-button-container">
                                             <FileUploadContainer >
-                                                Upload Audio
+                                                <span style={{
+                                                    display: "block"
+                                                }}>Upload</span>
+                                                <label style={{
+                                                    display: "block",
+                                                    fontSize: "10px",
+                                                    textTransform: "none"
+                                                }}>(Audio or Video)</label>
                                             </FileUploadContainer>
                                             <AudioRecorderContainer />
                                         </div>

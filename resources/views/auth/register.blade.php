@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-md-offset-2 auth-container">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header" style="font-size: 30px; height: 40px">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="/register" aria-label="{{ __('Register') }}">
@@ -53,14 +53,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -71,6 +63,11 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-12 offset-md-12">
                                 By clicking register, you agree to our <a href="/terms-and-conditions">Terms & Conditions</a> and <a href="/privacy-policy">Privacy Policy</a>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-12 offset-md-12">
+                                Already have an account?<a href="/login">Log in</a>
                             </div>
                         </div>
                     </form>

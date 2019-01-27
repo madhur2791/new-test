@@ -172,8 +172,19 @@ class AudioRecorder extends React.Component {
                 <button
                     className="btn btn-primary record-audio-button"
                     onClick={this.handleShowRecordingRecord}
+                    style={{
+                        borderRadius: "0px",
+                        padding: "5px 30px"
+                    }}
                 >
-                    Record Audio
+                    <span style={{
+                        display: "block"
+                    }}>Record</span>
+                    <label style={{
+                        display: "block",
+                        fontSize: "10px",
+                        textTransform: "none"
+                    }}>(Any Sound)</label>
                 </button>
                 <HandleOutsideClick
                     handleOutsideClick={this.handleHideRecordingRecord}

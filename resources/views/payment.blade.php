@@ -46,6 +46,11 @@
                         <td class="priceColumn">${{ $order->shippingCharge + $order->additionalShippingCharge }}</td>
                     </tr>
                     <tr>
+                        <td class="priceColumn">QR Code Charge</td>
+                        <td class="priceColumn">${{ $order->qrCodeCharge }}</td>
+                    </tr>
+
+                    <tr>
                         <td class="priceColumn">Total</td>
                         <td class="priceColumn">${{ $order->totalCost }}</td>
                     </tr>
@@ -56,7 +61,7 @@
                 @csrf
                 <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_live_kys5dE1IBHcO5z4n5eZdZSgc"
+                    data-key="{{env('STRIPE_PUBLIC_KEY')}}"
                     data-amount="{{ $order->totalCost * 100 }}"
                     data-name="Sound Wave Picture"
                     data-description="soundwavepic.com"

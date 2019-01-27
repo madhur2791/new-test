@@ -40,7 +40,7 @@ class OrderController extends Controller
 
     public function showCart(Request $request) {
         $userId = $request->user()->id;
-        $cartItems = Cart::where('user_id', $userId)->with('pricingList')->get();
+        $cartItems = Cart::where('user_id', $userId)->with('pricingList', 'waveformStyle')->get();
         $waveformData = WaveformStyle::whereIn('id', $cartItems->pluck('waveform_id'))->with('mediaFile')->get();
         $indexedWaveformData = [];
         foreach ($waveformData as $waveform) {

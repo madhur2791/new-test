@@ -170,7 +170,7 @@ class WaveformColor extends React.Component {
                             <div className="row">
                                 <div className="col-md-12 sidebar-tool-options-container">
                                     <div className="row media-list-conatiner">
-                                        <label className="sidebarToolHeadingBig">COLOR</label>
+                                        <label className="sidebarToolHeadingBig">Color</label>
                                         <div className="sidebarToolBoxContainer">
                                             <label className="sidebarToolHeadingSmall">Select coloring type</label>
                                             <div className="sidebarToolContainer">

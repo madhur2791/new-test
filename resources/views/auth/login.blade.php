@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-md-offset-2 auth-container">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header" style="font-size: 30px; height: 40px">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="/login" aria-label="{{ __('Login') }}">

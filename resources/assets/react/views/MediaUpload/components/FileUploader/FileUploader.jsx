@@ -31,6 +31,10 @@ class FileUploader extends React.Component {
                     className="btn btn-primary upload-button"
                     accept="audio/*, video/*"
                     maxSize={40000000}
+                    style={{
+                        borderRadius: "0px",
+                        padding: "5px 30px"
+                    }}
                 >
                 {this.props.children}
                 </Dropzone>

@@ -14,6 +14,10 @@
 
 Auth::routes();
 
+Route::get('/home', function () {
+    return redirect()->action('HomeController@landingPage');
+});
+
 Route::get('/', 'HomeController@landingPage');
 
 Route::get('/contact', 'HomeController@contactPage');
@@ -29,6 +33,8 @@ Route::get('/faq', 'HomeController@faqPage');
 Route::get('/terms-and-conditions', 'HomeController@showTAndCPage');
 
 Route::get('/privacy-policy', 'HomeController@showPrivacyPolicyPage');
+
+Route::get('/cookie-policy', 'HomeController@showCookiePolicyPage');
 
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 

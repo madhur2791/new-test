@@ -42,4 +42,7 @@
         </main>
     </div>
 </body>
+<script>
+    document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
 </html>

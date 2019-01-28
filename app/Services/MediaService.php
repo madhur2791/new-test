@@ -39,7 +39,7 @@ class MediaService
         ];
         $this->defaultText = [
             "text" => "",
-            "font_family" => "Arial",
+            "font_family" => "Aguafina Script, aguafinascrip",
             "font_size" => "20",
             "font_color" => "000",
             "vertical_alignment" => 'top',

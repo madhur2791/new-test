@@ -371,7 +371,7 @@ class WaveformText extends React.Component {
                                 styles={customStyles}
                                 defaultValue={{
                                     value: this.state.fontFamilyValue,
-                                    label: this.indexedFontFamilyList[this.state.fontFamilyValue].label
+                                    label: this.indexedFontFamilyList[this.state.fontFamilyValue] && this.indexedFontFamilyList[this.state.fontFamilyValue].label || this.state.fontFamilyValue
                                 }}
                                 options={allowedFontFamilyList}
                                 onChange={this.waveformTextFontHandler}

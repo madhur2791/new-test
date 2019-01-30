@@ -56,6 +56,7 @@
                     </tr>
             </tbody>
         </table>
+        @if (in_array(Auth::user()->email, ['test@soundwavepic.com']))
         <div class="checkout-button">
             <form action="/orders/{{ $order->id }}/confirm_payment" method="POST">
                 @csrf
@@ -70,6 +71,7 @@
                 </script>
             </form>
         </div>
+        @endif
         <div class="row">
             <div class="col-md-12 col-sm-12 orderAddressSection">
                 <h4>Address</h4>

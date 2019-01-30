@@ -227,12 +227,12 @@ const getTextSvg = (uniqueNumber, textDetails, canvasDetails) => {
         case 'top':
             // position.y = 20 + textDetails.font_size;
             // verticalAlignment = "baseline";
-            position.y = 20;
+            position.y = 30;
             verticalAlignment = "hanging";
         break;
         case 'bottom':
             position.y = canvasDetails.height - 20;
-            verticalAlignment = "baseline";
+            verticalAlignment = "ideographic";
         break;
         case 'middle':
             position.y = canvasDetails.height / 2;

@@ -14,22 +14,20 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="order-container">
                     <div>#{{ $order->id }}</div>
-                    <?php $total = 0 ?>
                     @foreach ($order->lineItems as $lineItem)
-                        <?php $total += $lineItem->price  ?>
                         <div class="row">
                             <div class="col-md-6">
-                                {{ $lineItem->print_type }} {{ $lineItem->size }}
+                                {{ $lineItem->pricingList->print_type }} <br/> {{ $lineItem->pricingList->size }}
                             </div>
                             <div class="col-md-6 text-right">
-                                {{ $lineItem->price }}
+                                ${{ $lineItem->pricingList->price }}
                             </div>
                         </div>
                     @endforeach
                     <div class="row">
                             <div class="col-md-6 text-right"></div>
                             <div class="col-md-6 text-right">
-                                Total&nbsp;&nbsp; $ {{ $total }}
+                                Total&nbsp;&nbsp; $ {{ $order->totalCost }}
                             </div>
                         </div>
                 </div>

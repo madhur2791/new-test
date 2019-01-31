@@ -201,15 +201,15 @@ class OrderController extends Controller
     public function showMyOrdersPage(Request $request) {
         $orders = Order::where('user_id', $request->user()->id)
         ->where('payment_status', 'PAID')
+        ->orderBy('id', 'desc')
         ->with('lineItems.waveformStyle')->with('address')->get();
-        return view('myorders', ['orders' => $orders]);
+        return view('myorders', ['orders' => $orders->map(function ($order) {
+            return $this->orderService->getOrderDetails($order->id);
+        })]);
     }
 
     public function showOrderDetailPage(Request $request, $orderId) {
-        $order = Order::where('user_id', $request->user()->id)
-            ->where('id', $orderId)
-            ->where('payment_status', 'PAID')
-            ->with('lineItems')->with('address')->first();
+        $order = $this->orderService->getOrderDetails($orderId);
         return view('order', ['order' => $order]);
     }
 

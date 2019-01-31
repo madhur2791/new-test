@@ -167,6 +167,10 @@ class OrderService
 
     public function getOrderDetails($orderId) {
         $order = Order::where('id', $orderId)->with(['lineItems', 'lineItems.pricingList', 'lineItems.waveformStyle'])->with('address')->first();
+        return $this->computeOrderDetails($order);
+    }
+
+    public function computeOrderDetails($order) {
         $pricingListIds = $order->lineItems->pluck('price_list_id');
         $countryShippingCharge = CountryShippingCharge::where('country_id', $order->address->country_id)->first();
         $shippingCharges = ShippingChargeGroup::where('shipping_charge_group_id', $countryShippingCharge->shipping_charge_group_id)

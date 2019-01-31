@@ -50,6 +50,10 @@
     <div class="row">
             <div class="col-md-6 text-right"></div>
             <div class="col-md-6 text-right">
+                QR Code Charge&nbsp;&nbsp; ${{ $order->qrCodeCharge }}
+            </div>
+            <div class="col-md-6 text-right"></div>
+            <div class="col-md-6 text-right">
                 Shipping Charges&nbsp;&nbsp; ${{ $order->shippingCharge + $order->additionalShippingCharge }}
             </div>
             <div class="col-md-6 text-right"></div>

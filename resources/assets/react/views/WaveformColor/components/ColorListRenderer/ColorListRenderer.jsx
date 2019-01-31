@@ -83,7 +83,7 @@ class ColorListRenderer extends React.Component {
                 colorPalletList.push((
                     <div
                         className={
-                            `colorPalletContainer ${parseInt(selectedColorPallet.color_pallet_id, 10) === parseInt(colorPallet.id, 10) && 'active'}`
+                            `colorPalletContainer ${parseInt(selectedColorPallet.color_pallet_id, 10) === parseInt(colorPallet.id, 10) && 'active' || ''}`
                         }
                         key={colorPallet.id}
                         onClick={() => (colorPalletSelectionHandler(colorPallet, true))}

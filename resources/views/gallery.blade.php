@@ -6,7 +6,7 @@
 <meta property="og:title" content="Create a sound wave picture from your sound." />
 <meta property="og:description" content="You can have a sound wave pic of your wedding vow, favorite song, or any sound you can think of!" />
 <meta property="og:url" content="https://www.soundwavepic.com" />
-<meta property="og:image" content="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo1.jpg" />
+<meta property="og:image" content="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo1_v1.jpg" />
 @endsection
 @section('content')
     @include('partials.navbar')
@@ -36,19 +36,19 @@
                     <div class="probootstrap-gallery">
                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="grid-item probootstrap-animate">
                     <a itemprop="contentUrl" data-size="1000x666">
-                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
+                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo1_v1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
                     </a>
                     <figcaption itemprop="caption description">Image caption here</figcaption>
                     </figure>
                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="grid-item probootstrap-animate">
                     <a itemprop="contentUrl" data-size="1000x667">
-                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo2.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
+                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo2_v1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
                     </a>
                     <figcaption itemprop="caption description">Image caption here</figcaption>
                     </figure>
                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="grid-item probootstrap-animate">
                     <a itemprop="contentUrl" data-size="1000x1500">
-                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo3.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
+                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo3_v1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
                     </a>
                     <figcaption itemprop="caption description">Image caption here</figcaption>
                     </figure>
@@ -61,25 +61,25 @@
 
                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="grid-item probootstrap-animate">
                     <a itemprop="contentUrl" data-size="1000x666">
-                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo5.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
+                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo5_v1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
                     </a>
                     <figcaption itemprop="caption description">Image caption here</figcaption>
                     </figure>
                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="grid-item probootstrap-animate">
                     <a itemprop="contentUrl" data-size="1000x667">
-                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo6.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
+                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo6_v1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
                     </a>
                     <figcaption itemprop="caption description">Image caption here</figcaption>
                     </figure>
                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="grid-item probootstrap-animate">
                     <a itemprop="contentUrl" data-size="1000x1500">
-                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo7.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
+                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo7_v1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
                     </a>
                     <figcaption itemprop="caption description">Image caption here</figcaption>
                     </figure>
                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="grid-item probootstrap-animate">
                     <a itemprop="contentUrl" data-size="1000x662">
-                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo8.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
+                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo8_v1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
                     </a>
                     <figcaption itemprop="caption description">Image caption here</figcaption>
                     </figure>
@@ -92,7 +92,7 @@
                     </figure>
                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="grid-item probootstrap-animate">
                     <a itemprop="contentUrl" data-size="1000x667">
-                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo10.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
+                        <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo10_v1.jpg" itemprop="thumbnail" alt="Free Bootstrap Template by uicookies.com" />
                     </a>
                     <figcaption itemprop="caption description">Image caption here</figcaption>
                     </figure>

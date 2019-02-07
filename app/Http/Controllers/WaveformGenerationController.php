@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\MediaFile;
 use App\ColorPallet;
+use App\WaveformStyle;
 use App\Services\MediaService;
 
 class WaveformGenerationController extends Controller
@@ -38,6 +39,27 @@ class WaveformGenerationController extends Controller
             ->orderBy('user_id', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->get();
+
+        $filtered = $colorPallets->filter(function ($colorPallet, $key) {
+            return !is_null($colorPallet->user_id);
+        });
+
+        $colorPalletIds = $filtered->map(function ($colorPallet) {
+            return $colorPallet->id;
+        })->all();
+
+        $waveformStyles = WaveformStyle::whereIn('waveform_color->color_pallet_id', $colorPalletIds)->get();
+        $usedColorPalletIds = $waveformStyles->map(function ($waveformStyle) {
+            return $waveformStyle->waveform_color['color_pallet_id'];
+        })->values()->all();
+
+        $colorPallets = $colorPallets->map(function ($colorPallet) use ($usedColorPalletIds) {
+            $colorPallet->used = false;
+            if (array_search($colorPallet->id, $usedColorPalletIds)) {
+                $colorPallet->used = true;
+            }
+            return $colorPallet;
+        });
 
         return response()->json(json_decode($colorPallets));
     }

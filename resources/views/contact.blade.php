@@ -6,7 +6,7 @@
 <meta property="og:title" content="Create a sound wave picture from your sound." />
 <meta property="og:description" content="You can have a sound wave pic of your wedding vow, favorite song, or any sound you can think of!" />
 <meta property="og:url" content="https://www.soundwavepic.com" />
-<meta property="og:image" content="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo1.jpg" />
+<meta property="og:image" content="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo1_v1.jpg" />
 @endsection
 @section('content')
     @include('partials.navbar')

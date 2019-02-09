@@ -13,7 +13,7 @@
     @include('partials.navbar')
     <section class="flexslider">
       <ul class="slides">
-        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_11.jpg')" class="overlay">
+        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo2_v1.jpg')" class="overlay">
           <div class="container">
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
@@ -25,7 +25,7 @@
             </div>
           </div>
         </li>
-        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_21.jpg')" class="overlay">
+        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo5_v1.jpg')" class="overlay">
           <div class="container">
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
@@ -38,7 +38,7 @@
           </div>
 
         </li>
-        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_31.jpg')" class="overlay">
+        <li style="background-image: url('https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo10_v1.jpg')" class="overlay">
           <div class="container">
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
@@ -190,37 +190,37 @@
       <div class="owl-carousel owl-work probootstrap-animate">
         <div class="item">
           <a href="/gallery">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_11_v1.jpg" alt="Free Bootstrap Template by uicookies.com">
+          </a>
+        </div>
+        <div class="item">
+          <a href="/gallery">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_31_v1.jpg" alt="Free Bootstrap Template by uicookies.com">
+          </a>
+        </div>
+        <div class="item">
+          <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_41.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="/gallery">
-            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_51.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_61_v1.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="/gallery">
-            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_61.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_71_v1.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="/gallery">
-            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_71.jpg" alt="Free Bootstrap Template by uicookies.com">
-          </a>
-        </div>
-        <div class="item">
-          <a href="/gallery">
-            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_81.jpg" alt="Free Bootstrap Template by uicookies.com">
+            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_81_v1.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
         <div class="item">
           <a href="/gallery">
             <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_91.jpg" alt="Free Bootstrap Template by uicookies.com">
-          </a>
-        </div>
-        <div class="item">
-          <a href="/gallery">
-            <img src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_101.jpg" alt="Free Bootstrap Template by uicookies.com">
           </a>
         </div>
       </div>

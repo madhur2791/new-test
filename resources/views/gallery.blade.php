@@ -12,7 +12,7 @@
     @include('partials.navbar')
         <section class="flexslider">
         <ul class="slides">
-            <li style="background-image: url(https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo_31.jpg)" class="overlay">
+            <li style="background-image: url(https://s3.us-east-2.amazonaws.com/soundwave-assets/images/Photo2_v1.jpg)" class="overlay">
             <div class="container">
                 <div class="row">
                 <div class="col-md-8 col-md-offset-2">

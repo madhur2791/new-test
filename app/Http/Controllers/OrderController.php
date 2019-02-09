@@ -237,4 +237,27 @@ class OrderController extends Controller
         return view('order', ['order' => $order]);
     }
 
+    public function showAdminOrdersList(Request $request) {
+        if ($request->user()->is_admin !== true) {
+            abort(404);
+        }
+        $orders = Order::where('payment_status', 'PAID')
+        ->orderBy('id', 'desc')
+        ->with('lineItems.waveformStyle')->with('address')->get();
+        return view('myorders', ['orders' => $orders->map(function ($order) {
+            return $this->orderService->getOrderDetails($order->id);
+        })]);
+    }
+
+    public function showAdminOrderDetails(Request $request, $orderId) {
+        if ($request->user()->is_admin !== true) {
+            abort(404);
+        }
+        $order = Order::where('id', $orderId)->first();
+        if (is_null($order) || $order->payment_status !== 'PAID') {
+            abort(404);
+        }
+        $order = $this->orderService->getOrderDetails($orderId);
+        return view('order', ['order' => $order]);
+    }
 }

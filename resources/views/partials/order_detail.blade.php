@@ -11,7 +11,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        @if ($lineItem->pricingList->print_type === 'Digital')
+                        @if ($lineItem->pricingList->print_type === 'Digital' || Auth::user()->is_admin === true)
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#downloadModal{{$lineItem->id}}">Download</button>
                         <div id="downloadModal{{$lineItem->id}}" class="modal fade" role="dialog">
                             <div class="modal-dialog">

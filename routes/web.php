@@ -95,6 +95,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/orders/{orderId}/confirm_payment', 'OrderController@confirmPayment');
 
     Route::get('/orders/{orderId}/success', 'OrderController@showPaymentConfirmationPage');
+
+    Route::get('/admin/orders', 'OrderController@showAdminOrdersList');
+
+    Route::get('/admin/orders/{orderId}', 'OrderController@showAdminOrderDetails');
 });
 
 

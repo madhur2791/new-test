@@ -9,7 +9,7 @@
 @include('partials.checkout_header')
 <div class="container my-orders-container side-margins">
     @foreach ($orders as $order)
-    <a href="/orders/{{$order->id}}">
+    <a href="orders/{{$order->id}}">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="order-container">

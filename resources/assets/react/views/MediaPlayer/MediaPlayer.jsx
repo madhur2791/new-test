@@ -126,7 +126,7 @@ class MediaPlayer extends React.Component {
                                 <div
                                     className="audio-seeker-needle"
                                     style={{
-                                        left: `calc(${4 + (this.state.played/100) * 92}%)`
+                                        left: `calc(${6 + (this.state.played/100) * 88}%)`
                                     }}
                                 />
                             </div>

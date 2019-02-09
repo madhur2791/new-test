@@ -8,7 +8,9 @@ function Sidebar(props) {
             <div className="col-md-12">
                 <div className="row">
                     <div className="col-md-12 sidebar-header">
-                        <img className="sidebar-logo" src="/images/logo-white.png" />
+                        <a href="/">
+                            <img className="sidebar-logo" src="/images/logo-white.png" />
+                        </a>
                     </div>
                 </div>
                 <div className="row">

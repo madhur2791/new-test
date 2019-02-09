@@ -258,6 +258,6 @@ class OrderController extends Controller
             abort(404);
         }
         $order = $this->orderService->getOrderDetails($orderId);
-        return view('order', ['order' => $order]);
+        return view('order', ['order' => $order, 'allow_download' => true]);
     }
 }

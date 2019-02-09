@@ -74,17 +74,29 @@ class OrderController extends Controller
     }
 
     public function showAddressPage(Request $request, $orderId) {
+        $order = Order::where('id', $orderId)->where('user_id', $request->user()->id)->first();
+        if (is_null($order)) {
+            abort(404);
+        }
         $address = OrderAddress::where('order_id', $orderId)->first();
         $countries = ShippingCountry::all();
         return view('address', ['orderId' => $orderId, 'address' => $address, 'countries' => $countries]);
     }
 
     public function showPaymentPage(Request $request, $orderId, $paymentError = '') {
+        $order = Order::where('id', $orderId)->where('user_id', $request->user()->id)->first();
+        if (is_null($order)) {
+            abort(404);
+        }
         $order = $this->orderService->getOrderDetails($orderId);
         return view('payment', ['order' => $order, 'paymentError' => $paymentError]);
     }
 
     public function addAddressToOrder(Request $request, $orderId) {
+        $order = Order::where('id', $orderId)->where('user_id', $request->user()->id)->first();
+        if (is_null($order)) {
+            abort(404);
+        }
         $request->validate([
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
@@ -104,6 +116,10 @@ class OrderController extends Controller
     }
 
     public function showPaymentConfirmationPage(Request $request, $orderId) {
+        $order = Order::where('id', $orderId)->where('user_id', $request->user()->id)->first();
+        if (is_null($order)) {
+            abort(404);
+        }
         $order = $this->orderService->getOrderDetails($orderId);
         if($order->payment_status === 'PAID') {
             return view('payment_success', ['order' => $order]);
@@ -114,6 +130,10 @@ class OrderController extends Controller
     }
 
     public function confirmPayment(Request $request, $orderId) {
+        $order = Order::where('id', $orderId)->where('user_id', $request->user()->id)->first();
+        if (is_null($order)) {
+            abort(404);
+        }
         $order = $this->orderService->getOrderDetails($orderId);
 
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
@@ -209,6 +229,10 @@ class OrderController extends Controller
     }
 
     public function showOrderDetailPage(Request $request, $orderId) {
+        $order = Order::where('id', $orderId)->where('user_id', $request->user()->id)->first();
+        if (is_null($order) || $order->payment_status !== 'PAID') {
+            abort(404);
+        }
         $order = $this->orderService->getOrderDetails($orderId);
         return view('order', ['order' => $order]);
     }

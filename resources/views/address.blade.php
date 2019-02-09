@@ -20,13 +20,13 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="name">First Name</label>
-                        <input type="text" class="form-control" id="name" name="first_name" value="{{$address && $address->first_name}}">
+                        <input type="text" class="form-control" id="name" name="first_name" value="{{!is_null($address) ? $address->first_name : ''}}">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="name">Last Name</label>
-                        <input type="text" class="form-control" id="name" name="last_name" value="{{$address && $address->last_name}}">
+                        <input type="text" class="form-control" id="name" name="last_name" value="{{!is_null($address) ? $address->last_name: ''}}">
                     </div>
                 </div>
             </div>
@@ -34,13 +34,13 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{$address && $address->email}}">
+                        <input type="email" class="form-control" id="email" name="email" value="{{!is_null($address) ? $address->email: ''}}">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="subject">Phone Number</label>
-                        <input type="text" class="form-control" id="subject" name="phone_number" value="{{$address && $address->phone_number}}">
+                        <input type="text" class="form-control" id="subject" name="phone_number" value="{{!is_null($address) ? $address->phone_number: ''}}">
                     </div>
                 </div>
             </div>
@@ -48,13 +48,13 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="subject">Street</label>
-                        <input type="text" class="form-control" id="subject" name="address_line_1" value="{{$address && $address->address_line_1}}">
+                        <input type="text" class="form-control" id="subject" name="address_line_1" value="{{!is_null($address) ? $address->address_line_1: ''}}">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="message">Apartment, Suite, Unit</label>
-                        <input type="text" class="form-control" id="subject" name="address_line_2" value="{{$address && $address->address_line_2}}">
+                        <input type="text" class="form-control" id="subject" name="address_line_2" value="{{!is_null($address) ? $address->address_line_2: ''}}">
                     </div>
                 </div>
             </div>
@@ -63,26 +63,26 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="message">City</label>
-                        <input type="text" class="form-control" id="subject" name="city" value="{{$address && $address->city}}">
+                        <input type="text" class="form-control" id="subject" name="city" value="{{!is_null($address) ? $address->city: ''}}">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="message">Zipcode</label>
-                        <input type="text" class="form-control" id="subject" name="zipcode" value="{{$address && $address->zipcode}}">
+                        <input type="text" class="form-control" id="subject" name="zipcode" value="{{!is_null($address) ? $address->zipcode: ''}}">
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="message">State</label>
-                <input type="text" class="form-control" id="subject" name="state" value="{{$address && $address->state}}">
+                <input type="text" class="form-control" id="subject" name="state" value="{{!is_null($address) ? $address->state: ''}}">
             </div>
             <div class="form-group">
                 <label for="message">Country</label>
                 <select name="country_id" class="form-control">
                     @foreach ($countries as $country)
-                        <option value="{{$country->id}}">{{$country->country_name}}</option>
+                        <option {{!is_null($address) ? $address->country_id === $country->id ? 'selected' : '' : ''}} value="{{$country->id}}">{{$country->country_name}}</option>
                     @endforeach
                 </select>
             </div>

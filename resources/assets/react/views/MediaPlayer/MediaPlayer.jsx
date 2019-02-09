@@ -112,7 +112,10 @@ class MediaPlayer extends React.Component {
         if(this.state.mediaFileData && !this.state.error && this.state.passwordRequired === false) {
             return (
                 <div className="row media-player-page">
-                    <div className="col-md-6 col-md-offset-3">
+                    <div className="col-md-6 col-md-offset-3 col-sm-12 col-sm-offset-0 text-center">
+                        <img className="logo-image" src="https://s3.us-east-2.amazonaws.com/soundwave-assets/images/logo-white.png" />
+                    </div>
+                    <div className="col-md-6 col-md-offset-3 col-sm-12 col-sm-offset-0 media-player-container">
                         <div className="mediaPlayerContainer">
                             <div className="media-player-waveform-container">
                                 <object
@@ -123,7 +126,7 @@ class MediaPlayer extends React.Component {
                                 <div
                                     className="audio-seeker-needle"
                                     style={{
-                                        left: `calc(${13.5 + (this.state.played/100) * 73}%)`
+                                        left: `calc(${4 + (this.state.played/100) * 92}%)`
                                     }}
                                 />
                             </div>
@@ -164,6 +167,9 @@ class MediaPlayer extends React.Component {
                                         }: {}}
                                     />
                                 </div>
+                            </div>
+                            <div className="media-player-get-started-button">
+                                <a className="btn get-started-button" href="/waveform/upload">Create Now</a>
                             </div>
                         </div>
                     </div>

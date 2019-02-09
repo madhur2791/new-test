@@ -13,6 +13,10 @@
     <div id="navbar-collapse" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
         <li><a href="/waveform/upload">Create Now</a></li>
+        @if (Auth::check())
+        <li><a href="/myorders">Orders</a></li>
+        <li><a href="/carts">Cart</a></li>
+        @endif
         <li><a href="/gallery">Gallery</a></li>
         <li><a href="/faq">FAQ</a></li>
         @if (Auth::check())

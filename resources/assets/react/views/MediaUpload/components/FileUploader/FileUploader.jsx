@@ -54,7 +54,7 @@ class FileUploader extends React.Component {
                     multiple={false}
                     className="btn btn-primary upload-button"
                     accept="audio/*, video/*"
-                    maxSize={1000000}
+                    maxSize={40000000}
                     style={{
                         borderRadius: "0px",
                         padding: "5px 30px"

@@ -12,6 +12,8 @@ class AudioRecorder extends React.Component {
         this.clearRecording = this.clearRecording.bind(this);
         this.mediaRecorder = null;
         this.intervalObject = null;
+        this.minimumAudioLength = 1;
+        this.maximumAudioLength = 300;
         this.audioChunks = [];
         this.state = {
             showRecorderPopup: false,
@@ -57,7 +59,7 @@ class AudioRecorder extends React.Component {
                 this.setState({
                     timeLimitReached: true
                 });
-            }, 300000);
+            }, this.maximumAudioLength * 1000);
 
             this.intervalObject = setInterval(() => {
                 this.setState((prevState) => {
@@ -72,13 +74,15 @@ class AudioRecorder extends React.Component {
     }
 
     handleStopAudioRecording() {
-        this.mediaRecorder.stop();
-        if(this.intervalObject) {
-            clearInterval(this.intervalObject);
+        if(this.state.recordedTime > this.minimumAudioLength) {
+            this.mediaRecorder.stop();
+            if(this.intervalObject) {
+                clearInterval(this.intervalObject);
+            }
+            this.setState({
+                audioRecordInProgress: false
+            });
         }
-        this.setState({
-            audioRecordInProgress: false
-        });
     }
 
     uploadRecordedMedia() {
@@ -144,7 +148,7 @@ class AudioRecorder extends React.Component {
                     <div className="recorder-popup">
                         <h4>Click on the below button to start recording</h4>
                         <span>We need permission to use your microphone. Click on the below button and approve the permission to start recording.</span>
-                        <div>(max 5 min)</div>
+                        <div>(min 1 sec, max 5 min)</div>
                         <div>
                             <span
                                 onClick={this.handleHideRecordingRecord}

@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'gator3224.hostgator.com'),
 
     /*
     |--------------------------------------------------------------------------

@@ -166,7 +166,7 @@ class OrderService
     }
 
     public function getOrderDetails($orderId) {
-        $order = Order::where('id', $orderId)->with(['lineItems', 'lineItems.pricingList', 'lineItems.waveformStyle'])->with('address')->first();
+        $order = Order::where('id', $orderId)->with(['lineItems', 'lineItems.pricingList', 'lineItems.waveformStyle'])->with('user')->with('address')->first();
         return $this->computeOrderDetails($order);
     }
 
@@ -176,6 +176,9 @@ class OrderService
         $shippingCharges = ShippingChargeGroup::where('shipping_charge_group_id', $countryShippingCharge->shipping_charge_group_id)
             ->whereIn('pricing_list_id', $pricingListIds)->get();
         $indexedShippingCharges = [];
+        $order->hasPhysicalItems = false;
+        $order->hasDigitalItems = false;
+        $digitalAttachments = [];
 
         foreach ($shippingCharges as $shippingCharge) {
             $indexedShippingCharges[$shippingCharge->pricing_list_id] = $shippingCharge;
@@ -192,6 +195,12 @@ class OrderService
                 $maxShippingCharge = $indexedShippingCharges[$orderLineItem->price_list_id]->shipping_charge;
                 $selectedShippingLineItemId = $orderLineItem->id;
             }
+            if ($orderLineItem->pricingList->print_type !== 'Digital') {
+                $order->hasPhysicalItems = true;
+            } else {
+                array_push($digitalAttachments, $orderLineItem->generated_image_url);
+                $order->hasDigitalItems = true;
+            }
             $orderLineItem['shippingCharge'] = $indexedShippingCharges[$orderLineItem->price_list_id];
             array_push($modifiedLineItems, $orderLineItem);
             $totalItemCost += $orderLineItem->pricingList->price;
@@ -207,7 +216,7 @@ class OrderService
                 $additionalShippingCharge += $orderLineItem->pricingList->additional_item;
             }
         }
-
+        $order->digitalAttachments = $digitalAttachments;
         $order->lineItems = $modifiedLineItems;
         $order->totalItemCost = $totalItemCost;
         $order->shippingCharge = $maxShippingCharge;

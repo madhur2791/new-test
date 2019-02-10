@@ -16,6 +16,8 @@ use App\WaveformStyle;
 use App\ShippingCountry;
 use Stripe\Stripe;
 use Stripe\Charge;
+use Mail;
+use App\Mail\OrderPlaced;
 
 class OrderController extends Controller
 {
@@ -152,6 +154,9 @@ class OrderController extends Controller
                     'payment_status' => 'PAID'
                 ]);
                 Cart::where('user_id', $request->user()->id)->delete();
+
+                Mail::to($order->user->email)
+                    ->send(new OrderPlaced($order));
                 return redirect()->action(
                     'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]
                 );

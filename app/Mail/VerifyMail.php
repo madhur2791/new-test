@@ -29,6 +29,6 @@ class VerifyMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.verifyUser');
+        return $this->subject('Welcome to Sound Wave Picture!')->view('emails.verifyUser');
     }
 }

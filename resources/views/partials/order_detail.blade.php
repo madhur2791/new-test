@@ -1,7 +1,5 @@
 <div class="order-container">
-    <?php $total = 0 ?>
     @foreach ($order->lineItems as $lineItem)
-        <?php $total += $lineItem->price  ?>
         <div class="row order-line-item-container">
             <div class="col-md-5 text-center">
                 <div class="row">

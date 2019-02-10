@@ -116,8 +116,8 @@ const getSoundWaveSampleSvg = (xPoint, sampleData, waveType) => {
         />
         );
     } else if (waveType === 'radial') {
-        const currentAngle = sampleData.startAngle + ((sampleData.xPoint * 360) / sampleData.sampleLength);
-        let nextAngle = sampleData.startAngle + (((sampleData.xPoint + 1) * 360) / sampleData.sampleLength);
+        const currentAngle = sampleData.startAngle + ((sampleData.xPoint * 390) / sampleData.sampleLength);
+        let nextAngle = sampleData.startAngle + (((sampleData.xPoint + 1) * 390) / sampleData.sampleLength);
         nextAngle = ((sampleData.lineWidth / (sampleData.lineWidth + sampleData.lineSpacing)) * (nextAngle - currentAngle)) + currentAngle;
         const currentRadAngle = currentAngle * Math.PI / 180;
         const nextRadAngle = nextAngle * Math.PI / 180;

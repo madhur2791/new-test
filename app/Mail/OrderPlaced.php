@@ -32,7 +32,7 @@ class OrderPlaced extends Mailable
         $emailObject = $this->subject('Thank you for your order!')->view('emails.orderPlaced');
         if($this->order->hasDigitalItems === true) {
             foreach ($this->order->digitalAttachments as $key => $attachmentLink) {
-                $emailObject->attachFromStorageDisk('s3', 'resources/generated-images/'.$attachmentLink);
+                $emailObject->attachFromStorageDisk('s3', 'resources/generated-images/'.$attachmentLink, 'SoundWavePic('.($key + 1).').svg');
             }
         }
         return $emailObject;

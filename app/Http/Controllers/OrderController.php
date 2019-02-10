@@ -159,8 +159,10 @@ class OrderController extends Controller
                     ->bcc('makif555@hotmail.com')
                     ->send(new OrderPlaced($order));
 
-                Mail::to($order->address->email)
-                    ->send(new OrderPlaced($order));
+                if($order->address->email !== $order->user->email) {
+                    Mail::to($order->address->email)
+                        ->send(new OrderPlaced($order));
+                }
 
                 return redirect()->action(
                     'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]

@@ -19,7 +19,7 @@ It typically takes 7-10 days to arrive after shipment is made. You’ll receive 
 <br/>
 Thank you for your order!
 <br/>
-Please find your digital product(s) attached to this email.
+Please find your digital product(s) attached on the following link: <a href="https://www.soundwavepic.com/orders/{{$order->id}}">https://www.soundwavepic.com/orders/{{$order->id}}</a>
 <br/>
 @endif
 
@@ -27,7 +27,7 @@ Please find your digital product(s) attached to this email.
 <br/>
 Thank you for your order!
 <br/>
-Please find your digital product(s) attached to this email. Your physical product(s) are being processed and will be sent within 3 business days. You’ll receive another email once we ship your order.
+Please find your digital product(s) attached on the following link: <a href="https://www.soundwavepic.com/orders/{{$order->id}}">https://www.soundwavepic.com/orders/{{$order->id}}</a>. Your physical product(s) are being processed and will be sent within 3 business days. You’ll receive another email once we ship your order.
 <br/>
 @endif
 

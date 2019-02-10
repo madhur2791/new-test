@@ -147,7 +147,7 @@ class ImageController extends Controller
 
         $mpdf->WriteHTML(file_get_contents(storage_path('app').'/original_image_files/'.$generatedImageUrl));
         Storage::disk('local')->delete('/original_image_files/'.$generatedImageUrl);
-        $mpdf->Output('MyPDF.pdf', 'D');
+        $mpdf->Output('soundWavePic.pdf', 'D');
     }
 
     public function getSVG(Request $request, $generatedImageUrl)
@@ -159,7 +159,7 @@ class ImageController extends Controller
             Storage::disk('s3')->get('resources/generated-images/'.$generatedImageUrl)
         );
 
-        return response()->download(storage_path('app').'/original_image_files/'.$generatedImageUrl)->deleteFileAfterSend(true);
+        return response()->download(storage_path('app').'/original_image_files/'.$generatedImageUrl, 'soundWavePic.svg')->deleteFileAfterSend(true);
     }
 
     public function getGeneratedImage(Request $request, $generatedImageUrl) {

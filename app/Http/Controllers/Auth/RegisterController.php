@@ -93,10 +93,10 @@ class RegisterController extends Controller
                 $verifyUser->user->verified = 1;
                 $verifyUser->user->save();
                 $status = "Your e-mail is verified. You can now login.";
-            }else{
+            } else {
                 $status = "Your e-mail is already verified. You can now login.";
             }
-        }else{
+        } else {
             return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
         }
 

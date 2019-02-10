@@ -93,7 +93,7 @@ class RegisterController extends Controller
             $user = $verifyUser->user;
             if(!$user->verified) {
                 $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
-                    'Storm(Vivaldi).mp3',
+                    'Storm(Vivaldi).webm',
                     'Storm(Vivaldi)',
                     uniqid($user->id),
                     $user,

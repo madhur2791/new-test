@@ -13,37 +13,42 @@ use FFMpeg\Format\Video\WebM;
 
 class MediaService
 {
+
     public function __construct() {
         $this->defaultColor = [
-            "color_pallet_id" => 1,
-            "colors" => ["dbc3d0", "5e0231", "c7a693", "856046"],
-            "color_pallet_name" => 'Default',
+            "color_pallet_id" => 19,
+            "colors" => ["ffa676", "f2c888", "c5dda9", "9bd2ad", "5da78f"],
+            "color_pallet_name" => 'Human Sky',
             "color_option" => "mix",
             "color_diffusion_percentage" => "100"
         ];
         $this->defaultStyle = [
             "waveform_type" => "bars",
-            "line_width" => "1",
-            "line_spacing" => "0",
+            "line_width" => 4.7,
+            "line_spacing" => 0.4,
             "line_dash_width" => "0",
             "start_angle" => "0",
             "inner_radius" => "50"
         ];
+
         $this->defaultQrCode = [
             "qr_code_value" => "",
             "vertical_alignment" => 'bottom',
             "horizantal_alignment" => 'right',
             "color" => '000',
             "size" => '100',
-            "enabled" => false
+            "enabled" => true,
+            "qrCodeSecurityPassword" => null,
+            "qrCodeProtectionEnabled" => false
         ];
+
         $this->defaultText = [
             "text" => "",
-            "font_family" => "Aguafina Script, aguafinascrip",
-            "font_size" => "20",
-            "font_color" => "000",
-            "vertical_alignment" => 'top',
-            "horizantal_alignment" => 'left',
+            "font_family" => "Poiret One, poiretone",
+            "font_size" => 69,
+            "font_color" => "ffa676",
+            "vertical_alignment" => 'bottom',
+            "horizantal_alignment" => 'center',
         ];
     }
 

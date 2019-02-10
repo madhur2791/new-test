@@ -14,7 +14,7 @@ class WaveformPrintOption extends React.Component {
         this.state = {
             showWaveformLoader: false,
             showSidebarLoader: false,
-            selectedPrintType: 'Canvas',
+            selectedPrintType: 'Digital',
             selectedSizeOption: '',
             showAddToCartLoader: false
         };

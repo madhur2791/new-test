@@ -74,7 +74,7 @@
                 </form>
             </div>
             <div class="checkout-button" style="float:left">
-                <a href="/waveform/upload" class="btn btn-primary btn-lg">Continue shopping</a>
+                <a href="/waveform/upload" class="btn btn-primary btn-lg">Continue Shopping</a>
             </div>
            @else
             Your cart is empty

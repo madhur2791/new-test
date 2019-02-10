@@ -7,10 +7,22 @@ class FileUploader extends React.Component {
         super(props);
         this.onDropRejected = this.onDropRejected.bind(this);
         this.onDropAccepted = this.onDropAccepted.bind(this);
+        this.closeCropAssistPopup = this.closeCropAssistPopup.bind(this);
+        this.state = {
+            showCropAssistPopup: false
+        };
     }
 
     onDropRejected(rejectedFiles) {
-        console.log('rejetced',rejectedFiles[0].size);
+        this.setState({
+            showCropAssistPopup: true
+        });
+    }
+
+    closeCropAssistPopup() {
+        this.setState({
+            showCropAssistPopup: false
+        });
     }
 
     onDropAccepted(acceptedFiles) {
@@ -21,6 +33,18 @@ class FileUploader extends React.Component {
     }
 
     render() {
+        let cropAssistPopup = null;
+        if (this.state.showCropAssistPopup === true) {
+            cropAssistPopup = <div className="colorPalletPopupOverlay">
+                                <div className="colorPalletPopup">
+                                    <div
+                                        className="colorPalletPopupClose"
+                                        onClick={this.closeCropAssistPopup}
+                                    >x</div>
+                                    You file size is more than 40mb, Please follow the instruction in <a href="https://audiotrimmer.com" target="_blank">https://audiotrimmer.com</a> to get your audio file cropped
+                                </div>
+                            </div>;
+        }
         return (
             <div className="dropzone-contianer" >
                 <Dropzone
@@ -30,7 +54,7 @@ class FileUploader extends React.Component {
                     multiple={false}
                     className="btn btn-primary upload-button"
                     accept="audio/*, video/*"
-                    maxSize={40000000}
+                    maxSize={1000000}
                     style={{
                         borderRadius: "0px",
                         padding: "5px 30px"
@@ -38,6 +62,7 @@ class FileUploader extends React.Component {
                 >
                 {this.props.children}
                 </Dropzone>
+                {cropAssistPopup}
             </div>
         );
     }

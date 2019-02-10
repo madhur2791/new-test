@@ -156,7 +156,12 @@ class OrderController extends Controller
                 Cart::where('user_id', $request->user()->id)->delete();
 
                 Mail::to($order->user->email)
+                    ->bcc('makif555@hotmail.com')
                     ->send(new OrderPlaced($order));
+
+                Mail::to($order->address->email)
+                    ->send(new OrderPlaced($order));
+
                 return redirect()->action(
                     'OrderController@showPaymentConfirmationPage', ['orderId' => $orderId]
                 );

@@ -44,6 +44,7 @@ class MediaUploadController extends Controller
             'VIDEO'
         );
         $this->mediaService->createDefaultStyle($mediaFileObj->id);
+        Storage::disk('local')->delete($filePath);
         return response()->json($this->mediaService->getUploadedMediaFiles($request->user()));
     }
 
@@ -87,7 +88,7 @@ class MediaUploadController extends Controller
             true,
             $mediaFileObject->media_file_type
         );
-
+        Storage::disk('local')->delete($clippedFilePath);
         return response()->json($this->mediaService->getUploadedMediaFiles($request->user()));
     }
 

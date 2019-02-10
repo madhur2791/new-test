@@ -99,7 +99,6 @@ class MediaService
         );
 
         Storage::disk('local')->delete('/converted_files/'.$mediaFileName);
-        Storage::disk('local')->delete($mediaFilePath);
         Storage::disk('local')->delete('/json_files/'.$jsonFileName);
         if($fileType === 'VIDEO') {
             Storage::disk('local')->delete('/converted_files/'.$audioFileName);
@@ -154,6 +153,7 @@ class MediaService
         }
 
         Storage::disk('local')->delete('uploaded_files/'.$mediaFileName);
+        Storage::disk('local')->delete('meta_stripped_files/'.$mediaFileName);
 
         return 'clipped_files/'.$mediaFileName;
     }

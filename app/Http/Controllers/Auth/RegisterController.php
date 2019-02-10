@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
 use Illuminate\Http\Request;
+use App\Services\MediaService;
 
 class RegisterController extends Controller
 {
@@ -42,6 +43,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->mediaService = new MediaService();
     }
 
     /**
@@ -90,6 +92,15 @@ class RegisterController extends Controller
         if(isset($verifyUser) ){
             $user = $verifyUser->user;
             if(!$user->verified) {
+                $mediaFileObj = $this->mediaService->computeAndStoreMediaInfo(
+                    'Storm(Vivaldi).mp3',
+                    'Storm(Vivaldi)',
+                    uniqid($user->id),
+                    $user,
+                    false,
+                    'VIDEO'
+                );
+                $this->mediaService->createDefaultStyle($mediaFileObj->id);
                 $verifyUser->user->verified = 1;
                 $verifyUser->user->save();
                 $status = "Your e-mail is verified. You can now login.";

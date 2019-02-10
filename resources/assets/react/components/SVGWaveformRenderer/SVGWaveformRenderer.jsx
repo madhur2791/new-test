@@ -427,7 +427,7 @@ class SVGWaveformRenderer extends React.Component {
             const xShift = lineWidth / 2;
             const centerX = Math.ceil((canvasWidth + horizantalMargin) / 2);
             const centerY = Math.ceil((canvasHeight + verticalMargin) / 2);
-            const amplificationFactor = canvasHeight * 1 / 3;
+            const amplificationFactor = canvasHeight * 1.2 / 3;
 
             let samplingRate = 1;
             let samplingRateScale = 1;
@@ -464,7 +464,10 @@ class SVGWaveformRenderer extends React.Component {
                 if(absValue === 1) {
                     absValue = 0.99;
                 }
-                const amplifiedValue = absValue * amplificationFactor;
+                let amplifiedValue = absValue * amplificationFactor;
+                if (amplifiedValue < 1) {
+                    amplifiedValue = 1;
+                }
                 const sampleColor = fetchColor(computedColors, xPoint, absValue, wavefromColor.color_option);
 
                 svgElements.push(getSoundWaveSampleSvg(

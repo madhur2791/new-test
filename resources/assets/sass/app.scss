@@ -139,7 +139,7 @@ body {
 }
 
  .audio-seeker-needle {
-    height: calc(100% + 2px);
+    height: calc(100% - 6px);
     width: 1px;
     display: block;
     position: absolute;
@@ -663,8 +663,8 @@ body {
     position: relative;
     padding: 5px 0px;
     background: #ddd;
-    margin-top: -5px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 0px;
     .bar {
         height: 5px;
         position: absolute;

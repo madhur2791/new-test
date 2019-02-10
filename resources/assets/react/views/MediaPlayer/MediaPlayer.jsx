@@ -130,18 +130,6 @@ class MediaPlayer extends React.Component {
                                     }}
                                 />
                             </div>
-                            <ReactPlayer
-                                url={`${this.state.mediaFileData.baseUrl}/${this.state.mediaFileData.waveform.media_file.displayed_media_file_url}`}
-                                onProgress={this.onProgress}
-                                onBuffer={this.onBuffer}
-                                width='100%'
-                                height='100%'
-                                progressInterval={1}
-                                ref={this.ref}
-                                playing={this.state.isPlaying}
-                                onDuration={this.onDuration}
-                                onEnded={this.onEnded}
-                            />
                             <div className="mediaPlayerControlsContainer">
                                 <div
                                     className="bar playerBar"
@@ -168,6 +156,18 @@ class MediaPlayer extends React.Component {
                                     />
                                 </div>
                             </div>
+                            <ReactPlayer
+                                url={`${this.state.mediaFileData.baseUrl}/${this.state.mediaFileData.waveform.media_file.displayed_media_file_url}`}
+                                onProgress={this.onProgress}
+                                onBuffer={this.onBuffer}
+                                width='100%'
+                                height='100%'
+                                progressInterval={1}
+                                ref={this.ref}
+                                playing={this.state.isPlaying}
+                                onDuration={this.onDuration}
+                                onEnded={this.onEnded}
+                            />
                             <div className="media-player-get-started-button">
                                 <a className="btn get-started-button" href="/waveform/upload">Create Now</a>
                             </div>

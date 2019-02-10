@@ -73,6 +73,9 @@
                     <input class="btn btn-primary btn-lg" type="submit" value="Checkout"/>
                 </form>
             </div>
+            <div class="checkout-button" style="float:left">
+                <a href="/waveform/upload" class="btn btn-primary btn-lg">Continue shopping</a>
+            </div>
            @else
             Your cart is empty
            @endif

@@ -32,7 +32,11 @@
                     <tr>
                         <td>
                             <div class="cartImageContainer">
-                                <img class="cartImage" src="/generated-images/{{ $lineItem->generated_image_url }}" />
+                                <object
+                                    class="cartImage"
+                                    type="image/svg+xml"
+                                    data="/generated-images/{{ $lineItem->generated_image_url }}">
+                                </object>
                             </div>
                             <div class="cartItemDescContainer">
                                 {{ $lineItem->pricingList->print_type }} {{ $lineItem->pricingList->size }}

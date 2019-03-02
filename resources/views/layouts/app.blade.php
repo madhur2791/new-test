@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <meta name="google-site-verification" content="8Qotwk1SzHIlmikCxwGcAXY8uVxqg0sT0ACZ9NDqdrQ" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132782662-1"></script>
     <script>
